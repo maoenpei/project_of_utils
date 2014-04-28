@@ -1,0 +1,6 @@
+for windows
+ open ~\freetype-2.5.3\builds\windows\vc2008\freetype.sln
+for OSX
+ cd to ~/freetype-2.5.3
+ make
+ open ~/freetype-2.5.3/builds/mac/xcode5/freetype.xcodeproj

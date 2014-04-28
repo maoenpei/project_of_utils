@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpng", "libpng.vcproj", "{CEB3E688-621C-45AB-BF8A-B90708D3E328}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpng_use", "libpng_use.vcproj", "{D35E9BC8-4284-4AC8-A530-54D62E0D49EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328} = {CEB3E688-621C-45AB-BF8A-B90708D3E328}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.Build.0 = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.Build.0 = Release|Win32
+		{D35E9BC8-4284-4AC8-A530-54D62E0D49EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D35E9BC8-4284-4AC8-A530-54D62E0D49EB}.Debug|Win32.Build.0 = Debug|Win32
+		{D35E9BC8-4284-4AC8-A530-54D62E0D49EB}.Release|Win32.ActiveCfg = Release|Win32
+		{D35E9BC8-4284-4AC8-A530-54D62E0D49EB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
