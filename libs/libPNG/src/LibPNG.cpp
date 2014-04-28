@@ -98,14 +98,14 @@ public:
 		}
 	}
 
-	virtual void getinfo(Libs::PNGImage *info)
+	virtual bool getinfo(Libs::PNGImage *info)
 	{
 		if (m_info_ptr == NULL || 
 			(m_info_ptr->color_type != PNG_COLOR_TYPE_RGB && m_info_ptr->color_type != PNG_COLOR_TYPE_RGB_ALPHA)){
 			info->format = Libs::PNGImage_Unknown;
 			info->width = 0;
 			info->height = 0;
-			return;
+			return false;
 		}
 		info->format = (m_info_ptr->color_type == PNG_COLOR_TYPE_RGB ? Libs::PNGImage_RGB : Libs::PNGImage_RGBA);
 		info->rowbytes = m_info_ptr->rowbytes;
@@ -120,6 +120,7 @@ public:
 			png_read_end(m_png_ptr, NULL);
 			delete [] line_arr;
 		}
+		return true;
 	}
 };
 

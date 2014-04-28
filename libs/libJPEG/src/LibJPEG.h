@@ -21,7 +21,7 @@ namespace Libs
 		virtual bool opendata(const unsigned char *data, size_t size) = 0;
 		virtual void close() = 0;
 
-		virtual void getinfo(JPEGImage *info) = 0;
+		virtual bool getinfo(JPEGImage *info) = 0;
 	};
 
 	class JPEGWriteFunc
