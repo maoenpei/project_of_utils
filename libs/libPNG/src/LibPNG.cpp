@@ -160,10 +160,10 @@ public:
 
 	static void data_to_memory(png_structp png_ptr, png_bytep data, png_size_t length)
 	{
-		Libs::WriteFunc *func = (Libs::WriteFunc *)png_get_io_ptr(png_ptr);
+		Libs::PNGWriteFunc *func = (Libs::PNGWriteFunc *)png_get_io_ptr(png_ptr);
 		func->outputdata(data, length);
 	}
-	virtual bool opendata(Libs::WriteFunc *func)
+	virtual bool opendata(Libs::PNGWriteFunc *func)
 	{
 		if (m_png_ptr)
 			return false;
@@ -213,7 +213,6 @@ Libs::ReadPNG * createReadPNG()
 
 Libs::WritePNG *createWritePNG()
 {
-	//return new WritePNGImpl();
-	return NULL;
+	return new WritePNGImpl();
 }
 
