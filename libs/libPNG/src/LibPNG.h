@@ -11,24 +11,31 @@ namespace Libs
 		PNGImage_RGBA,
 	};
 
-	typedef struct{
+	struct PNGImage{
+		inline PNGImage() : buffer(0){}
 		unsigned int format;		// image format
-		int channels;				// number of bytes per pixel
+		int rowbytes;				// number of bytes per line
 		int width;					// image width
 		int height;					// image height
 		unsigned char *buffer;		// image buffer
-	}PNGImage;
+	};
 
-	class LibPNG
+	class ReadPNG
 	{
 	public:
 		LIB_INTERFACES();
 		
 		virtual bool openfile(const char *filename) = 0;
-		virtual bool opendata(const void *data, size_t size) = 0;
+		virtual bool opendata(const unsigned char *data, size_t size) = 0;
 		virtual void close() = 0;
 
 		virtual void getinfo(PNGImage *info) = 0;
+	};
+
+	class WriteFunc
+	{
+	public:
+		virtual void outputdata(const unsigned char *data, size_t size) = 0;
 	};
 
 	class WritePNG
@@ -36,18 +43,16 @@ namespace Libs
 	public:
 		LIB_INTERFACES();
 
-		virtual void openfile(const char *filename) = 0;
-		virtual void opencache() = 0;
+		virtual bool openfile(const char *filename) = 0;
+		virtual bool opendata(WriteFunc *func) = 0;
 		virtual void close() = 0;
 
-		virtual bool setinfo(PNGImage *info) = 0;
-		virtual size_t getsize() = 0;
-		virtual void getbuffer() = 0;
+		virtual bool inputinfo(PNGImage *info) = 0;
 	};
 
 };
 
-extern "C" EXPORT_FUNC Libs::LibPNG * createLibPNG();
+extern "C" EXPORT_FUNC Libs::ReadPNG * createReadPNG();
 extern "C" EXPORT_FUNC Libs::WritePNG * createWritePNG();
 
 #endif
