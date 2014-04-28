@@ -22,6 +22,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "miniunz", "miniunz.vcproj",
 		{8FD826F8-3739-44E6-8CC8-997122E53B8D} = {8FD826F8-3739-44E6-8CC8-997122E53B8D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UseZlib", "UseZlib.vcproj", "{CEB3E688-621C-45AB-BF8A-B90708D3E328}"
+	ProjectSection(ProjectDependencies) = postProject
+		{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8} = {745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Itanium = Debug|Itanium
@@ -133,6 +138,18 @@ Global
 		{C52F9E7B-498A-42BE-8DB4-85A15694382A}.ReleaseWithoutAsm|Itanium.ActiveCfg = Release|Win32
 		{C52F9E7B-498A-42BE-8DB4-85A15694382A}.ReleaseWithoutAsm|Win32.ActiveCfg = Release|Win32
 		{C52F9E7B-498A-42BE-8DB4-85A15694382A}.ReleaseWithoutAsm|x64.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Itanium.ActiveCfg = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.Build.0 = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|x64.ActiveCfg = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Itanium.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.Build.0 = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|x64.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.ReleaseWithoutAsm|Itanium.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.ReleaseWithoutAsm|Win32.ActiveCfg = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.ReleaseWithoutAsm|Win32.Build.0 = Release|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.ReleaseWithoutAsm|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
