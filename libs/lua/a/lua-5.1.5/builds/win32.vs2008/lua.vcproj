@@ -383,11 +383,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\..\..\src\LuaState.cpp"
+			RelativePath="..\..\..\..\src\LibLua.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\..\src\LuaState.h"
+			RelativePath="..\..\..\..\src\LibLua.h"
 			>
 		</File>
 	</Files>

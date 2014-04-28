@@ -1,12 +1,12 @@
-#ifndef __LIB_LUA_STATE_H__
-#define __LIB_LUA_STATE_H__
+#ifndef __LIBS_LUA_H__
+#define __LIBS_LUA_H__
 
 #include "../../common/src/LibCommon.h"
 
 namespace Libs
 {
 
-	class LuaState
+	class Lua
 	{
 	public:
 		LIB_INTERFACES();
@@ -15,7 +15,7 @@ namespace Libs
 };
 
 extern "C"{
-	EXPORT_FUNC Libs::LuaState * createLuaState();
+	EXPORT_FUNC Libs::Lua * createLua();
 }
 
 #endif
