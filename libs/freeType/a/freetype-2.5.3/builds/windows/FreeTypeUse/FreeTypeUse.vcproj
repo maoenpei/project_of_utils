@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\..\..\..\common\src;..\..\..\include"
+				AdditionalIncludeDirectories="..\..\..\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;FREETYPEUSE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,7 +63,8 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\FreeType.dll"
 				LinkIncremental="2"
-				GenerateDebugInformation="true"
+				GenerateManifest="false"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -168,11 +169,11 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\..\..\..\src\FreeType.cpp"
+			RelativePath="..\..\..\..\..\src\LibFreeType.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\..\..\src\FreeType.h"
+			RelativePath="..\..\..\..\..\src\LibFreeType.h"
 			>
 		</File>
 	</Files>

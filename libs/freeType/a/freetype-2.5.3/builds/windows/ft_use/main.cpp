@@ -5,7 +5,7 @@
 #include "freetype.h"
 #pragma warning(disable:4996)
 
-#include "../../../../../src/FreeType.h"
+#include "LibFreeType.h"
 
 int gettimeofday(struct timeval * val, struct timezone *)
 {

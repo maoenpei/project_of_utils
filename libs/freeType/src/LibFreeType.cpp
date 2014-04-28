@@ -1,9 +1,9 @@
 
 
-#include "FreeType.h"
+#include "LibFreeType.h"
 
-#include "../a/freetype-2.5.3/include/ft2build.h"
-#include "../a/freetype-2.5.3/include/freetype.h"
+#include "ft2build.h"
+#include "freetype.h"
 
 #define SIZE2PX(size)		((size)>>6)
 
