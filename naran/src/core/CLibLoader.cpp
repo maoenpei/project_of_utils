@@ -13,9 +13,9 @@
 #define LIBFUNC(LIB, FUNC)		dlsym((LIB), FUNC)
 #endif
 
-namespace Naran {
+NS_DEF_NARAN{
 
-	bool LibLoader::load(const char *libpath)
+	bool LibLoader::load(c_str libpath)
 	{
 		if (mHandler)
 			return false;
@@ -31,21 +31,21 @@ namespace Naran {
 		}
 	}
 
-	func_ptr LibLoader::getFunction(const char *funcname)
+	func_ptr LibLoader::getFunction(c_str funcname)
 	{
 		if (! mHandler)
 			return NULL;
 		return (func_ptr)LIBFUNC(mHandler, funcname);
 	}
 
-	Auto(LibLoader) LibLoader::create()
+	grab(LibLoader) LibLoader::create()
 	{
-		return Auto(LibLoader)(new LibLoader());
+		return grab(LibLoader)(new LibLoader());
 	}
 
-	Auto(LibLoader) LibLoader::create(const char *libpath)
+	grab(LibLoader) LibLoader::create(c_str libpath)
 	{
-		Auto(LibLoader) loader(new LibLoader());
+		grab(LibLoader) loader(new LibLoader());
 		loader->load(libpath);
 		return loader;
 	}

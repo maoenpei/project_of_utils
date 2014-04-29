@@ -1,0 +1,110 @@
+
+
+#include "KImage.h"
+
+NS_DEF_NARAN{
+
+	pixel Image::getPixel(int x, int y)
+	{
+		if (mData){
+			int offset = y * mWidth + x;
+			return (mHasAlpha ? 
+				rgba2px(((pxRGBA *)mData.get())[offset]) : 
+				rgb2px(((pxRGB *)mData.get())[offset]));
+		}else
+			return 0;
+	}
+
+	void Image::setPixel(int x, int y, pixel c)
+	{
+		if (mData){
+			int offset = y * mWidth + x;
+			(mHasAlpha ?
+				(void)(((pxRGBA *)mData.get())[offset] = px2rgba(c)) : 
+				(void)(((pxRGB *)mData.get())[offset] = px2rgb(c)));
+		}
+	}
+
+	void Image::reset()
+	{
+		mData = 0;
+	}
+
+	void Image::resize(int width, int height, const channel *data)
+	{
+		if (width <= 0 || height <= 0)
+			return;
+		mWidth = width;
+		mHeight = height;
+		size_t siz = width * height * (mHasAlpha ? 4 : 3);
+		mData = new channel[siz];
+		if (data){
+			memcpy(mData.get(), data, siz);
+		}else{
+			memset(mData.get(), 0, siz);
+		}
+	}
+
+	channel *Image::getData()
+	{
+		return mData.get();
+	}
+
+	int Image::getWidth()
+	{
+		return mWidth;
+	}
+
+	int Image::getHeight()
+	{
+		return mHeight;
+	}
+
+	void Image::setAlpha(bool hasAlpha, const channel *alphas)
+	{
+		if (!mHasAlpha != !hasAlpha){
+			if (mData && mWidth > 0 && mHeight > 0){
+				int px_count = mWidth * mHeight;
+				size_t old_single = (mHasAlpha ? 4 : 3);
+				channel *old_pdata = mData.get();
+				size_t new_single = (hasAlpha ? 4 : 3);
+				channel *new_data = new channel[px_count * new_single];
+				channel *new_pdata = new_data;
+				memset(new_data, 0, px_count * new_single);
+				for (int i = 0; i<px_count; i++){
+					*((pxRGB *)new_pdata) = *((pxRGB *)old_pdata);
+					new_pdata += new_single;
+					old_pdata += old_single;
+				}
+				mData = new_data;
+			}
+		}
+		if (mData && mHasAlpha && alphas){
+			int px_count = mWidth * mHeight;
+			pxRGBA *px_data = (pxRGBA *)mData.get();
+			for (int i = 0; i<px_count; i++){
+				px_data[i].a = alphas[i];
+			}
+		}
+	}
+
+	bool Image::getAlpha()
+	{
+		return mHasAlpha;
+	}
+
+	grab(Image) Image::create()
+	{
+		return grab(Image)(new Image());
+	}
+
+	Image::Image()
+		: mWidth(0)
+		, mHeight(0)
+		, mHasAlpha(true)
+	{}
+
+	Image::~Image()
+	{}
+
+};

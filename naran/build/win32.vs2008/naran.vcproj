@@ -45,7 +45,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -62,6 +62,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="2"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -115,6 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="../../src"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -134,7 +136,8 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
-				GenerateDebugInformation="true"
+				GenerateManifest="false"
+				GenerateDebugInformation="false"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -170,10 +173,14 @@
 			Name="core"
 			>
 			<Filter
-				Name="ref"
+				Name="common"
 				>
 				<File
 					RelativePath="..\..\src\core\AutoReference.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\core\CommonDef.h"
 					>
 				</File>
 			</Filter>
@@ -189,22 +196,30 @@
 					>
 				</File>
 			</Filter>
-			<Filter
-				Name="res"
-				>
-				<File
-					RelativePath="..\..\src\core\MImage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\MImage.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
-			Name="relies"
+			Name="rely"
 			>
+		</Filter>
+		<Filter
+			Name="image"
+			>
+			<File
+				RelativePath="..\..\src\image\CImageFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\image\CImageFactory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\image\KImage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\image\KImage.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\main.cpp"

@@ -1,22 +1,21 @@
 #ifndef __NARAN_LIB_LOADER_H__
 #define __NARAN_LIB_LOADER_H__
 
-#include "AutoReference.h"
+#include "core/CommonDef.h"
+#include "core/AutoReference.h"
 
-namespace Naran{
-
-	typedef void (* func_ptr)(void);
+NS_DEF_NARAN{
 	
 	class LibLoader
 	{
 		AUTO_PROTOCOL();
 	// methods
 	public:
-		bool load(const char *libpath);
+		bool load(c_str libpath);
 		void free();
-		func_ptr getFunction(const char *funcname);
-		static Auto(LibLoader) create();
-		static Auto(LibLoader) create(const char *libpath);
+		func_ptr getFunction(c_str funcname);
+		static grab(LibLoader) create();
+		static grab(LibLoader) create(c_str libpath);
 		
 	// members
 	private:
