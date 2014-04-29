@@ -63,6 +63,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="../../libjpeg.lib"
 				GenerateManifest="false"
+				GenerateDebugInformation="false"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -155,6 +156,13 @@
 		<File
 			RelativePath="..\..\..\..\src\LibJPEG.cpp"
 			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\..\..\..\src\LibJPEG.h"

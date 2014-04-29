@@ -982,6 +982,13 @@ EXTERN(void) jpeg_mem_src JPP((j_decompress_ptr cinfo,
 			      unsigned char * inbuffer,
 			      unsigned long insize));
 
+/* extended API : jpeg_fn_dest */
+/* Data destination managers: write function */
+typedef void (*jpeg_write_ptr)(j_compress_ptr cinfo, void *wr_data, unsigned char *buffer, size_t size);
+EXTERN(void) jpeg_fn_dest JPP((j_compress_ptr cinfo,
+					jpeg_write_ptr fn,
+					void *wr_data));
+
 /* Default parameter setup for compression */
 EXTERN(void) jpeg_set_defaults JPP((j_compress_ptr cinfo));
 /* Compression parameter setup aids */
