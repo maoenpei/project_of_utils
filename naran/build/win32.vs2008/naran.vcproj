@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../src"
+				AdditionalIncludeDirectories="../../src;../../../libs"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -49,6 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -176,6 +177,10 @@
 				Name="common"
 				>
 				<File
+					RelativePath="..\..\src\core\Array.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\core\AutoCounter.h"
 					>
 				</File>
@@ -185,10 +190,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\core\CommonDef.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\StableArray.h"
 					>
 				</File>
 			</Filter>

@@ -3,16 +3,42 @@
 
 #include "core/AutoReference.h"
 #include "image/KImage.h"
+#include "core/CRuntime.h"
+#include "core/Array.h"
 
 NS_DEF_NARAN{
 
-	class ImageFactory
+	enum {
+		ImageFormat_Undef = -1,
+		ImageFormat_PNG = 0,
+		ImageFormat_JPEG,
+		ImageFormat_UserDef = 0x20
+	};
+
+	class IImageLoader
 	{
 	public:
-		grab(Image) loadFile(c_str filepath);
-		grab(Image) loadData(common_ptr data, size_t siz);
+		virtual grab(Image) loadImage(const char *filename) = 0;
+		virtual grab(Image) loadImage(arr(byte) data) = 0;
+	};
 
-		static ImageFactory *sharedFactory();
+	class ImageFactory
+	{
+		struct ImageLoaderEntry
+		{
+			stable(IImageLoader) loader;
+			u32 format;
+			ImageLoaderEntry(const stable(IImageLoader) &_loader, u32 _format)
+				: loader(_loader), format(_format){}
+		};
+		Array<ImageLoaderEntry> mLoaders;
+	public:
+		grab(Image) loadFile(c_str filepath, u32 format = ImageFormat_Undef);
+		grab(Image) loadData(arr(byte) data, u32 format = ImageFormat_Undef);
+
+		void addUserDefinedLoader(u32 format, stable(IImageLoader) loader);
+
+		RT_SHARED(ImageFactory);
 	};
 
 }

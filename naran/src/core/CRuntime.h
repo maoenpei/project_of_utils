@@ -3,6 +3,7 @@
 
 #include "core/CommonDef.h"
 #include "core/AutoCounter.h"
+#include "core/Array.h"
 
 NS_DEF_NARAN{
 
@@ -18,14 +19,12 @@ NS_DEF_NARAN{
 	{
 		struct RuntimeEntry
 		{
-			RuntimeEntry(const stable(IRunnable) _runnable, int _level) 
+			RuntimeEntry(const stable(IRunnable) &_runnable, int _level) 
 				: runnable(_runnable), level(_level){}
 			stable(IRunnable) runnable;
 			int level;
 		};
-		arr_grab(RuntimeEntry) mRunnables;
-		int mMax;
-		int mCount;
+		Array<RuntimeEntry> mRunnables;
 		int binaryIndex(int level);
 		Runtime();
 	public:

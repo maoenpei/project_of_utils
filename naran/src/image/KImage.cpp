@@ -1,6 +1,6 @@
 
 
-#include "KImage.h"
+#include "image/KImage.h"
 
 NS_DEF_NARAN{
 
@@ -30,17 +30,17 @@ NS_DEF_NARAN{
 		mData = 0;
 	}
 
-	void Image::resize(int width, int height, const channel *data)
+	void Image::resize(int width, int height, more(channel) data)
 	{
 		if (width <= 0 || height <= 0)
 			return;
 		mWidth = width;
 		mHeight = height;
-		size_t siz = width * height * (mHasAlpha ? 4 : 3);
-		mData = new channel[siz];
 		if (data){
-			memcpy(mData.get(), data, siz);
+			mData = data;
 		}else{
+			size_t siz = width * height * (mHasAlpha ? 4 : 3);
+			mData = new channel[siz];
 			memset(mData.get(), 0, siz);
 		}
 	}
@@ -78,6 +78,7 @@ NS_DEF_NARAN{
 				}
 				mData = new_data;
 			}
+			mHasAlpha = hasAlpha;
 		}
 		if (mData && mHasAlpha && alphas){
 			int px_count = mWidth * mHeight;

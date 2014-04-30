@@ -32,7 +32,7 @@ NS_DEF_NARAN{
 		void setPixel(int x, int y, pixel c);
 
 		void reset();
-		void resize(int width, int height, const channel *data = NULL);
+		void resize(int width, int height, more(channel) data = more(channel)());
 		channel * getData();
 		inline pxRGB *getRGB(){return (pxRGB *)getData();}
 		inline pxRGBA *getRGBA(){return (pxRGBA *)getData();}
@@ -46,7 +46,7 @@ NS_DEF_NARAN{
 		static grab(Image) create();
 
 	private:
-		arr(channel) mData;
+		more(channel) mData;
 		int mWidth;
 		int mHeight;
 		bool mHasAlpha;

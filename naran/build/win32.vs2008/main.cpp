@@ -2,9 +2,10 @@
 #include "core/AutoReference.h"
 #include "core/AutoCounter.h"
 #include "core/CLibLoader.h"
-#include "core/StableArray.h"
+#include "core/Array.h"
 #include "image/KImage.h"
 #include "core/CRuntime.h"
+#include "image/CImageFactory.h"
 
 using namespace NS_NARAN;
 
@@ -56,6 +57,8 @@ void operator delete(void *ptr)
 int main(int argc, char **argv)
 {
 	Runtime::shared()->startup();
+	grab(Image) img = ImageFactory::shared()->loadFile("zzzz.png", ImageFormat_PNG);
+	
 	/*
 	arr_grab_stable(Interface) cls_arr2 = (new grab_stable(Interface)[3]);
 	grab_stable(Interface) cls = new stable(Interface)(getfunc());
