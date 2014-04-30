@@ -1,0 +1,20 @@
+入门:
+http://my.oschina.net/psuyun/blog/116163
+
+常用命令：
+http://lugir.com/git-basic.html
+
+最关键：
+git push -u origin master
+
+使用特定的ssh-key
+http://matharvard.ca/posts/2011/aug/11/git-push-with-specific-ssh-key/
+
+保留空目录：
+创建.gitignore文件
+
+配置diff工具
+git config --global diff.external difftool.sh
+git config --global merge.tool mergetool.sh
+(difftool.sh内容:#!/bin/sh |"C:\Program Files\...compare.exe" "$2" "$5")
+(mergetool.sh内容:#!/bin/sh |"C:\Program Files\...merge.exe" $*)
