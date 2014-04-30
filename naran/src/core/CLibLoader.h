@@ -8,7 +8,6 @@ NS_DEF_NARAN{
 	
 	class LibLoader
 	{
-		AUTO_PROTOCOL();
 	// methods
 	public:
 		bool load(c_str libpath);
@@ -21,11 +20,7 @@ NS_DEF_NARAN{
 	private:
 		void * mHandler;
 
-	// forbid
-	private:
-		LibLoader();
-		LibLoader(const LibLoader &copy);
-		~LibLoader();
+		HIDE_CLS_ALL(LibLoader);
 	};
 
 };

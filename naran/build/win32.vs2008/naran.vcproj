@@ -176,11 +176,19 @@
 				Name="common"
 				>
 				<File
+					RelativePath="..\..\src\core\AutoCounter.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\core\AutoReference.h"
 					>
 				</File>
 				<File
 					RelativePath="..\..\src\core\CommonDef.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\core\StableArray.h"
 					>
 				</File>
 			</Filter>
@@ -196,10 +204,18 @@
 					>
 				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="rely"
-			>
+			<Filter
+				Name="rt"
+				>
+				<File
+					RelativePath="..\..\src\core\CRuntime.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\core\CRuntime.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="image"

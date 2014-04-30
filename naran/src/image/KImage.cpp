@@ -9,8 +9,8 @@ NS_DEF_NARAN{
 		if (mData){
 			int offset = y * mWidth + x;
 			return (mHasAlpha ? 
-				rgba2px(((pxRGBA *)mData.get())[offset]) : 
-				rgb2px(((pxRGB *)mData.get())[offset]));
+				rgba2px(((pxRGBA *)mData)[offset]) : 
+				rgb2px(((pxRGB *)mData)[offset]));
 		}else
 			return 0;
 	}
@@ -20,8 +20,8 @@ NS_DEF_NARAN{
 		if (mData){
 			int offset = y * mWidth + x;
 			(mHasAlpha ?
-				(void)(((pxRGBA *)mData.get())[offset] = px2rgba(c)) : 
-				(void)(((pxRGB *)mData.get())[offset] = px2rgb(c)));
+				(void)(((pxRGBA *)mData)[offset] = px2rgba(c)) : 
+				(void)(((pxRGB *)mData)[offset] = px2rgb(c)));
 		}
 	}
 
@@ -47,7 +47,7 @@ NS_DEF_NARAN{
 
 	channel *Image::getData()
 	{
-		return mData.get();
+		return mData;
 	}
 
 	int Image::getWidth()
@@ -66,7 +66,7 @@ NS_DEF_NARAN{
 			if (mData && mWidth > 0 && mHeight > 0){
 				int px_count = mWidth * mHeight;
 				size_t old_single = (mHasAlpha ? 4 : 3);
-				channel *old_pdata = mData.get();
+				channel *old_pdata = mData;
 				size_t new_single = (hasAlpha ? 4 : 3);
 				channel *new_data = new channel[px_count * new_single];
 				channel *new_pdata = new_data;
@@ -81,7 +81,7 @@ NS_DEF_NARAN{
 		}
 		if (mData && mHasAlpha && alphas){
 			int px_count = mWidth * mHeight;
-			pxRGBA *px_data = (pxRGBA *)mData.get();
+			pxRGBA *px_data = (pxRGBA *)mData;
 			for (int i = 0; i<px_count; i++){
 				px_data[i].a = alphas[i];
 			}

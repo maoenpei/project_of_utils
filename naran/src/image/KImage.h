@@ -27,8 +27,6 @@ NS_DEF_NARAN{
 
 	class Image
 	{
-		AUTO_PROTOCOL();
-
 	public:
 		pixel getPixel(int x, int y);
 		void setPixel(int x, int y, pixel c);
@@ -53,10 +51,7 @@ NS_DEF_NARAN{
 		int mHeight;
 		bool mHasAlpha;
 		
-	private:
-		Image();
-		Image(const Image &copy);
-		~Image();
+		HIDE_CLS_ALL(Image);
 	};
 
 };

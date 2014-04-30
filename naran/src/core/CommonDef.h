@@ -2,6 +2,7 @@
 #define __NARAN_COMMON_DEF_H__
 
 /* common cpp util headers */
+#include <assert.h>
 #include <string>
 #include <vector>
 #include <set>

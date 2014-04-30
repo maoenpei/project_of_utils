@@ -40,14 +40,15 @@ NS_DEF_NARAN{
 
 	grab(LibLoader) LibLoader::create()
 	{
-		return grab(LibLoader)(new LibLoader());
+		grab(LibLoader) object(new LibLoader());
+		return object;
 	}
 
 	grab(LibLoader) LibLoader::create(c_str libpath)
 	{
-		grab(LibLoader) loader(new LibLoader());
-		loader->load(libpath);
-		return loader;
+		grab(LibLoader) object(new LibLoader());
+		object->load(libpath);
+		return object;
 	}
 
 	LibLoader::LibLoader()

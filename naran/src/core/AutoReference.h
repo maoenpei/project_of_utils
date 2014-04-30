@@ -24,8 +24,9 @@ NS_DEF_NARAN{
 		};
 		Auto_Ref_<T> *mRef;
 	public:
+		/* ptr reference record */
 		inline Auto_() : mRef(0){}
-		inline explicit Auto_(T *t) : mRef(new Auto_Ref_<T>(t)){}
+		inline /* explict */ Auto_(T *t) : mRef(new Auto_Ref_<T>(t)){}
 		inline Auto_(const Auto_ &copy) : mRef(copy.mRef) {if (mRef) mRef->ref++;}
 		inline Auto_ &operator =(const Auto_ &another){
 			if (another.mRef) another.mRef->ref++;
@@ -33,24 +34,41 @@ NS_DEF_NARAN{
 			mRef = another.mRef;
 			return *this;
 		}
-		inline Auto_ &operator =(T *t){return operator =(Auto_(t));}
 		inline ~Auto_(){AUTO_EXEC_OP();}
-		inline T *operator ->(){return mRef->ptr;}
+
+		/* ptr usage */
 		inline T *get(){return mRef->ptr;}
-		inline operator bool(){return mRef->ptr != 0;}
+		inline T *operator ->(){return mRef->ptr;}
+		inline T &operator *(){return *mRef->ptr;}
 		inline T &operator[](int index){return mRef->ptr[index];}
+
+		/* ptr special usage */
+		inline void displace(int index, int total){
+			memmove(mRef->ptr + index + 1, mRef->ptr + index, (total - index - 1) * sizeof(T));
+			memset(mRef->ptr + index, 0, sizeof(T));
+		}
+		inline void swap(T *ptr, int total){
+			memcpy(ptr, mRef->ptr, total * sizeof(T));
+			memset(mRef->ptr, 0, total * sizeof(T));
+		}
+		
+		/* ptr convertion */
+		inline operator bool(){return mRef->ptr != 0;}
+		template<class U>
+		inline operator U * (){return (U *)mRef->ptr;}
 	};
 
 #undef AUTO_EXEC_OP
 
-	/* auto drop object */
+	/* auto delete object */
 	template<typename T>
 	class DestroyOp_
 	{
 	public:
-		inline explicit DestroyOp_(T *t) {t->destroy();}
+		inline explicit DestroyOp_(T *t) {delete t;}
 	};
-#define AUTO_PROTOCOL()			public:virtual void destroy(){delete this;}
+//#define AUTO_PROTOCOL()			virtual void destroy(){delete this;}
+#define HIDE_CLS_ALL(CLS)		protected:CLS();CLS(const CLS&copy);~CLS();friend class DestroyOp_<CLS>;
 #define grab(CLS)				Auto_<CLS, DestroyOp_<CLS>>
 #define g(CLS)					grab(CLS)
 
@@ -63,8 +81,8 @@ NS_DEF_NARAN{
 	};
 #define arr(CLS)			Auto_<CLS, DeleteArrayOp_<CLS>>
 
-	/* array of drop */
-#define grab_arr(CLS)		arr(grab(CLS))
+	/* array of grab */
+#define arr_grab(CLS)		arr(grab(CLS))
 
 };
 
