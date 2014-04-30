@@ -26,6 +26,7 @@ namespace Libs
 		LIB_INTERFACES();
 		
 		virtual bool openfile(const char *filename) = 0;
+		virtual bool openfileptr(FILE *f) = 0;
 		virtual bool opendata(const unsigned char *data, size_t size) = 0;
 		virtual void close() = 0;
 

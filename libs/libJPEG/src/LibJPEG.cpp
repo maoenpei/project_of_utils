@@ -74,6 +74,20 @@ public:
 		}
 		return true;
 	}
+	virtual bool openfileptr(FILE *f)
+	{
+		if (m_cinfo_ptr)
+			return false;
+
+		init_cinfo();
+
+		jpeg_stdio_src(m_cinfo_ptr, f);
+		if (! get_cinfo_head()){
+			this->close();
+			return false;
+		}
+		return true;
+	}
 	virtual bool opendata(const unsigned char *data, size_t size)
 	{
 		if (m_cinfo_ptr)
