@@ -7,7 +7,7 @@ NS_DEF_NARAN{
 
 	/* auto delete object */
 	template<typename TT>
-	struct Auto_Ref_
+	struct CLS_EXPORT Auto_Ref_
 	{
 		unsigned int ref;
 		TT *ptr;
@@ -15,7 +15,7 @@ NS_DEF_NARAN{
 	};
 
 	template<typename TT>
-	class DestroyOp_
+	class CLS_EXPORT DestroyOp_
 	{
 	public:
 		inline explicit DestroyOp_(TT *t) {delete t;}
@@ -28,7 +28,7 @@ NS_DEF_NARAN{
 	}
 
 	template<typename T, typename OP, typename REF>
-	class Auto_
+	class CLS_EXPORT Auto_
 	{
 	protected:
 		REF *mRef;
@@ -70,7 +70,7 @@ NS_DEF_NARAN{
 
 	/* auto delete array */
 	template<typename TT>
-	struct Array_Ref_ : public Auto_Ref_<TT>
+	struct CLS_EXPORT Array_Ref_ : public Auto_Ref_<TT>
 	{
 		int mMax;
 		Array_Ref_(TT *tt) : Auto_Ref_(tt), mMax(4){}
@@ -78,14 +78,14 @@ NS_DEF_NARAN{
 	};
 	
 	template<typename TT>
-	class DeleteArrayOp_
+	class CLS_EXPORT DeleteArrayOp_
 	{
 	public:
 		inline explicit DeleteArrayOp_(TT *t) {delete [] t;}
 	};
 
 	template<typename T, typename OP, typename REF>
-	class Array_ : public Auto_<T, OP, REF>
+	class CLS_EXPORT Array_ : public Auto_<T, OP, REF>
 	{
 	public:
 		inline Array_() : Auto_(new T[4]){}
@@ -95,9 +95,11 @@ NS_DEF_NARAN{
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
 		
 		/* array apis */
-		inline void displace(int index){
+		/*inline void displace(int index){
+			T copy;
+			memcpy(&copy, mRef->ptr + mRef->mMax - 1, sizeof(T));
 			memmove(mRef->ptr + index + 1, mRef->ptr + index, (mRef->mMax - index - 1) * sizeof(T));
-			memset(mRef->ptr + index, 0, sizeof(T));
+			memcpy(mRef->ptr + index, &copy, sizeof(T));
 		}
 		inline void expand(int max){
 			max = mRef->mMax + (max < mRef->mMax ? mRef->mMax : max);
@@ -107,7 +109,7 @@ NS_DEF_NARAN{
 			delete [] mRef->ptr;
 			mRef->ptr = new_ptr;
 			mRef->mMax = max;
-		}
+		}*/
 		inline int size(){return mRef->mMax;}
 	};
 

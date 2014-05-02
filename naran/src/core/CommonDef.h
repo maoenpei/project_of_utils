@@ -13,6 +13,13 @@
 #define NS_DEF_NARAN		namespace NS_NARAN
 #define NS_USING_NARAN		using namespace NS_NARAN
 
+/* platform */
+#ifdef WIN32
+#define CLS_EXPORT		__declspec(dllexport)
+#else
+#define CLS_EXPORT		
+#endif
+
 /* type def */
 NS_DEF_NARAN{
 	typedef unsigned int u_int;

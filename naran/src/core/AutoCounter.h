@@ -13,7 +13,7 @@ NS_DEF_NARAN{
 	};
 
 	template<typename I>
-	class Closure_
+	class CLS_EXPORT Closure_
 	{
 		I *mInterf;
 		IKeep *mObjref;
@@ -46,7 +46,7 @@ NS_DEF_NARAN{
 
 	/* establish stable object from grab */
 	template<typename T>
-	class GrabKeep_ : public IKeep
+	class CLS_EXPORT GrabKeep_ : public IKeep
 	{
 		grab(T) mGrab;
 		int mReference;

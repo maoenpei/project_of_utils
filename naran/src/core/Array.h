@@ -7,7 +7,7 @@
 NS_DEF_NARAN{
 
 	template<typename T>
-	class Array
+	class CLS_EXPORT Array
 	{
 		T *mArr;
 		int mNum;

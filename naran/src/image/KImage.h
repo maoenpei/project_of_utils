@@ -25,7 +25,7 @@ NS_DEF_NARAN{
 		return *((pixel *)&rgba);
 	}
 
-	class Image
+	class CLS_EXPORT Image
 	{
 	public:
 		pixel getPixel(int x, int y);

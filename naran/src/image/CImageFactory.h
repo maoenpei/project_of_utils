@@ -22,7 +22,7 @@ NS_DEF_NARAN{
 		virtual grab(Image) loadImage(arr(byte) data) = 0;
 	};
 
-	class ImageFactory
+	class CLS_EXPORT ImageFactory
 	{
 		struct ImageLoaderEntry
 		{

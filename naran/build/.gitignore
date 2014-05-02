@@ -1,5 +1,4 @@
-Debug
-Release
+builds
 *.user
 *.suo
 *.ncb

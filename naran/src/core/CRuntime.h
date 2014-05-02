@@ -15,7 +15,7 @@ NS_DEF_NARAN{
 #define RT_SHARED(CLS)			\
 	public: static CLS *shared(){static CLS object; return &object;}
 
-	class Runtime
+	class CLS_EXPORT Runtime
 	{
 		struct RuntimeEntry
 		{

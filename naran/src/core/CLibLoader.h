@@ -6,7 +6,7 @@
 
 NS_DEF_NARAN{
 	
-	class LibLoader
+	class CLS_EXPORT LibLoader
 	{
 	// methods
 	public:
