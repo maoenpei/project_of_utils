@@ -47,23 +47,6 @@ public:
 		return false;
 	}
 
-	virtual bool openfileptr(FILE *f)
-	{
-		if (m_png_ptr)
-			return false;
-		unsigned char head[8];
-		fread(head, 1, 8, f);
-		if (png_check_sig(head, 8)){
-			m_png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-			m_info_ptr = png_create_info_struct(m_png_ptr);
-			png_init_io(m_png_ptr, f);
-			png_set_sig_bytes(m_png_ptr, 8);
-			png_read_info(m_png_ptr, m_info_ptr);
-			return true;
-		}
-		return false;
-	}
-
 	typedef struct {
 		const unsigned char *pdata;
 		size_t size;

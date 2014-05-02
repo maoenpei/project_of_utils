@@ -52,14 +52,63 @@ NS_DEF_NARAN{
 		}
 	};
 
+	class JPEGLoader : public IImageLoader
+	{
+	public:
+		grab(LibLoader) loader;
+		Libs::ReadJPEG *(*readerCreateFunc)();
+		JPEGLoader() : loader(LibLoader::create("UseLibJpeg")) {
+			readerCreateFunc = (Libs::ReadJPEG *(*)())loader->getFunction("createReadJPEG");
+		}
+		inline grab(Image) readImageData(Libs::ReadJPEG *reader)
+		{
+			grab(Image) ret;
+			Libs::JPEGImage image;
+			reader->getinfo(&image);
+			image.buffer = new byte[image.width * image.height * 3];
+			reader->getinfo(&image);
+			
+			ret = Image::create();
+			ret->setAlpha(false);
+			ret->resize(image.width, image.height, image.buffer);
+			return ret;
+		}
+		virtual grab(Image) loadImage(const char *filename)
+		{
+			grab(Image) ret;
+			Libs::ReadJPEG *reader = readerCreateFunc();
+			if (reader->openfile(filename)){
+				ret = readImageData(reader);
+				reader->close();
+			}
+			reader->destroy();
+			return ret;
+		}
+		virtual grab(Image) loadImage(arr(byte) data)
+		{
+			grab(Image) ret;
+			Libs::ReadJPEG *reader = readerCreateFunc();
+			if (reader->opendata(data.get(), data.size())){
+				ret = readImageData(reader);
+				reader->close();
+			}
+			reader->destroy();
+			return ret;
+		}
+	};
+
 	class DefaultFormatRunnable : public IRunnable
 	{
 	public:
 		void run(){
-			grab(PNGLoader) object(new PNGLoader());
-			stable(IImageLoader) loader = stablize(IImageLoader, PNGLoader, object);
+			/* png support */
+			grab(PNGLoader) pngObject(new PNGLoader());
 			ImageFactory::shared()->addUserDefinedLoader(
-				ImageFormat_PNG, loader);
+				ImageFormat_PNG, stablize(IImageLoader, PNGLoader, pngObject));
+			/* jpeg support */
+			grab(JPEGLoader) jpegObject(new JPEGLoader());
+			ImageFactory::shared()->addUserDefinedLoader(
+				ImageFormat_JPEG, stablize(IImageLoader, JPEGLoader, jpegObject));
 		}
 	};
 	StaticRun<DefaultFormatRunnable> _run;

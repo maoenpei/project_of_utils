@@ -74,20 +74,6 @@ public:
 		}
 		return true;
 	}
-	virtual bool openfileptr(FILE *f)
-	{
-		if (m_cinfo_ptr)
-			return false;
-
-		init_cinfo();
-
-		jpeg_stdio_src(m_cinfo_ptr, f);
-		if (! get_cinfo_head()){
-			this->close();
-			return false;
-		}
-		return true;
-	}
 	virtual bool opendata(const unsigned char *data, size_t size)
 	{
 		if (m_cinfo_ptr)
@@ -123,14 +109,14 @@ public:
 	{
 		if (m_cinfo_ptr == NULL)
 			return false;
-		info->width = m_cinfo_ptr->output_width;
-		info->height = m_cinfo_ptr->output_height;
+		info->width = m_cinfo_ptr->image_width;
+		info->height = m_cinfo_ptr->image_height;
 		if (info->buffer){
 			jpeg_start_decompress(m_cinfo_ptr);
 			unsigned char *scan = info->buffer;
 			while(m_cinfo_ptr->output_scanline < m_cinfo_ptr->output_height){
 				jpeg_read_scanlines(m_cinfo_ptr, &scan, 1);
-				scan += m_cinfo_ptr->output_width * 3;
+				scan += m_cinfo_ptr->image_width * 3;
 			}
 			jpeg_finish_decompress(m_cinfo_ptr);
 		}

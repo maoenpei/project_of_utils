@@ -58,6 +58,7 @@ int main(int argc, char **argv)
 {
 	Runtime::shared()->startup();
 	grab(Image) img = ImageFactory::shared()->loadFile("zzzz.png", ImageFormat_PNG);
+	grab(Image) img2 = ImageFactory::shared()->loadFile("zzzz.jpg", ImageFormat_JPEG);
 	
 	/*
 	arr_grab_stable(Interface) cls_arr2 = (new grab_stable(Interface)[3]);
