@@ -20,7 +20,7 @@ NS_DEF_NARAN{
 	private:
 		void * mHandler;
 
-		HIDE_CLS_ALL(LibLoader);
+		CLS_HIDE_ALL(LibLoader);
 	};
 
 };

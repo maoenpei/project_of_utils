@@ -390,6 +390,26 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="filesystem"
+			>
+			<File
+				RelativePath="..\..\src\filesystem\CFileSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\CFileSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KPath.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\main.cpp"
 			>
@@ -409,6 +429,10 @@
 					Name="VCCLCompilerTool"
 				/>
 			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="..\..\src\Naran.h"
+			>
 		</File>
 	</Files>
 	<Globals>

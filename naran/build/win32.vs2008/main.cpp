@@ -1,13 +1,5 @@
 
-#include "core/AutoReference.h"
-#include "core/AutoCounter.h"
-#include "core/CLibLoader.h"
-#include "core/Array.h"
-#include "image/KImage.h"
-#include "core/CRuntime.h"
-#include "image/CImageFactory.h"
-
-using namespace NS_NARAN;
+#include "Naran.h"
 
 class Interface
 {
