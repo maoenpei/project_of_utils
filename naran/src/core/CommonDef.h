@@ -22,7 +22,6 @@
 
 /* type def */
 NS_DEF_NARAN{
-	typedef unsigned int u_int;
 	typedef unsigned char u_char;
 	typedef unsigned char * common_ptr;
 	typedef unsigned int u32;

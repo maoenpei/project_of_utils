@@ -14,7 +14,7 @@
 #include "filesystem/KDirectory.h"
 #include "filesystem/CFileSystem.h"
 
-NS_USING_NARAN;
+//NS_USING_NARAN;
 
 #endif
 

@@ -1,5 +1,8 @@
 
 #include "Naran.h"
+#include <windows.h>
+
+NS_USING_NARAN;
 
 class Interface
 {
