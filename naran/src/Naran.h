@@ -9,6 +9,10 @@
 #include "core/CRuntime.h"
 #include "image/KImage.h"
 #include "image/CImageFactory.h"
+#include "filesystem/KPath.h"
+#include "filesystem/KFile.h"
+#include "filesystem/KDirectory.h"
+#include "filesystem/CFileSystem.h"
 
 NS_USING_NARAN;
 

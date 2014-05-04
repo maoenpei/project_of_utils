@@ -51,7 +51,7 @@ NS_DEF_NARAN{
 		int mHeight;
 		bool mHasAlpha;
 		
-		CLS_HIDE_ALL(Image);
+		CLS_HIDE(Image);
 	};
 
 };

@@ -27,7 +27,7 @@ NS_DEF_NARAN{
 
 	void Image::reset()
 	{
-		mData = 0;
+		mData = nullof(channel);
 	}
 
 	void Image::resize(int width, int height, more(channel) data)
@@ -39,9 +39,8 @@ NS_DEF_NARAN{
 		if (data){
 			mData = data;
 		}else{
-			size_t siz = width * height * (mHasAlpha ? 4 : 3);
-			mData = new channel[siz];
-			memset(mData.get(), 0, siz);
+			int siz = width * height * (mHasAlpha ? 4 : 3);
+			mData = new channel[siz] ();
 		}
 	}
 
@@ -65,12 +64,11 @@ NS_DEF_NARAN{
 		if (!mHasAlpha != !hasAlpha){
 			if (mData && mWidth > 0 && mHeight > 0){
 				int px_count = mWidth * mHeight;
-				size_t old_single = (mHasAlpha ? 4 : 3);
+				int old_single = (mHasAlpha ? 4 : 3);
 				channel *old_pdata = mData;
-				size_t new_single = (hasAlpha ? 4 : 3);
-				channel *new_data = new channel[px_count * new_single];
+				int new_single = (hasAlpha ? 4 : 3);
+				channel *new_data = new channel[px_count * new_single] ();
 				channel *new_pdata = new_data;
-				memset(new_data, 0, px_count * new_single);
 				for (int i = 0; i<px_count; i++){
 					*((pxRGB *)new_pdata) = *((pxRGB *)old_pdata);
 					new_pdata += new_single;

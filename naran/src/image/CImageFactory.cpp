@@ -104,11 +104,11 @@ NS_DEF_NARAN{
 			/* png support */
 			grab(PNGLoader) pngObject(new PNGLoader());
 			ImageFactory::shared()->addUserDefinedLoader(
-				ImageFormat_PNG, stablize(IImageLoader, PNGLoader, pngObject));
+				ImageFormat_PNG, stablize_grab(IImageLoader, PNGLoader, pngObject));
 			/* jpeg support */
 			grab(JPEGLoader) jpegObject(new JPEGLoader());
 			ImageFactory::shared()->addUserDefinedLoader(
-				ImageFormat_JPEG, stablize(IImageLoader, JPEGLoader, jpegObject));
+				ImageFormat_JPEG, stablize_grab(IImageLoader, JPEGLoader, jpegObject));
 		}
 	};
 	StaticRun<DefaultFormatRunnable> _run;

@@ -22,7 +22,7 @@ public:
 stable(Interface) getfunc()
 {
 	grab(A) object(new A);
-	return stablize(Interface, A, object);
+	return stablize_grab(Interface, A, object);
 }
 
 class TT : public IRunnable

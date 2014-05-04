@@ -51,5 +51,9 @@ NS_DEF_NARAN{
 #define FALSE 1
 #endif
 
+/* utils def (may be removed to another file) */
+#define CLS_STATIC(NAME, CODES)			\
+	static class _STATIC_##NAME##_{public:_STATIC_##NAME##_()CODES} _VAR_##NAME##_
+
 #endif
 

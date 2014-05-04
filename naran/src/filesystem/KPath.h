@@ -14,10 +14,13 @@ NS_DEF_NARAN{
 		
 		more(char) getName();
 		void setName(c_str name);
-
 		more(char) getDirectory();
-		void addSubName(c_str subName);
-		void removeLast();
+		bool isRoot();
+		void makeDirStyle();
+		void reset();
+
+		grab(Path) appendName(c_str subName);
+		grab(Path) removeName();
 
 		static grab(Path) create();
 		static grab(Path) create(c_str path);
@@ -25,7 +28,7 @@ NS_DEF_NARAN{
 	private:
 		more(char) mPathChars;
 
-		CLS_HIDE_ALL(Path);
+		CLS_HIDE(Path);
 	};
 
 }

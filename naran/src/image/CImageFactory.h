@@ -38,7 +38,7 @@ NS_DEF_NARAN{
 
 		void addUserDefinedLoader(u32 format, stable(IImageLoader) loader);
 
-		RT_SHARED(ImageFactory);
+		CLS_SHARED(ImageFactory);
 	};
 
 }

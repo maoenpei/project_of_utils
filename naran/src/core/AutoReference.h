@@ -32,6 +32,7 @@ NS_DEF_NARAN{
 	{
 	protected:
 		REF *mRef;
+		inline Auto_(REF *ref) : mRef(ref){}
 	public:
 		/* ptr reference record */
 		inline Auto_() : mRef(0){}
@@ -64,16 +65,16 @@ NS_DEF_NARAN{
 #undef AUTO_EXEC_OP
 
 //#define AUTO_PROTOCOL()			virtual void destroy(){delete this;}
-#define CLS_HIDE_ALL(CLS)		protected:CLS();CLS(const CLS&copy);~CLS();friend class DestroyOp_<CLS>;
+#define CLS_HIDE(CLS)			protected:CLS();CLS(const CLS&copy);~CLS();friend class DestroyOp_<CLS>;
 #define grab(CLS)				Auto_<CLS, DestroyOp_<CLS>, Auto_Ref_<CLS>>
 #define g(CLS)					grab(CLS)
+#define nullof(CLS)				((CLS *)0)
 
 	/* auto delete array */
 	template<typename TT>
 	struct CLS_EXPORT Array_Ref_ : public Auto_Ref_<TT>
 	{
 		int mMax;
-		Array_Ref_(TT *tt) : Auto_Ref_(tt), mMax(4){}
 		Array_Ref_(TT *tt, int max) : Auto_Ref_(tt), mMax(max){}
 	};
 	
@@ -88,9 +89,9 @@ NS_DEF_NARAN{
 	class CLS_EXPORT Array_ : public Auto_<T, OP, REF>
 	{
 	public:
-		inline Array_() : Auto_(new T[4]){}
-		inline Array_(int size) : Auto_(new T[size]) {mRef->mMax = size;}
-		inline Array_(T *t, int size) : Auto_(t) {mRef->mMax = size;}
+		inline Array_() : Auto_(new REF(new T[1], 0)){}
+		inline Array_(int size) : Auto_(new REF(new T[size], size)) {}
+		inline Array_(T *t, int size) : Auto_(new REF(t, size)) {}
 		inline Array_(const Array_ &copy) : Auto_(copy){}
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
 		
@@ -111,6 +112,7 @@ NS_DEF_NARAN{
 			mRef->mMax = max;
 		}*/
 		inline int size(){return mRef->mMax;}
+		inline void resize(int size){assert(size >= 0 && size <= mRef->mMax);mRef->mMax = size;}
 	};
 
 #define more(CLS)			Auto_<CLS, DeleteArrayOp_<CLS>, Auto_Ref_<CLS>>

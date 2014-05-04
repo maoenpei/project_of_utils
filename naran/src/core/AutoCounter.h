@@ -44,23 +44,20 @@ NS_DEF_NARAN{
 	/* auto self-delete object */
 #define stable(CLS)		Closure_<CLS>
 
-	/* establish stable object from grab */
 	template<typename T>
-	class CLS_EXPORT GrabKeep_ : public IKeep
+	class CLS_EXPORT Keep_ : public IKeep
 	{
-		grab(T) mGrab;
+		T mRef;
 		int mReference;
 	public:
-		inline GrabKeep_(const grab(T) &grab) : mGrab(grab), mReference(0) {}
+		inline Keep_(T ref) : mRef(ref), mReference(0) {}
 		virtual void keep(){++mReference;}
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
 
-#define stablize(CLS, GCLS, GVAR)		(stable(CLS)((GVAR).get(), new GrabKeep_<GCLS>(GVAR)))
-	
-	/* array of stable object */
-#define grab_stable(CLS)				grab(stable(CLS))
-#define arr_grab_stable(CLS)			arr(grab(stable(CLS)))
+#define stablize_nop(CLS, GCLS, GVAR)		(stable(CLS)((GVAR), new Keep_<GCLS *>(GVAR)))
+
+#define stablize_grab(CLS, GCLS, GVAR)		(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
 
 }
 

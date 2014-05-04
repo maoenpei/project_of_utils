@@ -125,6 +125,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -276,6 +277,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -399,6 +401,22 @@
 			</File>
 			<File
 				RelativePath="..\..\src\filesystem\CFileSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KDirectory.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KDirectory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KFile.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\filesystem\KFile.h"
 				>
 			</File>
 			<File

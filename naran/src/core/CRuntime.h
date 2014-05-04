@@ -12,7 +12,7 @@ NS_DEF_NARAN{
 	public: virtual void run() = 0;
 	};
 
-#define RT_SHARED(CLS)			\
+#define CLS_SHARED(CLS)			\
 	public: static CLS *shared(){static CLS object; return &object;}
 
 	class CLS_EXPORT Runtime
@@ -32,7 +32,7 @@ NS_DEF_NARAN{
 		
 		void startup();
 		
-		RT_SHARED(Runtime);
+		CLS_SHARED(Runtime);
 	};
 
 	template<typename T>
@@ -41,7 +41,8 @@ NS_DEF_NARAN{
 	public:
 		StaticRun(int level = 0){
 			grab(T) object = new T();
-			Runtime::shared()->runAtStartup(stablize(IRunnable, T, object), level);
+			Runtime::shared()->runAtStartup(
+				stablize_grab(IRunnable, T, object), level);
 		}
 	};
 
