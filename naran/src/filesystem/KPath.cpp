@@ -74,6 +74,14 @@ NS_DEF_NARAN{
 		mPathChars = newPath;
 	}
 
+	more(char) Path::getRawName()
+	{
+		char *path = mPathChars.get();
+		char *nameStart, *nameEnd;
+		getNames(path, nameStart, nameEnd);
+		
+	}
+
 	more(char) Path::getDirectory()
 	{
 		char *path = mPathChars.get();

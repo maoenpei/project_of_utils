@@ -14,6 +14,10 @@ NS_DEF_NARAN{
 		
 		more(char) getName();
 		void setName(c_str name);
+		more(char) getRawName();
+		void setRawName();
+		more(char) getExtName();
+		void setExtName();
 		more(char) getDirectory();
 		bool isRoot();
 		void makeDirStyle();
