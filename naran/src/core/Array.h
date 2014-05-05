@@ -3,7 +3,7 @@
 
 #include "core/CommonDef.h"
 #include "core/AutoReference.h"
-#include <new>
+#include "core/CAllocator.h"
 
 NS_DEF_NARAN{
 
@@ -15,17 +15,17 @@ NS_DEF_NARAN{
 		int mMax;
 	public:
 		inline Array() : mNum(0), mMax(4) {
-			mArr = (T *)::operator new[](mMax * sizeof(T));
+			mArr = (T *)Allocator::allocShare(mMax * sizeof(T));
 		}
 		inline Array(const Array &copy) : mNum(copy.mNum), mMax(copy.mMax){
-			mArr = (T *)::operator new[](mMax * sizeof(T));
+			mArr = (T *)Allocator::allocShare(mMax * sizeof(T));
 			for (int i = 0; i<mNum; i++)
 				new (mArr + i) T (copy.mArr[i]);
 		}
 		inline Array &operator=(const Array &copy){
 			mNum = copy.mNum;
 			mMax = copy.mMax;
-			mArr = (T *)::operator new[](mMax * sizeof(T));
+			mArr = (T *)Allocator::allocShare(mMax * sizeof(T));
 			for (int i = 0; i<mNum; i++)
 				new (mArr + i) T (copy.mArr[i]);
 			return *this;
@@ -33,7 +33,7 @@ NS_DEF_NARAN{
 		inline ~Array(){
 			for (int i = 0; i<mNum; i++)
 				mArr[i].~T();
-			::operator delete[](mArr);
+			Allocator::freeShare(mArr);
 		}
 		inline T &operator[](int index){
 			assert(index >= 0 && index < mNum);
@@ -41,9 +41,9 @@ NS_DEF_NARAN{
 		}
 		inline void append(const T &item, int index = -1){
 			if (mNum == mMax){
-				T *new_arr = (T *)::operator new[](mMax * 2 * sizeof(T));
+				T *new_arr = (T *)Allocator::allocShare(mMax * 2 * sizeof(T));
 				memcpy(new_arr, mArr, mMax * sizeof(T));
-				::operator delete[](mArr);
+				Allocator::freeShare(mArr);
 				mArr = new_arr;
 				mMax *= 2;
 			}
@@ -57,7 +57,7 @@ NS_DEF_NARAN{
 		}
 		inline void remove(int index){
 			assert(index >= 0 && index < mNum);
-			mArr[index].~Closure_();
+			mArr[index].~T();
 			memmove(mArr+index, mArr+index+1, (mNum - index - 1) * sizeof(T));
 			mNum--;
 		}

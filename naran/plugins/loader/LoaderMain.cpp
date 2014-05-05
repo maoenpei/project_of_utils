@@ -7,6 +7,8 @@
 
 NS_USING_NARAN;
 
+CLS_SHARE_MEMORY();
+
 int main(int argc, char **argv)
 {
 #ifdef WIN32

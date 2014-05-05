@@ -34,7 +34,7 @@ NS_DEF_NARAN{
 	grab(Path) FileSystem::getWritableDirectory()
 	{
 		if (! mWritablePath){
-			mWritablePath = Path::create("writable\\");
+			mWritablePath = Path::create("writable/");
 		}
 		return mWritablePath;
 	}
@@ -47,7 +47,7 @@ NS_DEF_NARAN{
 	grab(Path) FileSystem::getResourceDirectory()
 	{
 		if (! mResourcePath){
-			mResourcePath = Path::create("resource\\");
+			mResourcePath = Path::create("resource/");
 		}
 		return mResourcePath;
 	}

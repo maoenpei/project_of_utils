@@ -2,6 +2,7 @@
 #define __NARAN_H__
 
 #include "core/CommonDef.h"
+#include "core/CAllocator.h"
 #include "core/AutoReference.h"
 #include "core/AutoCounter.h"
 #include "core/Array.h"

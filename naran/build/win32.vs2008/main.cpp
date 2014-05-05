@@ -1,6 +1,8 @@
 
 #include "Naran.h"
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 NS_USING_NARAN;
 
@@ -37,24 +39,13 @@ class TT : public IRunnable
 
 static StaticRun<TT> _var;
 
-static int gk = 0;
-void *operator new(size_t siz)
-{
-	gk++;
-	return malloc(siz);
-}
-void operator delete(void *ptr)
-{
-	gk--;
-	return free(ptr);
-}
-
 int main(int argc, char **argv)
 {
+	/*
 	Runtime::shared()->startup();
 	grab(Image) img = ImageFactory::shared()->loadFile("zzzz.png", ImageFormat_PNG);
 	grab(Image) img2 = ImageFactory::shared()->loadFile("zzzz.jpg", ImageFormat_JPEG);
-	
+	*/
 	/*
 	arr_grab_stable(Interface) cls_arr2 = (new grab_stable(Interface)[3]);
 	grab_stable(Interface) cls = new stable(Interface)(getfunc());

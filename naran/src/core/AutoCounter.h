@@ -13,27 +13,27 @@ NS_DEF_NARAN{
 	};
 
 	template<typename I>
-	class CLS_EXPORT Closure_
+	class CLS_EXPORT Union_
 	{
 		I *mInterf;
 		IKeep *mObjref;
 	public:
-		inline Closure_(I *interf, IKeep *objref) 
+		inline Union_(I *interf, IKeep *objref) 
 			: mInterf(interf), mObjref(objref){
 			mObjref->keep();
 		}
-		inline Closure_(const Closure_ &copy) 
+		inline Union_(const Union_ &copy) 
 			: mInterf(copy.mInterf), mObjref(copy.mObjref){
 			mObjref->keep();
 		}
-		inline Closure_ &operator=(const Closure_ &copy){
+		inline Union_ &operator=(const Union_ &copy){
 			copy.mObjref->keep();
 			mObjref->discard();
 			mInterf = copy.mInterf;
 			mObjref = copy.mObjref;
 			return *this;
 		}
-		inline ~Closure_(){
+		inline ~Union_(){
 			mObjref->discard();
 		}
 		inline operator bool(){
@@ -45,7 +45,7 @@ NS_DEF_NARAN{
 	};
 
 	/* auto self-delete object */
-#define stable(CLS)		Closure_<CLS>
+#define stable(CLS)		Union_<CLS>
 
 	template<typename T>
 	class CLS_EXPORT Keep_ : public IKeep

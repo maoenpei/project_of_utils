@@ -371,6 +371,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="memory"
+				>
+				<File
+					RelativePath="..\..\src\core\CAllocator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\core\CAllocator.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="image"
