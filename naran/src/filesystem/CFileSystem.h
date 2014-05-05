@@ -19,9 +19,13 @@ NS_DEF_NARAN{
 		grab(Path) getResourceDirectory();
 		void setResourceDirectory(grab(Path) path);
 
+		grab(Path) getPluginDirectory();
+		void setPluginDirectory(grab(Path) path);
+
 	private:
 		grab(Path) mWritablePath;
 		grab(Path) mResourcePath;
+		grab(Path) mPluginPath;
 
 		CLS_SHARED(FileSystem);
 	};

@@ -1,5 +1,6 @@
 bin
 resource
+plugins
 *.user
 *.suo
 *.ncb

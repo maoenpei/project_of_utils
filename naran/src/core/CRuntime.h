@@ -14,7 +14,7 @@ NS_DEF_NARAN{
 
 	class IInputHandler
 	{
-	public: virtual void run(int argc, char **argv) = 0;
+	public: virtual void run(arr(char *) args) = 0;
 	};
 
 	enum {

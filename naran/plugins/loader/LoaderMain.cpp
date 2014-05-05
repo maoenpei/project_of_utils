@@ -22,8 +22,12 @@ int main(int argc, char **argv)
 		LibLoader::create(children[i].path->getChars());
 	}
 	stable(IInputHandler) handler = Runtime::shared()->getInputHandler();
-	if (handler){
-		handler->run(argc, argv);
+	if (handler && argc > 0){
+		arr(char *) args(new char *[argc-1], argc-1);
+		for (int i = 1; i<argc; i++){
+			args[i-1] = argv[i];
+		}
+		handler->run(args);
 	}
 	return 0;
 }

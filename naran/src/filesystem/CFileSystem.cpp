@@ -57,6 +57,19 @@ NS_DEF_NARAN{
 		mResourcePath = path;
 	}
 
+	grab(Path) FileSystem::getPluginDirectory()
+	{
+		if (! mPluginPath){
+			mPluginPath = Path::create("plugins/");
+		}
+		return mPluginPath;
+	}
+
+	void FileSystem::setPluginDirectory(grab(Path) path)
+	{
+		mPluginPath = path;
+	}
+
 
 }
 
