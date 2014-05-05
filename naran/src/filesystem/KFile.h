@@ -26,8 +26,8 @@ NS_DEF_NARAN{
 		void open(grab(Path) path, u32 flags = File_Read | File_Write);
 		void close();
 
-		grab(File) create();
-		grab(File) create(grab(Path) path);
+		static grab(File) create();
+		static grab(File) create(grab(Path) path);
 
 	private:
 		FILE *mFilePtr;

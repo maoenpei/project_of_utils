@@ -2,10 +2,17 @@
 
 #include "filesystem/KPath.h"
 
-#define PATH_SPLIT			'/'
-#define PATHS_SPLIT			"/"
 #define PATH_SPLIT_WIN32	'\\'
-#define CHECK_SPLIT(ch)		((ch) == PATH_SPLIT || (ch) == PATH_SPLIT_WIN32)
+#define PATH_SPLIT_NWIN		'/'
+#define CHECK_SPLIT(ch)		((ch) == PATH_SPLIT_NWIN || (ch) == PATH_SPLIT_WIN32)
+
+#ifdef WIN32
+#define PATH_SPLIT			PATH_SPLIT_WIN32
+#define PATHS_SPLIT			"\\"
+#else
+#define PATH_SPLIT			PATH_SPLIT_NWIN
+#define PATHS_SPLIT			"/"
+#endif
 
 NS_DEF_NARAN{
 
@@ -16,7 +23,7 @@ NS_DEF_NARAN{
 		gEmptyPath = n;
 	});
 
-	inline static void getNames(char *path, char *&start, char *&end)
+	static void getNames(char *path, char *&start, char *&end)
 	{
 		start = path;
 		end = path + strlen(start);
@@ -31,6 +38,18 @@ NS_DEF_NARAN{
 			}
 			pName ++;
 		}
+	}
+
+	static void getExts(char *start, char *end, char *&dot)
+	{
+		char *pLastName = end;
+		char *pName = start;
+		for (pName = start; pName < end; pName++){
+			if (*pName == '.'){
+				pLastName = pName;
+			}
+		}
+		dot = pLastName;
 	}
 
 	more(char) Path::getChars()
@@ -50,6 +69,7 @@ NS_DEF_NARAN{
 	{
 		char *nameStart, *nameEnd;
 		getNames(mPathChars.get(), nameStart, nameEnd);
+		
 		int l = nameEnd - nameStart;
 		char * pathName = new char[l+1];
 		strncpy(pathName, nameStart, l);
@@ -62,6 +82,7 @@ NS_DEF_NARAN{
 		char *path = mPathChars.get();
 		char *nameStart, *nameEnd;
 		getNames(path, nameStart, nameEnd);
+		
 		int namel = strlen(name), left = nameStart - path, right = strlen(nameEnd);
 		int l = namel + left + right;
 		char *newPath = new char[l + 1] ();
@@ -79,7 +100,61 @@ NS_DEF_NARAN{
 		char *path = mPathChars.get();
 		char *nameStart, *nameEnd;
 		getNames(path, nameStart, nameEnd);
+		char *nameExt;
+		getExts(nameStart, nameEnd, nameExt);
 		
+		int l = nameExt - nameStart;
+		char *pathName = new char[l+1] ();
+		strncpy(pathName, nameStart, l);
+		return pathName;
+	}
+
+	void Path::setRawName(c_str rawName)
+	{
+		char *path = mPathChars.get();
+		char *nameStart, *nameEnd;
+		getNames(path, nameStart, nameEnd);
+		char *nameExt;
+		getExts(nameStart, nameEnd, nameExt);
+		
+		int namel = strlen(rawName), left = nameStart - path, right = strlen(nameExt);
+		int l = namel + left + right;
+		char *newPath = new char[l + 1] ();
+		strncpy(newPath, path, nameStart - path);
+		strcat(newPath, rawName);
+		strcat(newPath, nameExt);
+		mPathChars = newPath;
+	}
+
+	more(char) Path::getExtName()
+	{
+		char *path = mPathChars.get();
+		char *nameStart, *nameEnd;
+		getNames(path, nameStart, nameEnd);
+		char *nameExt;
+		getExts(nameStart, nameEnd, nameExt);
+
+		int l = nameExt - nameEnd;
+		char *pathName = new char[l + 1] ();
+		strncpy(pathName, nameExt, l);
+		return pathName;
+	}
+
+	void Path::setExtName(c_str extName)
+	{
+		char *path = mPathChars.get();
+		char *nameStart, *nameEnd;
+		getNames(path, nameStart, nameEnd);
+		char *nameExt;
+		getExts(nameStart, nameEnd, nameExt);
+		
+		int namel = strlen(extName), left = nameExt - path, right = strlen(nameEnd);
+		int l = namel + left + right;
+		char *newPath = new char[l + 1] ();
+		strncpy(newPath, path, nameExt - path);
+		strcat(newPath, extName);
+		strcat(newPath, nameEnd);
+		mPathChars = newPath;
 	}
 
 	more(char) Path::getDirectory()

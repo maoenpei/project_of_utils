@@ -33,7 +33,7 @@ NS_DEF_NARAN{
 		arr(DirProps) enumChildren();
 		void enumTraverse(stable(IDirectoryTraverse) traverse, int recursive = -1);
 
-		grab(Directory) create(grab(Path) path);
+		static grab(Directory) create(grab(Path) path);
 
 	private:
 		grab(Path) mPath;

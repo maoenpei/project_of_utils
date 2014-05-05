@@ -12,6 +12,15 @@ NS_DEF_NARAN{
 	public: virtual void run() = 0;
 	};
 
+	class IInputHandler
+	{
+	public: virtual void run(int argc, char **argv) = 0;
+	};
+
+	enum {
+		Runtime_Level0 = 0,		// normal
+	};
+
 #define CLS_SHARED(CLS)			\
 	public: static CLS *shared(){static CLS object; return &object;}
 
@@ -24,14 +33,20 @@ NS_DEF_NARAN{
 			stable(IRunnable) runnable;
 			int level;
 		};
+	public:
+		void addRunAtStartup(stable(IRunnable) runnable, int level = Runtime_Level0);
+		void startup();
+
+		void setInputHandler(stable(IInputHandler) handler);
+		stable(IInputHandler) getInputHandler();
+
+	private:
 		Array<RuntimeEntry> mRunnables;
 		int binaryIndex(int level);
+		stable(IInputHandler) mHandler;
+
 		Runtime();
-	public:
-		void runAtStartup(const stable(IRunnable) runnable, int level);
-		
-		void startup();
-		
+
 		CLS_SHARED(Runtime);
 	};
 
@@ -39,9 +54,9 @@ NS_DEF_NARAN{
 	class StaticRun
 	{
 	public:
-		StaticRun(int level = 0){
+		StaticRun(int level = Runtime_Level0){
 			grab(T) object = new T();
-			Runtime::shared()->runAtStartup(
+			Runtime::shared()->addRunAtStartup(
 				stablize_grab(IRunnable, T, object), level);
 		}
 	};

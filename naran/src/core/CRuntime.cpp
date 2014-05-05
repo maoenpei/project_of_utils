@@ -18,10 +18,7 @@ NS_DEF_NARAN{
 		return start;
 	}
 
-	Runtime::Runtime()
-	{}
-
-	void Runtime::runAtStartup(stable(IRunnable) runnable, int level)
+	void Runtime::addRunAtStartup(stable(IRunnable) runnable, int level)
 	{
 		int index = binaryIndex(level);
 		mRunnables.append(RuntimeEntry(runnable, level), index);
@@ -33,6 +30,20 @@ NS_DEF_NARAN{
 			mRunnables[i].runnable->run();
 		}
 	}
+
+	void Runtime::setInputHandler(stable(IInputHandler) handler)
+	{
+		mHandler = handler;
+	}
+
+	stable(IInputHandler) Runtime::getInputHandler()
+	{
+		return mHandler;
+	}
+
+	Runtime::Runtime()
+		: mHandler(stablize_null(IInputHandler))
+	{}
 
 }
 

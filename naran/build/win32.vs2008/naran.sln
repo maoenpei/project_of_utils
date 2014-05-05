@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "naran", "naran.vcproj", "{A88A154A-9485-48DD-817C-3E652885B1C6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "loader", "..\..\plugins\builds\windows.vs2008\loader.vcproj", "{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88A154A-9485-48DD-817C-3E652885B1C6} = {A88A154A-9485-48DD-817C-3E652885B1C6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +24,12 @@ Global
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.Release|Win32.Build.0 = Release|Win32
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.ReleaseDll|Win32.ActiveCfg = ReleaseDll|Win32
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.ReleaseDll|Win32.Build.0 = ReleaseDll|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.DebugDll|Win32.ActiveCfg = DebugDll|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.DebugDll|Win32.Build.0 = DebugDll|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.Release|Win32.ActiveCfg = Release|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.ReleaseDll|Win32.ActiveCfg = ReleaseDll|Win32
+		{628FFA1A-76FC-45A7-BFE6-6FE0AA5943D5}.ReleaseDll|Win32.Build.0 = ReleaseDll|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

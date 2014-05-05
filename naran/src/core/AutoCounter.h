@@ -36,7 +36,10 @@ NS_DEF_NARAN{
 		inline ~Closure_(){
 			mObjref->discard();
 		}
-		I *operator->(){
+		inline operator bool(){
+			return mInterf != NULL;
+		}
+		inline I *operator->(){
 			return mInterf;
 		}
 	};
@@ -54,6 +57,8 @@ NS_DEF_NARAN{
 		virtual void keep(){++mReference;}
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
+
+#define stablize_null(CLS)					(stable(CLS)(0, new Keep_<u32>(0)))
 
 #define stablize_nop(CLS, GCLS, GVAR)		(stable(CLS)((GVAR), new Keep_<GCLS *>(GVAR)))
 

@@ -1,4 +1,5 @@
 bin
+resource
 *.user
 *.suo
 *.ncb

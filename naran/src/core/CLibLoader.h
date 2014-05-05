@@ -12,7 +12,10 @@ NS_DEF_NARAN{
 	public:
 		bool load(c_str libpath);
 		void free();
+		
+		bool isValid();
 		func_ptr getFunction(c_str funcname);
+
 		static grab(LibLoader) create();
 		static grab(LibLoader) create(c_str libpath);
 		

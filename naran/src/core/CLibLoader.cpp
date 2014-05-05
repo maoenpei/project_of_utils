@@ -31,6 +31,11 @@ NS_DEF_NARAN{
 		}
 	}
 
+	bool LibLoader::isValid()
+	{
+		return mHandler != NULL;
+	}
+
 	func_ptr LibLoader::getFunction(c_str funcname)
 	{
 		if (! mHandler)
@@ -57,8 +62,9 @@ NS_DEF_NARAN{
 
 	LibLoader::~LibLoader()
 	{
-		if (mHandler)
-			free();
+		/* once load, never free */
+		/*if (mHandler)
+			free();*/
 	}
 
 }
