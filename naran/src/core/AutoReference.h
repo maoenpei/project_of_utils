@@ -67,7 +67,6 @@ NS_DEF_NARAN{
 //#define AUTO_PROTOCOL()			virtual void destroy(){delete this;}
 #define CLS_HIDE(CLS)			protected:CLS();CLS(const CLS&copy);~CLS();friend class DestroyOp_<CLS>;
 #define grab(CLS)				Auto_<CLS, DestroyOp_<CLS>, Auto_Ref_<CLS>>
-#define g(CLS)					grab(CLS)
 #define nullof(CLS)				((CLS *)0)
 
 	/* auto delete array */

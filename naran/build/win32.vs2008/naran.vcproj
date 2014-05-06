@@ -440,6 +440,14 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="structure"
+			>
+			<File
+				RelativePath="..\..\src\structure\KGeometry.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\main.cpp"
 			>

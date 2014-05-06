@@ -11,17 +11,17 @@ NS_DEF_NARAN{
 	typedef struct{channel b, g, r;} pxRGB;
 	typedef struct{channel b, g, r, a;} pxRGBA;
 
-	static pxRGB px2rgb(pixel c){
+	inline static pxRGB px2rgb(pixel c){
 		pxRGB ret = {BIT_GETB(c, 2), BIT_GETB(c, 1), BIT_GETB(c, 0)};
 		return ret;
 	}
-	static pixel rgb2px(pxRGB rgb){
+	inline static pixel rgb2px(pxRGB rgb){
 		return BIT_PUSHB3(0xff, rgb.r, rgb.g, rgb.b);
 	}
-	static pxRGBA px2rgba(pixel c){
+	inline static pxRGBA px2rgba(pixel c){
 		return *((pxRGBA *)&c);
 	}
-	static pixel rgba2px(pxRGBA rgba){
+	inline static pixel rgba2px(pxRGBA rgba){
 		return *((pixel *)&rgba);
 	}
 

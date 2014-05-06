@@ -8,6 +8,7 @@
 #include "core/Array.h"
 #include "core/CLibLoader.h"
 #include "core/CRuntime.h"
+#include "structure/KGeometry.h"
 #include "image/KImage.h"
 #include "image/CImageFactory.h"
 #include "filesystem/KPath.h"

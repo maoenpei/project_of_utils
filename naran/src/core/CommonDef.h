@@ -39,6 +39,11 @@ NS_DEF_NARAN{
 #define BIT_PUSHB2(i, j, k)			BIT_PUSHB(BIT_PUSHB(i, j), k)
 #define BIT_PUSHB3(i, j, k, o)		BIT_PUSHB(BIT_PUSHB2(i, j, k), o)
 
+/* math func */
+#define MATH_ABS(a)					((a) < 0 ? -(a) : (a))
+#define MATH_MAX(a, b)				((a) > (b) ? (a) : (b))
+#define MATH_MIN(a, b)				((a) < (b) ? (a) : (b))
+
 /* common value def */
 #ifndef NULL
 #define NULL 0

@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	Runtime::shared()->startup();
 	grab(Directory) directory = Directory::create(
 		FileSystem::shared()->getResourceDirectory());
-	arr(Directory::DirProps) children = directory->enumChildren();
+	arr(DirProps) children = directory->enumChildren();
 	for (int i = children.size()-1; i>=0; i--){
 		LibLoader::create(children[i].path->getChars());
 	}

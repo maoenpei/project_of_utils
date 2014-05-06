@@ -6,6 +6,7 @@
 #define PATH_SPLIT_NWIN		'/'
 #define CHECK_SPLIT(ch)		((ch) == PATH_SPLIT_NWIN || (ch) == PATH_SPLIT_WIN32)
 
+#if 0
 #ifdef WIN32
 #define PATH_SPLIT			PATH_SPLIT_WIN32
 #define PATHS_SPLIT			"\\"
@@ -13,6 +14,10 @@
 #define PATH_SPLIT			PATH_SPLIT_NWIN
 #define PATHS_SPLIT			"/"
 #endif
+#endif
+
+#define PATH_SPLIT			PATH_SPLIT_NWIN
+#define PATHS_SPLIT			"/"
 
 NS_DEF_NARAN{
 

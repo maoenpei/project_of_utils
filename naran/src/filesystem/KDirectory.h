@@ -15,16 +15,15 @@ NS_DEF_NARAN{
 	public:
 		virtual bool dealWithDirectory(grab(Path) path) = 0;
 	};
+	
+	struct CLS_EXPORT DirProps{
+		grab(Path) path;
+		int size;
+		bool isDir;
+	};
 
 	class CLS_EXPORT Directory
 	{
-	public:
-		struct DirProps{
-			grab(Path) path;
-			int size;
-			bool isDir;
-		};
-
 	public:
 		grab(Path) getPath();
 

@@ -15,6 +15,7 @@ public:
 class A : public Interface
 {
 public:
+	int c;
 	A(){
 	}
 	~A(){
@@ -29,15 +30,6 @@ stable(Interface) getfunc()
 	grab(A) object(new A);
 	return stablize_grab(Interface, A, object);
 }
-
-class TT : public IRunnable
-{
-	void run(){
-		int k = 0;
-	}
-};
-
-static StaticRun<TT> _var;
 
 int main(int argc, char **argv)
 {

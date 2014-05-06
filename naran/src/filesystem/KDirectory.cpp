@@ -43,7 +43,7 @@ NS_DEF_NARAN{
 	class _IEnumDir
 	{
 	public:
-		virtual bool checkStop(Directory::DirProps &prop) = 0;
+		virtual bool checkStop(DirProps &prop) = 0;
 	};
 
 	static void enumFolder(grab(Path) path, _IEnumDir *enumer)
@@ -55,7 +55,7 @@ NS_DEF_NARAN{
 		strcat(szFind, "*");
 		HANDLE hFind=::FindFirstFileA(szFind,&FindFileData);
 		if (INVALID_HANDLE_VALUE != hFind){
-			Directory::DirProps prop;
+			DirProps prop;
 			do{
 				if (0 == strcmp(FindFileData.cFileName, ".")
 					|| 0 == strcmp(FindFileData.cFileName, ".."))
@@ -93,12 +93,12 @@ NS_DEF_NARAN{
 	}
 #endif
 
-	arr(Directory::DirProps) Directory::enumChildren()
+	arr(DirProps) Directory::enumChildren()
 	{
 		class _EnumInst : public _IEnumDir{
 		public:
-			Array<Directory::DirProps> props;
-			virtual bool checkStop(Directory::DirProps &prop)
+			Array<DirProps> props;
+			virtual bool checkStop(DirProps &prop)
 			{
 				props.append(prop);
 				return true;
@@ -116,7 +116,7 @@ NS_DEF_NARAN{
 			int mRecursive;
 			_EnumInst(stable(IDirectoryTraverse) traverse, int recursive)
 				: mTraverse(traverse), mRecursive(recursive){}
-			virtual bool checkStop(Directory::DirProps &prop)
+			virtual bool checkStop(DirProps &prop)
 			{
 				/* less than 0 means recursive forever, more than 0 means recursive level */
 				if (prop.isDir && (mRecursive < 0 || mRecursive > 0)){

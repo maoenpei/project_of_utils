@@ -57,11 +57,11 @@ NS_DEF_NARAN{
 		virtual void keep(){++mReference;}
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
-
+// stable of nullptr
 #define stablize_null(CLS)					(stable(CLS)(0, new Keep_<u32>(0)))
-
+// stable of ungrabed object
 #define stablize_nop(CLS, GCLS, GVAR)		(stable(CLS)((GVAR), new Keep_<GCLS *>(GVAR)))
-
+// stable of grabed object
 #define stablize_grab(CLS, GCLS, GVAR)		(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
 
 }

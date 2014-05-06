@@ -39,6 +39,11 @@ NS_DEF_NARAN{
 			assert(index >= 0 && index < mNum);
 			return mArr[index];
 		}
+		inline void reset(){
+			for (int i = 0; i<mNum; i++)
+				mArr[i].~T();
+			mNum = 0;
+		}
 		inline void append(const T &item, int index = -1){
 			if (mNum == mMax){
 				T *new_arr = (T *)Allocator::allocShare(mMax * 2 * sizeof(T));

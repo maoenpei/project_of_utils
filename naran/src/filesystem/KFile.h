@@ -7,15 +7,14 @@
 
 NS_DEF_NARAN{
 
+	enum{
+		File_Read = 0x1,
+		File_Write = 0x2,
+		File_Create = 0x4,
+	};
+
 	class CLS_EXPORT File
 	{
-	public:
-		enum{
-			File_Read = 0x1,
-			File_Write = 0x2,
-			File_Create = 0x4,
-		};
-
 	public:
 		grab(Path) getPath();
 		int getSize();

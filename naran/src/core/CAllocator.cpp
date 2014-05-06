@@ -14,6 +14,16 @@ NS_DEF_NARAN{
 		::operator delete(ptr);
 	}
 
+	void *Allocator::allocArrayShare(size_t siz)
+	{
+		return ::operator new[](siz);
+	}
+
+	void Allocator::freeArrayShare(void *ptr)
+	{
+		::operator delete[](ptr);
+	}
+
 
 }
 

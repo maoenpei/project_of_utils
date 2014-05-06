@@ -67,7 +67,8 @@ NS_DEF_NARAN{
 				int old_single = (mHasAlpha ? 4 : 3);
 				channel *old_pdata = mData;
 				int new_single = (hasAlpha ? 4 : 3);
-				channel *new_data = new channel[px_count * new_single] ();
+				channel *new_data = new channel[px_count * new_single];
+				memset(new_data, 0xff, px_count * new_single);
 				channel *new_pdata = new_data;
 				for (int i = 0; i<px_count; i++){
 					*((pxRGB *)new_pdata) = *((pxRGB *)old_pdata);
