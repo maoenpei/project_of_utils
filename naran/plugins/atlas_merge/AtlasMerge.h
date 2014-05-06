@@ -38,11 +38,14 @@ NS_DEF_NARAN{
 			g2d::Recti		atlascut;		// rect in atlas
 		};
 		struct AtlasImageData{
+			// members
 			grab(Image)				img;		// image ref
 			more(char)				name;		// image name
-			Array(more(char))		afters;		// follow names
+			u32						nameHash;	// hash code of name string
 			g2d::Recti				imgcut;		// rect in image
 			grab(AtlasBlockData)	block;		// block ref
+			// members not used by self
+			Array<more(char)>		afters;		// follow names
 			AtlasImageData *		next;		// next data in setted order
 		};
 	public:
@@ -50,6 +53,7 @@ NS_DEF_NARAN{
 		void setImage(c_str name, grab(Image) img);
 		void removeImage(c_str name);
 		grab(Image) getImage(c_str name);
+		void clean();
 
 		// orders
 		void resetOrder();
@@ -76,15 +80,24 @@ NS_DEF_NARAN{
 		// properties
 	private:
 		Array<grab(AtlasImageData)> mImages;
+		bool mImageDirty;
 		AtlasImageData *mOrderedImages;
-		Array<grab(AtlasBlockData)> mBlocks;
+		bool mMergeDirty;
+		
 		AtlasConfigData mConfig;
+
 		// dirty rules: 
-		// order dirty/merge dirty;
-		// order clean/merge dirty;
-		// order clean/merge clean;
+		// image dirty > order dirty > merge dirty
+		void setImageDirty();
 		void setOrderDirty();
 		void setMergeDirty();
+		
+		// get index of a name
+		int indexOfName(c_str name);
+		// get valid rect of image
+		void getValidRegion(grab(AtlasImageData) imgData);
+		bool isRegionEqual(grab(AtlasImageData) imgData, grab(AtlasImageData) imgData2);
+		void createBlock(grab(AtlasImageData) imgData);
 		
 		CLS_HIDE(AtlasMerge);
 	};

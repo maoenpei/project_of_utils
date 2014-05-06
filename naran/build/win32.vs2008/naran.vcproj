@@ -327,6 +327,38 @@
 		<Filter
 			Name="core"
 			>
+			<File
+				RelativePath="..\..\src\core\CAllocator.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\CAllocator.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\CLibLoader.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\CLibLoader.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\CRuntime.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\CRuntime.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\Utils.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\Utils.h"
+				>
+			</File>
 			<Filter
 				Name="common"
 				>
@@ -344,42 +376,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\core\CommonDef.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="lib"
-				>
-				<File
-					RelativePath="..\..\src\core\CLibLoader.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\CLibLoader.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="rt"
-				>
-				<File
-					RelativePath="..\..\src\core\CRuntime.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\CRuntime.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="memory"
-				>
-				<File
-					RelativePath="..\..\src\core\CAllocator.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\CAllocator.h"
 					>
 				</File>
 			</Filter>
