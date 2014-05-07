@@ -36,7 +36,7 @@ NS_DEF_NARAN{
 	public:
 		/* ptr reference record */
 		inline Auto_() : mRef(0){}
-		inline /* explict */ Auto_(T *t) : mRef(new REF(t)){}
+		inline /* explict */ Auto_(T *t) : mRef(t ? new REF(t) : 0){}
 		inline Auto_(const Auto_ &copy) : mRef(copy.mRef) {if (mRef) mRef->ref++;}
 		inline Auto_ &operator =(const Auto_ &another){
 			if (another.mRef) another.mRef->ref++;
@@ -51,15 +51,16 @@ NS_DEF_NARAN{
 		}
 
 		/* ptr usage */
-		inline T *get(){return mRef->ptr;}
-		inline T *operator ->(){return mRef->ptr;}
-		inline T &operator *(){return *mRef->ptr;}
-		inline T &operator[](int index){return mRef->ptr[index];}
+		inline T *get() const{return mRef->ptr;}
+		inline T *operator ->() const{return mRef->ptr;}
+		inline T &operator *() const{return *mRef->ptr;}
+		inline T &operator [](int index) const{return mRef->ptr[index];}
+		//inline T *operator +(size_t offset) const{return mRef->ptr + offset;}
 
 		/* ptr convertion */
-		inline operator bool(){return mRef != 0 && mRef->ptr != 0;}
+		inline operator bool() const{return mRef != 0 && mRef->ptr != 0;}
 		template<class U>
-		inline operator U * (){return (U *)mRef->ptr;}
+		inline operator U * () const{return (U *)mRef->ptr;}
 	};
 
 #undef AUTO_EXEC_OP
@@ -88,12 +89,16 @@ NS_DEF_NARAN{
 	class CLS_EXPORT Array_ : public Auto_<T, OP, REF>
 	{
 	public:
-		inline Array_() : Auto_(new REF(new T[1], 0)){}
-		inline Array_(int size) : Auto_(new REF(new T[size], size)) {}
+		inline Array_() : Auto_(){}
+		inline Array_(int size) : Auto_(new REF(new T[size] (), size)) {}
 		inline Array_(T *t, int size) : Auto_(new REF(t, size)) {}
 		inline Array_(const Array_ &copy) : Auto_(copy){}
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
 		
+		inline T &operator [](int index) const{assert(index >= 0 && index < mRef->mMax); return Auto_::operator [](index);}
+		
+		inline int size(){return mRef->mMax;}
+		inline void resize(int size){assert(size >= 0 && size <= mRef->mMax);mRef->mMax = size;}
 		/* array apis */
 		/*inline void displace(int index){
 			T copy;
@@ -110,8 +115,6 @@ NS_DEF_NARAN{
 			mRef->ptr = new_ptr;
 			mRef->mMax = max;
 		}*/
-		inline int size(){return mRef->mMax;}
-		inline void resize(int size){assert(size >= 0 && size <= mRef->mMax);mRef->mMax = size;}
 	};
 
 #define more(CLS)			Auto_<CLS, DeleteArrayOp_<CLS>, Auto_Ref_<CLS>>

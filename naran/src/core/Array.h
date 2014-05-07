@@ -70,7 +70,7 @@ NS_DEF_NARAN{
 
 		// T type must override or use default 'operator ='
 		inline arr(T) toArr(){
-			T *objs = new T [(mNum < 1 ? 1 : mNum)];
+			T *objs = new T [(mNum < 1 ? 1 : mNum)] ();
 			for (int i = 0; i<mNum; i++){
 				objs[i] = mArr[i];
 			}

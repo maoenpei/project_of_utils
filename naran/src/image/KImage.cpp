@@ -44,7 +44,7 @@ NS_DEF_NARAN{
 		}
 	}
 
-	channel *Image::getData()
+	channel * Image::getData()
 	{
 		return mData;
 	}
@@ -91,6 +91,11 @@ NS_DEF_NARAN{
 	bool Image::getAlpha()
 	{
 		return mHasAlpha;
+	}
+
+	int Image::getChannels()
+	{
+		return (mHasAlpha ? 4 : 3);
 	}
 
 	grab(Image) Image::create()

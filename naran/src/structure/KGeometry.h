@@ -21,6 +21,9 @@ NS_DEF_NARAN{
 		inline bool operator == (const Size2D_ &other){
 			return w == other.w && h == other.h;
 		}
+		inline bool operator != (const Size2D_ &other){
+			return w != other.w && h != other.h;
+		}
 	};
 
 	template<typename T>
@@ -40,6 +43,9 @@ NS_DEF_NARAN{
 		inline bool operator == (const Size3D_ &other){
 			return w == other.w && h == other.h && d == other.d;
 		}
+		inline bool operator != (const Size3D_ &other){
+			return w != other.w && h != other.h && d != other.d;
+		}
 	};
 
 	template<typename T>
@@ -57,6 +63,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator == (const Point2D_ &other){
 			return x == other.x && y == other.y;
+		}
+		inline bool operator != (const Point2D_ &other){
+			return x != other.x && y != other.y;
 		}
 		inline Point2D_ operator +(const Size2D_<T> &size){
 			return Point2D_(x+size.w, y+size.h);
@@ -79,6 +88,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator == (const Point2D_ &other){
 			return x == other.x && y == other.y && z == other.z;
+		}
+		inline bool operator != (const Point2D_ &other){
+			return x != other.x && y != other.y && z != other.z;
 		}
 		inline Point3D_ operator +(const Size3D_<T> &size){
 			return Point2D_(x+size.w, y+size.h, z+size.d);
@@ -104,6 +116,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator == (const Point2D_<T> &other){
 			return pt == other.pt && size == other.size;
+		}
+		inline bool operator != (const Point2D_<T> &other){
+			return pt != other.pt && size != other.size;
 		}
 		inline Point2D_<T> getFar(){
 			return pt + size;
@@ -155,6 +170,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator == (const Point3D_<T> &other){
 			return pt == other.pt && size == other.size;
+		}
+		inline bool operator != (const Point3D_<T> &other){
+			return pt != other.pt && size != other.size;
 		}
 		inline Point3D_<T> getFar(){
 			return pt + size;

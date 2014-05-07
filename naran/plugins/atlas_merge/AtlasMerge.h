@@ -2,14 +2,16 @@
 #define __NARAN_ATLAS_MERGE_H__
 
 #include "Naran.h"
+#include "AtlasBounding.h"
 
 NS_DEF_NARAN{
 
 	enum {
-		AtlasOrder_Name,		// name character order
+		AtlasOrder_Name = 0,	// name character order
 		AtlasOrder_Area,		// area large to small
 		AtlasOrder_Width,		// width large to small
 		AtlasOrder_Height,		// height large to small
+		AtlasOrder_Max
 	};
 
 	struct CLS_EXPORT AtlasInfo
@@ -22,30 +24,20 @@ NS_DEF_NARAN{
 	
 	class CLS_EXPORT AtlasMerge
 	{
-		struct AtlasConfigData{
-			g2d::Sizei	maxSize;			// size limit
-			int			borderPadding;		// padding inside border
-			int			shapePadding;		// padding between shapes
-			int			atlasPadding;		// padding inside every shape
-			bool		isFixed;			// max size is fixed
-			bool		isRotate;			// allow rotate
-			bool		isPOT;				// force width/height power of two
-			bool		isSquare;			// force width equals height
-			bool		isTrim;				// trim transparent
-		};
 		struct AtlasBlockData{
 			g2d::Sizei		size;			// size
 			g2d::Recti		atlascut;		// rect in atlas
+			int				marked;			// marked count
 		};
 		struct AtlasImageData{
+			AtlasImageData(const String &_name, grab(Image) _img) : name(_name), img(_img), after(""){}
 			// members
+			String					name;		// image name
 			grab(Image)				img;		// image ref
-			more(char)				name;		// image name
-			u32						nameHash;	// hash code of name string
 			g2d::Recti				imgcut;		// rect in image
 			grab(AtlasBlockData)	block;		// block ref
 			// members not used by self
-			Array<more(char)>		afters;		// follow names
+			String					after;		// follow name
 			AtlasImageData *		next;		// next data in setted order
 		};
 	public:
@@ -53,6 +45,7 @@ NS_DEF_NARAN{
 		void setImage(c_str name, grab(Image) img);
 		void removeImage(c_str name);
 		grab(Image) getImage(c_str name);
+		void setTrim(bool istrim);
 		void clean();
 
 		// orders
@@ -65,9 +58,10 @@ NS_DEF_NARAN{
 		void merge();
 		grab(AtlasInfo) getInfo(c_str name);
 		arr(AtlasInfo) getAllInfo();
+		arr(more(char)) getMergeInfo(c_str name);
 		grab(Image) genAtlas();
 
-		// config
+		// atlas config
 		void setMaxSize(g2d::Sizei size);
 		void setBorderPadding(int padding);
 		void setShapePadding(int padding);
@@ -77,14 +71,23 @@ NS_DEF_NARAN{
 		void setPOT(bool isPOT);
 		void setSquare(bool issquare);
 
+		static grab(AtlasMerge) create();
+
 		// properties
 	private:
 		Array<grab(AtlasImageData)> mImages;
-		bool mImageDirty;
-		AtlasImageData *mOrderedImages;
-		bool mMergeDirty;
 		
-		AtlasConfigData mConfig;
+		bool mImageDirty;
+		bool mIsTrim;
+		
+		AtlasImageData *mOrderedImages;
+		bool mIsRevert;
+		u32 mOrderType;
+
+		grab(AtlasBounding) mBounding;
+		bool mMergeDirty;
+		g2d::Sizei mAtlasSize;
+		arr(AtlasImageData *) mBlockBelongs;
 
 		// dirty rules: 
 		// image dirty > order dirty > merge dirty
@@ -93,11 +96,19 @@ NS_DEF_NARAN{
 		void setMergeDirty();
 		
 		// get index of a name
-		int indexOfName(c_str name);
+		int indexOfName(const String &name);
 		// get valid rect of image
 		void getValidRegion(grab(AtlasImageData) imgData);
 		bool isRegionEqual(grab(AtlasImageData) imgData, grab(AtlasImageData) imgData2);
 		void createBlock(grab(AtlasImageData) imgData);
+
+		// sort algrithm
+		arr(AtlasImageData *) mergeSort(arr(AtlasImageData *) datas);
+		bool smallerImages(AtlasImageData *data, AtlasImageData *data2);
+		void linkImages(arr(AtlasImageData *) datas);
+
+		// info fill
+		void atlasInfoFill(AtlasImageData *img, AtlasInfo *info);
 		
 		CLS_HIDE(AtlasMerge);
 	};

@@ -443,6 +443,10 @@
 				RelativePath="..\..\src\structure\KGeometry.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\structure\KString.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\main.cpp"

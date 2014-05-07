@@ -325,6 +325,14 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="..\..\atlas_merge\AtlasBounding.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\atlas_merge\AtlasBounding.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\atlas_merge\AtlasMerge.cpp"
 			>
 		</File>
