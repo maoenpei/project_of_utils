@@ -51,7 +51,7 @@ NS_DEF_NARAN{
 	{
 		char szFind[MAX_PATH];
 		WIN32_FIND_DATAA FindFileData;
-		strcpy(szFind, path->getChars());
+		strcpy(szFind, path->getChars().get());
 		strcat(szFind, "*");
 		HANDLE hFind=::FindFirstFileA(szFind,&FindFileData);
 		if (INVALID_HANDLE_VALUE != hFind){

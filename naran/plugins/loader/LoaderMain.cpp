@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		FileSystem::shared()->getResourceDirectory());
 	arr(DirProps) children = directory->enumChildren();
 	for (int i = children.size()-1; i>=0; i--){
-		LibLoader::create(children[i].path->getChars());
+		LibLoader::create(children[i].path->getChars().get());
 	}
 	stable(IInputHandler) handler = Runtime::shared()->getInputHandler();
 	if (handler && argc > 0){

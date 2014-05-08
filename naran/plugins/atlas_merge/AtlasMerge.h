@@ -109,6 +109,7 @@ NS_DEF_NARAN{
 
 		// info fill
 		void atlasInfoFill(AtlasImageData *img, AtlasInfo *info);
+		void atlasFill(grab(Image) img, AtlasImageData *data);
 		
 		CLS_HIDE(AtlasMerge);
 	};

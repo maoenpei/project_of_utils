@@ -209,7 +209,7 @@ NS_DEF_NARAN{
 			clean();
 			arr(AtlasImageData *) datas(total);
 			for (int i = 0; i<total; i++){
-				datas[i] = mImages[i];
+				datas[i] = mImages[i].get();
 			}
 			datas = mergeSort(datas);
 			linkImages(datas);
@@ -281,8 +281,8 @@ NS_DEF_NARAN{
 		case AtlasOrder_Name:
 			{
 				return (! mIsRevert 
-					? strcmp(data->name.getStr(), data2->name.getStr()) < 0
-					: strcmp(data->name.getStr(), data2->name.getStr()) > 0);
+					? strcmp(data->name.getStr().get(), data2->name.getStr().get()) < 0
+					: strcmp(data->name.getStr().get(), data2->name.getStr().get()) > 0);
 			}
 		case AtlasOrder_Area:
 			{
@@ -337,7 +337,7 @@ NS_DEF_NARAN{
 				if (first->block->marked == 0){
 					sizes.append(& first->block->size);
 					rects.append(& first->block->atlascut);
-					blocks.append(first->block);
+					blocks.append((AtlasImageData *const)first->block.get());
 				}
 				first->block->marked++;
 			}
@@ -355,7 +355,7 @@ NS_DEF_NARAN{
 		int index = indexOfName(sName);
 		if (index){
 			AtlasInfo *info = new AtlasInfo();
-			atlasInfoFill(mImages[index], info);
+			atlasInfoFill(mImages[index].get(), info);
 			return info;
 		}
 		return nullof(AtlasInfo);
@@ -369,7 +369,7 @@ NS_DEF_NARAN{
 		int count = mImages.length();
 		arr(AtlasInfo) infos(count);
 		for (int i = 0; i<count; i++){
-			atlasInfoFill(mImages[i], &infos[i]);
+			atlasInfoFill(mImages[i].get(), &infos[i]);
 		}
 		return infos;
 	}
@@ -401,9 +401,9 @@ NS_DEF_NARAN{
 		}
 		grab(Image) image = Image::create();
 		image->setAlpha(true);
-		image->resize(mAtlasSize.w, mAtlasSize.h);
+		image->resize(mAtlasSize);
 		for (int i = 0; i<mBlockBelongs.size(); i++){
-			;
+			atlasFill(image, mBlockBelongs[i]);
 		}
 		return image;
 	}
@@ -416,6 +416,18 @@ NS_DEF_NARAN{
 		info->imgcut = *pImgCut;
 		info->offset = pAtlasCut->pt;
 		info->rotated = pImgCut->size != pAtlasCut->size;
+	}
+
+	void AtlasMerge::atlasFill(grab(Image) img, AtlasMerge::AtlasImageData *data)
+	{
+		g2d::Recti rectSource = data->imgcut;
+		g2d::Recti rectTarget = data->block->atlascut;
+		bool rotated = rectSource.size != rectTarget.size;
+		grab(Image) imgSource = data->img->getSubImage(rectSource);
+		if (rotated){
+			imgSource->rotateImage();
+		}
+		img->setSubImage(rectTarget.pt, imgSource);
 	}
 
 	grab(AtlasMerge) AtlasMerge::create()

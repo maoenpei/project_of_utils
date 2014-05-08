@@ -20,10 +20,10 @@ NS_DEF_NARAN{
 			return *this;
 		}
 		inline bool operator ==(const String &other) const{
-			return (mHash == other.mHash && 0 == strcmp(mStr, other.mStr));
+			return (mHash == other.mHash && 0 == strcmp(mStr.get(), other.mStr.get()));
 		}
 		inline bool operator !=(const String &other) const{
-			return (mHash != other.mHash || 0 != strcmp(mStr, other.mStr));
+			return (mHash != other.mHash || 0 != strcmp(mStr.get(), other.mStr.get()));
 		}
 		inline operator bool (){
 			return mStr[0] != 0;

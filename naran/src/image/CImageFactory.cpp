@@ -25,7 +25,7 @@ NS_DEF_NARAN{
 			
 			ret = Image::create();
 			ret->setAlpha(image.format == Libs::PNGImage_RGBA);
-			ret->resize(image.width, image.height, image.buffer);
+			ret->resize(g2d::Sizei(image.width, image.height), image.buffer);
 			return ret;
 		}
 		virtual grab(Image) loadImage(const char *filename)
@@ -70,7 +70,7 @@ NS_DEF_NARAN{
 			
 			ret = Image::create();
 			ret->setAlpha(false);
-			ret->resize(image.width, image.height, image.buffer);
+			ret->resize(g2d::Sizei(image.width, image.height), image.buffer);
 			return ret;
 		}
 		virtual grab(Image) loadImage(const char *filename)

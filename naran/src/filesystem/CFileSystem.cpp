@@ -25,7 +25,7 @@ NS_DEF_NARAN{
 	void FileSystem::setWorkingDirectory(grab(Path) path)
 	{
 #ifdef WIN32
-		SetCurrentDirectoryA(path->getChars());
+		SetCurrentDirectoryA(path->getChars().get());
 #else
 		chdir(path->getChars());
 #endif

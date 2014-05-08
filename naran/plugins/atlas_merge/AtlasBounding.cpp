@@ -6,6 +6,7 @@ NS_DEF_NARAN{
 
 	g2d::Sizei AtlasBounding::mergeImage(arr(g2d::Sizei *) inputs, arr(g2d::Recti *) outputs)
 	{
+		byte *data = new byte[mMaxSize.w * mMaxSize.h];
 		return g2d::Sizei();
 	}
 

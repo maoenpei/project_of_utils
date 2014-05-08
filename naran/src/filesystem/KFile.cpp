@@ -60,7 +60,7 @@ NS_DEF_NARAN{
 			break;
 		}
 		assert(ops && mFilePtr == NULL);
-		mFilePtr = fopen(path->getChars(), ops);
+		mFilePtr = fopen(path->getChars().get(), ops);
 		if (mFilePtr){
 			mPath = path;
 		}

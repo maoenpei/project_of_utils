@@ -3,6 +3,7 @@
 
 #include "core/CommonDef.h"
 #include "core/AutoReference.h"
+#include "structure/KGeometry.h"
 
 NS_DEF_NARAN{
 
@@ -32,25 +33,30 @@ NS_DEF_NARAN{
 		void setPixel(int x, int y, pixel c);
 
 		void reset();
-		void resize(int width, int height, more(channel) data = nullof(channel));
+		void resize(const g2d::Sizei &size, more(channel) data = nullof(channel));
 		channel * getData();
 		inline pxRGB *getRGB(){return (pxRGB *)getData();}
 		inline pxRGBA *getRGBA(){return (pxRGBA *)getData();}
 		
 		int getWidth();
 		int getHeight();
+		const g2d::Sizei &getSize();
 
 		void setAlpha(bool hasAlpha, const channel * alphas = NULL);
 		bool getAlpha();
 		int getChannels();
 
+		grab(Image) getSubImage(g2d::Recti rect);
+		void setSubImage(g2d::Pointi pt, grab(Image) img);
+		grab(Image) rotateImage();
+
 		static grab(Image) create();
 
 	private:
 		more(channel) mData;
-		int mWidth;
-		int mHeight;
+		g2d::Sizei mSize;
 		bool mHasAlpha;
+		g2d::Recti adjustValidRect(const g2d::Recti &rect);
 		
 		CLS_HIDE(Image);
 	};

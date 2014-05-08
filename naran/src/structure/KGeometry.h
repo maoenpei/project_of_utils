@@ -18,10 +18,10 @@ NS_DEF_NARAN{
 			h = copy.h;
 			return *this;
 		}
-		inline bool operator == (const Size2D_ &other){
+		inline bool operator == (const Size2D_ &other) const{
 			return w == other.w && h == other.h;
 		}
-		inline bool operator != (const Size2D_ &other){
+		inline bool operator != (const Size2D_ &other) const{
 			return w != other.w && h != other.h;
 		}
 	};
@@ -40,10 +40,10 @@ NS_DEF_NARAN{
 			d = copy.d;
 			return *this;
 		}
-		inline bool operator == (const Size3D_ &other){
+		inline bool operator == (const Size3D_ &other) const{
 			return w == other.w && h == other.h && d == other.d;
 		}
-		inline bool operator != (const Size3D_ &other){
+		inline bool operator != (const Size3D_ &other) const{
 			return w != other.w && h != other.h && d != other.d;
 		}
 	};
@@ -61,13 +61,13 @@ NS_DEF_NARAN{
 			y = copy.y;
 			return *this;
 		}
-		inline bool operator == (const Point2D_ &other){
+		inline bool operator == (const Point2D_ &other) const{
 			return x == other.x && y == other.y;
 		}
-		inline bool operator != (const Point2D_ &other){
+		inline bool operator != (const Point2D_ &other) const{
 			return x != other.x && y != other.y;
 		}
-		inline Point2D_ operator +(const Size2D_<T> &size){
+		inline Point2D_ operator +(const Size2D_<T> &size) const{
 			return Point2D_(x+size.w, y+size.h);
 		}
 	};
@@ -86,13 +86,13 @@ NS_DEF_NARAN{
 			z = copy.z;
 			return *this;
 		}
-		inline bool operator == (const Point2D_ &other){
+		inline bool operator == (const Point2D_ &other) const{
 			return x == other.x && y == other.y && z == other.z;
 		}
-		inline bool operator != (const Point2D_ &other){
+		inline bool operator != (const Point2D_ &other) const{
 			return x != other.x && y != other.y && z != other.z;
 		}
-		inline Point3D_ operator +(const Size3D_<T> &size){
+		inline Point3D_ operator +(const Size3D_<T> &size) const{
 			return Point2D_(x+size.w, y+size.h, z+size.d);
 		}
 	};
@@ -114,16 +114,16 @@ NS_DEF_NARAN{
 			size = copy.size;
 			return *this;
 		}
-		inline bool operator == (const Point2D_<T> &other){
+		inline bool operator == (const Point2D_<T> &other) const{
 			return pt == other.pt && size == other.size;
 		}
-		inline bool operator != (const Point2D_<T> &other){
+		inline bool operator != (const Point2D_<T> &other) const{
 			return pt != other.pt && size != other.size;
 		}
-		inline Point2D_<T> getFar(){
+		inline Point2D_<T> getFar() const{
 			return pt + size;
 		}
-		inline bool isIntersect(const Rect_ &other){
+		inline bool isIntersect(const Rect_ &other) const{
 			Point2D_<T> far = getFar();
 			Point2D_<T> other_far = other.getFar();
 			return (far.x > other.pt.x &&
@@ -131,7 +131,7 @@ NS_DEF_NARAN{
 				other_far.x > pt.x &&
 				other_far.y > pt.y);
 		}
-		inline Rect_ intersect(const Rect_ &other){
+		inline Rect_ intersect(const Rect_ &other) const{
 			Point2D_<T> far = getFar();
 			Point2D_<T> other_far = other.getFar();
 			T x = MATH_MAX(pt.x, other.pt.x);
@@ -140,7 +140,7 @@ NS_DEF_NARAN{
 			T fy = MATH_MIN(far.y, other_far.y);
 			return Rect_(x, y, (x>fx ? 0 : fx-x), (y>fy ? 0 : fy-y));
 		}
-		inline Rect_ surround(const Rect_ &other){
+		inline Rect_ surround(const Rect_ &other) const{
 			Point2D_<T> far = getFar();
 			Point2D_<T> other_far = other.getFar();
 			T x = MATH_MIN(pt.x, other.pt.x);
@@ -168,16 +168,16 @@ NS_DEF_NARAN{
 			size = copy.size;
 			return *this;
 		}
-		inline bool operator == (const Point3D_<T> &other){
+		inline bool operator == (const Point3D_<T> &other) const{
 			return pt == other.pt && size == other.size;
 		}
-		inline bool operator != (const Point3D_<T> &other){
+		inline bool operator != (const Point3D_<T> &other) const{
 			return pt != other.pt && size != other.size;
 		}
-		inline Point3D_<T> getFar(){
+		inline Point3D_<T> getFar() const{
 			return pt + size;
 		}
-		inline bool isIntersect(const Bound_ &other){
+		inline bool isIntersect(const Bound_ &other) const{
 			Point3D_<T> far = getFar();
 			Point3D_<T> other_far = other.getFar();
 			return (far.x > other.pt.x &&
@@ -187,7 +187,7 @@ NS_DEF_NARAN{
 				other_far.y > pt.y &&
 				other_far.z > pt.z);
 		}
-		inline Bound_ intersect(const Bound_ &other){
+		inline Bound_ intersect(const Bound_ &other) const{
 			Point3D_<T> far = getFar();
 			Point3D_<T> other_far = other.getFar();
 			T x = MATH_MAX(pt.x, other.pt.x);
@@ -198,7 +198,7 @@ NS_DEF_NARAN{
 			T fz = MATH_MIN(far.z, other_far.z);
 			return Bound_(x, y, z, (x>fx ? 0 : fx-x), (y>fy ? 0 : fy-y), (z>fz ? 0 : fz-z));
 		}
-		inline Bound_ surround(const Bound_ &other){
+		inline Bound_ surround(const Bound_ &other) const{
 			Point3D_<T> far = getFar();
 			Point3D_<T> other_far = other.getFar();
 			T x = MATH_MIN(pt.x, other.pt.x);

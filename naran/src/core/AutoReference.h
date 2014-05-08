@@ -59,8 +59,8 @@ NS_DEF_NARAN{
 
 		/* ptr convertion */
 		inline operator bool() const{return mRef != 0 && mRef->ptr != 0;}
-		template<class U>
-		inline operator U * () const{return (U *)mRef->ptr;}
+		// template<class U>
+		// inline operator U * () const{return (U *)mRef->ptr;}
 	};
 
 #undef AUTO_EXEC_OP
