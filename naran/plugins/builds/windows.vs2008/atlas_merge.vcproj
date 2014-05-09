@@ -340,6 +340,14 @@
 			RelativePath="..\..\atlas_merge\AtlasMerge.h"
 			>
 		</File>
+		<File
+			RelativePath="..\..\atlas_merge\AtlasTesting.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\atlas_merge\AtlasTesting.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

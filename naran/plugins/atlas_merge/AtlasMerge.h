@@ -62,7 +62,7 @@ NS_DEF_NARAN{
 		grab(Image) genAtlas();
 
 		// atlas config
-		void setMaxSize(g2d::Sizei size);
+		void setMaxSize(const g2d::Sizei &size);
 		void setBorderPadding(int padding);
 		void setShapePadding(int padding);
 		void setAtlasPadding(int padding);
@@ -88,6 +88,7 @@ NS_DEF_NARAN{
 		bool mMergeDirty;
 		g2d::Sizei mAtlasSize;
 		arr(AtlasImageData *) mBlockBelongs;
+		bool mMergeSuccess;
 
 		// dirty rules: 
 		// image dirty > order dirty > merge dirty

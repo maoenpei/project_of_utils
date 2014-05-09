@@ -326,7 +326,6 @@ NS_DEF_NARAN{
 	{
 		if (mMergeDirty){
 			sort();
-			mMergeDirty = false;
 			for (AtlasImageData *first = mOrderedImages; first; first = first->next){
 				first->block->marked = 0;
 			}
@@ -338,11 +337,14 @@ NS_DEF_NARAN{
 					sizes.append(& first->block->size);
 					rects.append(& first->block->atlascut);
 					blocks.append((AtlasImageData *const)first->block.get());
+					memset(& first->block->atlascut, 0, sizeof(g2d::Recti));
 				}
 				first->block->marked++;
 			}
+			memset(&mAtlasSize, 0, sizeof(mAtlasSize));
+			mMergeSuccess = mBounding->mergeImage(sizes.toArr(), rects.toArr(), mAtlasSize);
+			mMergeDirty = false;
 			mBlockBelongs = blocks.toArr();
-			mAtlasSize = mBounding->mergeImage(sizes.toArr(), rects.toArr());
 		}
 	}
 
@@ -422,6 +424,9 @@ NS_DEF_NARAN{
 	{
 		g2d::Recti rectSource = data->imgcut;
 		g2d::Recti rectTarget = data->block->atlascut;
+		if (rectTarget.size.w <= 0 || rectTarget.size.h <= 0){
+			return ;
+		}
 		bool rotated = rectSource.size != rectTarget.size;
 		grab(Image) imgSource = data->img->getSubImage(rectSource);
 		if (rotated){

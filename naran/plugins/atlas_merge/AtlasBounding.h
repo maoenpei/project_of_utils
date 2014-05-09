@@ -2,6 +2,7 @@
 #define __NARAN_ATLAS_BOUNDING_H__
 
 #include "Naran.h"
+#include "AtlasTesting.h"
 
 NS_DEF_NARAN{
 
@@ -9,9 +10,9 @@ NS_DEF_NARAN{
 	{
 	public:
 		
-		g2d::Sizei mergeImage(arr(g2d::Sizei *) inputs, arr(g2d::Recti *) outputs);
+		bool mergeImage(arr(g2d::Sizei *) inputs, arr(g2d::Recti *) outputs, g2d::Sizei &size);
 		
-		void setMaxSize(g2d::Sizei size);
+		void setMaxSize(const g2d::Sizei &size);
 		void setBorderPadding(int padding);
 		void setShapePadding(int padding);
 		void setAtlasPadding(int padding);
@@ -31,6 +32,8 @@ NS_DEF_NARAN{
 		bool		mIsRotate;			// allow rotate
 		bool		mIsPOT;				// force width/height power of two
 		bool		mIsSquare;			// force width equals height
+
+		bool inputRect(grab(AtlasTesting) testing, grab(g2d::Pointi) pt, const g2d::Sizei &size, Array<grab(g2d::Pointi)> &points);
 
 		CLS_HIDE(AtlasBounding);
 	};
