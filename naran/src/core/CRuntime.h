@@ -22,7 +22,10 @@ NS_DEF_NARAN{
 	};
 
 #define CLS_SHARED(CLS)			\
-	public: static CLS *shared(){static CLS object; return &object;}
+	public: static grab(CLS) shared();
+
+#define CLS_SHARED_DEFAULT(CLS)		\
+	grab(CLS) CLS::shared(){static grab(CLS) _obj = new CLS(); return _obj;}
 
 	class CLS_EXPORT Runtime
 	{

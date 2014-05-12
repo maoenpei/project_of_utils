@@ -446,6 +446,7 @@ NS_DEF_NARAN{
 		, mIsRevert(false)
 		, mOrderType(AtlasOrder_Name)
 		, mBounding(AtlasBounding::create())
+		, mOrderedImages(NULL)
 	{}
 
 	AtlasMerge::~AtlasMerge()

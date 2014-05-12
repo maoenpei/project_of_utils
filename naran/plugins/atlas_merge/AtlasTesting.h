@@ -18,7 +18,11 @@ NS_DEF_NARAN{
 		void fillRect(const g2d::Recti &rect);
 		void revert();
 		bool testRect(const g2d::Recti &rect);
+		void cutRect(g2d::Recti &rect);
 		u32 testCross(const g2d::Pointi &pt);
+
+		int getCount();
+		const g2d::Recti &getRect(int index);
 
 		static grab(AtlasTesting) create(const g2d::Sizei &size);
 

@@ -36,6 +36,9 @@ NS_DEF_NARAN{
 			Allocator::freeShare(mArr);
 		}
 		inline T &operator[](int index){
+			if (index < 0){
+				index = mNum+index;
+			}
 			assert(index >= 0 && index < mNum);
 			return mArr[index];
 		}
@@ -61,6 +64,9 @@ NS_DEF_NARAN{
 			mNum++;
 		}
 		inline void remove(int index){
+			if (index < 0){
+				index = mNum+index;
+			}
 			assert(index >= 0 && index < mNum);
 			mArr[index].~T();
 			memmove(mArr+index, mArr+index+1, (mNum - index - 1) * sizeof(T));

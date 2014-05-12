@@ -45,5 +45,7 @@ NS_DEF_NARAN{
 		: mHandler(stablize_null(IInputHandler))
 	{}
 
+	CLS_SHARED_DEFAULT(Runtime);
+
 }
 

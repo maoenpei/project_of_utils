@@ -33,7 +33,8 @@ NS_DEF_NARAN{
 		bool		mIsPOT;				// force width/height power of two
 		bool		mIsSquare;			// force width equals height
 
-		bool inputRect(grab(AtlasTesting) testing, grab(g2d::Pointi) pt, const g2d::Sizei &size, Array<grab(g2d::Pointi)> &points);
+		bool inputRect(grab(AtlasTesting) testing, grab(g2d::Pointi) pt, const g2d::Sizei &size, Array<grab(g2d::Recti)> &rects, Array<grab(g2d::Pointi)> &points);
+		void genMaxRects(Array<grab(g2d::Recti)> &rects, arr(g2d::Recti *) outputs, int &max, g2d::Sizei &size);
 
 		CLS_HIDE(AtlasBounding);
 	};

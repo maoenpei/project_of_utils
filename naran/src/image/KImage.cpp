@@ -34,7 +34,7 @@ NS_DEF_NARAN{
 
 	void Image::resize(const g2d::Sizei &size, more(channel) data)
 	{
-		if (mSize.w <= 0 || mSize.h <= 0)
+		if (size.w <= 0 || size.h <= 0)
 			return;
 		mSize = size;
 		if (data){

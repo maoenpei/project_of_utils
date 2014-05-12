@@ -341,6 +341,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\atlas_merge\AtlasStartup.cpp"
+			>
+		</File>
+		<File
 			RelativePath="..\..\atlas_merge\AtlasTesting.cpp"
 			>
 		</File>

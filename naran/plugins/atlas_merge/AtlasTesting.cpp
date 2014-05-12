@@ -11,14 +11,14 @@ NS_DEF_NARAN{
 			memset(start, 0xff, rect.size.w);
 			start += mSize.w;
 		}
-		mRects.append(rect, 0);
+		mRects.append(rect);
 	}
 
 	void AtlasTesting::revert()
 	{
 		if (mRects.length() > 0){
-			g2d::Recti rect = mRects[0];
-			mRects.remove(0);
+			g2d::Recti rect = mRects[-1];
+			mRects.remove(-1);
 			byte *start = mData.get() + rect.pt.x + rect.pt.y * mSize.w;
 			for (int i = 0; i<rect.size.h; i++){
 				memset(start, 0, rect.size.w);
@@ -44,6 +44,11 @@ NS_DEF_NARAN{
 		return true;
 	}
 
+	void AtlasTesting::cutRect(g2d::Recti &rect)
+	{
+		rect = g2d::Recti(0, 0, mSize.w, mSize.h).intersect(rect);
+	}
+
 	u32 AtlasTesting::testCross(const g2d::Pointi &pt)
 	{
 		u32 cross = 0;
@@ -61,6 +66,16 @@ NS_DEF_NARAN{
 			cross |= AtlasTestingCross_Up;
 		}
 		return cross;
+	}
+
+	int AtlasTesting::getCount()
+	{
+		return mRects.length();
+	}
+
+	const g2d::Recti &AtlasTesting::getRect(int index)
+	{
+		return mRects[index];
 	}
 
 	grab(AtlasTesting) AtlasTesting::create(const g2d::Sizei &size)

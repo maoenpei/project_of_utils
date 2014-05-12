@@ -150,5 +150,7 @@ NS_DEF_NARAN{
 		mLoaders.append(ImageLoaderEntry(loader, format), -1);
 	}
 
+	CLS_SHARED_DEFAULT(ImageFactory);
+
 }
 

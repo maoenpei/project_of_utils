@@ -131,6 +131,12 @@ NS_DEF_NARAN{
 				other_far.x > pt.x &&
 				other_far.y > pt.y);
 		}
+		inline bool isContain(const Rect_ &other) const{
+			return (pt.x <= other.pt.x &&
+				pt.y <= other.pt.y &&
+				size.w >= other.size.w &&
+				size.h >= other.size.h);
+		}
 		inline Rect_ intersect(const Rect_ &other) const{
 			Point2D_<T> far = getFar();
 			Point2D_<T> other_far = other.getFar();

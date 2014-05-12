@@ -70,6 +70,8 @@ NS_DEF_NARAN{
 		mPluginPath = path;
 	}
 
+	CLS_SHARED_DEFAULT(FileSystem);
+
 
 }
 
