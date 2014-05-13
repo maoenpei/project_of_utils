@@ -36,12 +36,12 @@ NS_DEF_NARAN{
 
 	u32 RSA::encode(u32 val)
 	{
-		return Utils::largeMultiMod(val, mOKey, mBig);
+		return Utils::largeMultiMod(val, mKey , mBig);
 	}
 
 	u32 RSA::decode(u32 val)
 	{
-		return Utils::largeMultiMod(val, mKey, mBig);
+		return Utils::largeMultiMod(val, mOKey , mBig);
 	}
 
 	grab(RSA) RSA::create(int prime1, int prime2, int key)
