@@ -36,12 +36,12 @@ NS_DEF_NARAN{
 
 	u32 RSA::encode(u32 val)
 	{
-		return Utils::largeMultiMod(val, mKey, mMod);
+		return Utils::largeMultiMod(val, mOKey, mBig);
 	}
 
 	u32 RSA::decode(u32 val)
 	{
-		return Utils::largeMultiMod(val, mOKey, mMod);
+		return Utils::largeMultiMod(val, mKey, mBig);
 	}
 
 	grab(RSA) RSA::create(int prime1, int prime2, int key)
@@ -52,6 +52,7 @@ NS_DEF_NARAN{
 	RSA::RSA(int prime1, int prime2, int key)
 		: mKey(key)
 		, mMod((prime1 - 1) * (prime2 - 1))
+		, mBig(prime1 * prime2)
 	{
 		generateOpposite();
 	}

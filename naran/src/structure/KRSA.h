@@ -17,6 +17,7 @@ NS_DEF_NARAN{
 
 	private:
 		int		mKey;		// private key
+		int		mBig;		// prime_1 * prime_2
 		int		mMod;		// (prime_1 - 1) * (prime_2 - 1)
 		int		mOKey;		// inverse private key
 
