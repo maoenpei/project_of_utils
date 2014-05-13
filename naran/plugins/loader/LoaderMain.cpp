@@ -13,6 +13,16 @@ CLS_SHARE_MEMORY();
 
 int main(int argc, char **argv)
 {
+	grab(RSA) rsa = RSA::create(43, 59, 13);
+	for (int i = 234; i<9966; i+=73){
+		u32 k = rsa->encode(i);
+		u32 z = rsa->decode(k);
+		if (z != i){
+			int cc = 0;
+		}else{
+			int uu = 0;
+		}
+	}
 #ifdef WAIT_DEBUG
 	char buf[1024];
 	printf("type anything and press enter!");
@@ -22,7 +32,7 @@ int main(int argc, char **argv)
 	SetErrorMode(SEM_FAILCRITICALERRORS);
 #endif
 	grab(Directory) directory = Directory::create(
-		FileSystem::shared()->getResourceDirectory());
+		FileSystem::shared()->getPluginDirectory());
 	arr(DirProps) children = directory->enumChildren();
 	for (int i = children.size()-1; i>=0; i--){
 		if (! children[i].isDir){

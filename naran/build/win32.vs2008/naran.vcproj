@@ -444,6 +444,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\structure\KRSA.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KRSA.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\structure\KString.h"
 				>
 			</File>
