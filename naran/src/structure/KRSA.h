@@ -6,22 +6,47 @@
 
 NS_DEF_NARAN{
 
+	class CLS_EXPORT RSACoder
+	{
+	public:
+		int getKey();
+		int getMod();
+
+		u32 encode(u32 val);
+
+		static grab(RSACoder) create(int key, int mod);
+
+	private:
+		int mMod;
+		int mKey;
+
+	private:
+		RSACoder(int key, int mod);
+		CLS_HIDE(RSACoder);
+	};
+
 	class CLS_EXPORT RSA
 	{
 	public:
 
-		u32 encode(u32 val);
-		u32 decode(u32 val);
+		int getPrime1();
+		int getPrime2();
+		int getMod();
+		int getKey();
+		int getOKey();
+
+		grab(RSACoder) getEncoder();
+		grab(RSACoder) getDecoder();
 
 		static grab(RSA) create(int prime1, int prime2, int key);
 
 	private:
-		int		mKey;		// private key
-		int		mBig;		// prime_1 * prime_2
-		int		mMod;		// (prime_1 - 1) * (prime_2 - 1)
-		int		mOKey;		// inverse private key
+		int mPrime1;
+		int mPrime2;
+		int mKey;
+		int mOKey;
 
-		void generateOpposite();
+		int genOKey(int omiga, int key);
 		
 	private:
 		RSA(int prime1, int prime2, int key);

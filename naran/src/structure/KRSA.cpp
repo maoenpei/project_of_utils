@@ -6,12 +6,80 @@
 
 NS_DEF_NARAN{
 
-	void RSA::generateOpposite()
+	int RSACoder::getKey()
 	{
-		// mKey * mOKey === 1 (mod mMod)
+		return mKey;
+	}
+
+	int RSACoder::getMod()
+	{
+		return mMod;
+	}
+
+	u32 RSACoder::encode(u32 val)
+	{
+		return Utils::largeMultiMod(val, mKey, mMod);
+	}
+
+	grab(RSACoder) RSACoder::create(int key, int mod)
+	{
+		return new RSACoder(key, mod);
+	}
+
+	RSACoder::RSACoder(int key, int mod)
+		: mKey(key)
+		, mMod(mod)
+	{}
+
+	RSACoder::~RSACoder()
+	{}
+
+	int RSA::getPrime1()
+	{
+		return mPrime1;
+	}
+
+	int RSA::getPrime2()
+	{
+		return mPrime2;
+	}
+
+	int RSA::getMod()
+	{
+		return mPrime1 * mPrime2;
+	}
+
+	int RSA::getKey()
+	{
+		return mKey;
+	}
+
+	int RSA::getOKey()
+	{
+		return mOKey;
+	}
+
+	grab(RSACoder) RSA::getEncoder()
+	{
+		return RSACoder::create(mKey, mPrime1 * mPrime2);
+	}
+
+	grab(RSACoder) RSA::getDecoder()
+	{
+		return RSACoder::create(mOKey, mPrime1 * mPrime2);
+	}
+
+	grab(RSA) RSA::create(int prime1, int prime2, int key)
+	{
+		return new RSA(prime1, prime2, key);
+	}
+
+	int RSA::genOKey(int omiga, int key)
+	{
+		// key * okey === 1 (mod omiga)
 		Array<int> equations;
-		int divide = mMod;
-		int divisor = mKey;
+		int divide = omiga;
+		int divisor = key;
 		int quot;
 		int remain;
 		do {
@@ -29,33 +97,17 @@ NS_DEF_NARAN{
 			coef1 = new_coef1;
 			coef2 = new_coef2;
 		}
-		coef1 = coef1 % mMod;
-		coef1 = (coef1 < 0 ? coef1 + mMod : coef1);
-		mOKey = coef1;
-	}
-
-	u32 RSA::encode(u32 val)
-	{
-		return Utils::largeMultiMod(val, mKey , mBig);
-	}
-
-	u32 RSA::decode(u32 val)
-	{
-		return Utils::largeMultiMod(val, mOKey , mBig);
-	}
-
-	grab(RSA) RSA::create(int prime1, int prime2, int key)
-	{
-		return new RSA(prime1, prime2, key);
+		coef1 = coef1 % omiga;
+		coef1 = (coef1 < 0 ? coef1 + omiga : coef1);
+		return coef1;
 	}
 
 	RSA::RSA(int prime1, int prime2, int key)
-		: mKey(key)
-		, mMod((prime1 - 1) * (prime2 - 1))
-		, mBig(prime1 * prime2)
-	{
-		generateOpposite();
-	}
+		: mPrime1(prime1)
+		, mPrime2(prime2)
+		, mKey(key)
+		, mOKey(genOKey((prime1-1)*(prime2-1), key))
+	{}
 
 	RSA::~RSA()
 	{}
