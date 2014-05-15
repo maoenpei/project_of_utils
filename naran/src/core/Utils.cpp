@@ -6,6 +6,9 @@ NS_DEF_NARAN{
 
 	more(char) Utils::copyStr(c_str s)
 	{
+		if (! s){
+			return nullof(char);
+		}
 		int l = strlen(s);
 		char *s_copy = new char[l + 1];
 		strcpy(s_copy, s);
@@ -14,6 +17,9 @@ NS_DEF_NARAN{
 
 	u32 Utils::hashStr(c_str s)
 	{
+		if (! s){
+			return 0;
+		}
 		u32 hash = 1;
 		while(*s)
 			hash = hash * 31 + *s++;

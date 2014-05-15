@@ -4,7 +4,7 @@
 
 NS_DEF_NARAN{
 
-	int Runtime::binaryIndex(int level)
+	int Runtime::searchRuntimeEntry(int level)
 	{
 		int start = 0, end = mRunnables.length();
 		int mid;
@@ -20,7 +20,7 @@ NS_DEF_NARAN{
 
 	void Runtime::addRunAtStartup(stable(IRunnable) runnable, int level)
 	{
-		int index = binaryIndex(level);
+		int index = searchRuntimeEntry(level);
 		mRunnables.append(RuntimeEntry(runnable, level), index);
 	}
 
@@ -31,18 +31,28 @@ NS_DEF_NARAN{
 		}
 	}
 
-	void Runtime::setInputHandler(stable(IInputHandler) handler)
+	void Runtime::addInputHandler(stable(IInputHandler) handler)
 	{
-		mHandler = handler;
+		mHandlers.append(InputHandlerEntry(mCurrentName, handler));
 	}
 
-	stable(IInputHandler) Runtime::getInputHandler()
+	stable(IInputHandler) Runtime::getInputHandler(c_str name)
 	{
-		return mHandler;
+		String sName(name);
+		for (int i = 0; i<mHandlers.length(); i++){
+			if (! sName || sName == mHandlers[i].name){
+				return mHandlers[i].handler;
+			}
+		}
+		return stablize_null(IInputHandler);
+	}
+
+	void Runtime::setCurrentName(c_str name)
+	{
+		mCurrentName = name;
 	}
 
 	Runtime::Runtime()
-		: mHandler(stablize_null(IInputHandler))
 	{}
 
 	CLS_SHARED_DEFAULT(Runtime);

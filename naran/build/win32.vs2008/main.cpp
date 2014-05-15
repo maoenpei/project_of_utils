@@ -1,6 +1,5 @@
 
 #include "Naran.h"
-#include "structure/KLongInt.h"
 #ifdef WIN32
 #include <windows.h>
 #endif

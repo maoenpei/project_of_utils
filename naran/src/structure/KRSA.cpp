@@ -34,47 +34,47 @@ NS_DEF_NARAN{
 	RSACoder::~RSACoder()
 	{}
 
-	int RSA::getPrime1()
+	int RSAProvider::getPrime1()
 	{
 		return mPrime1;
 	}
 
-	int RSA::getPrime2()
+	int RSAProvider::getPrime2()
 	{
 		return mPrime2;
 	}
 
-	int RSA::getMod()
+	int RSAProvider::getMod()
 	{
 		return mPrime1 * mPrime2;
 	}
 
-	int RSA::getKey()
+	int RSAProvider::getKey()
 	{
 		return mKey;
 	}
 
-	int RSA::getOKey()
+	int RSAProvider::getOKey()
 	{
 		return mOKey;
 	}
 
-	grab(RSACoder) RSA::getEncoder()
+	grab(RSACoder) RSAProvider::getEncoder()
 	{
 		return RSACoder::create(mKey, mPrime1 * mPrime2);
 	}
 
-	grab(RSACoder) RSA::getDecoder()
+	grab(RSACoder) RSAProvider::getDecoder()
 	{
 		return RSACoder::create(mOKey, mPrime1 * mPrime2);
 	}
 
-	grab(RSA) RSA::create(int prime1, int prime2, int key)
+	grab(RSAProvider) RSAProvider::create(int prime1, int prime2, int key)
 	{
-		return new RSA(prime1, prime2, key);
+		return new RSAProvider(prime1, prime2, key);
 	}
 
-	int RSA::genOKey(int omiga, int key)
+	int RSAProvider::genOKey(int omiga, int key)
 	{
 		// key * okey === 1 (mod omiga)
 		Array<int> equations;
@@ -102,14 +102,14 @@ NS_DEF_NARAN{
 		return coef1;
 	}
 
-	RSA::RSA(int prime1, int prime2, int key)
+	RSAProvider::RSAProvider(int prime1, int prime2, int key)
 		: mPrime1(prime1)
 		, mPrime2(prime2)
 		, mKey(key)
 		, mOKey(genOKey((prime1-1)*(prime2-1), key))
 	{}
 
-	RSA::~RSA()
+	RSAProvider::~RSAProvider()
 	{}
 
 }

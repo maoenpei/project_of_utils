@@ -95,11 +95,6 @@ NS_DEF_NARAN{
 			LongInt li;
 			return ! LongIntAlgrithm(LEN).Equal(data, li.data);
 		}
-		inline LongInt operator !() const{
-			LongInt li;
-			li.data[0] = (LongIntAlgritym(LEN).Equal(data, li.data) ? 1 : 0);
-			return li;
-		}
 		inline bool operator == (const LongInt &other) const{
 			return LongIntAlgrithm(LEN).Equal(data, other.data);
 		}

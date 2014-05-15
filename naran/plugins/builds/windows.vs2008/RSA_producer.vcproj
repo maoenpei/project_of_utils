@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="atlas_merge"
-	ProjectGUID="{7BEAFD0D-C38B-4CC5-AE29-D483EE1A63D6}"
-	RootNamespace="atlas_merge"
+	Name="RSA_producer"
+	ProjectGUID="{41FBED32-8874-4324-A363-7E341882C613}"
+	RootNamespace="RSA_producer"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../src"
+				AdditionalIncludeDirectories="../../../src;../../.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../src"
+				AdditionalIncludeDirectories="../../../src;../../.."
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -325,31 +325,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\atlas_merge\AtlasBounding.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasBounding.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasMerge.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasMerge.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasStartup.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasTesting.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\atlas_merge\AtlasTesting.h"
+			RelativePath="..\..\RSA_producer\RSAStartup.cpp"
 			>
 		</File>
 	</Files>

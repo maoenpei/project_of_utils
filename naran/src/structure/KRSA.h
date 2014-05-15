@@ -25,7 +25,7 @@ NS_DEF_NARAN{
 		CLS_HIDE(RSACoder);
 	};
 
-	class CLS_EXPORT RSA
+	class CLS_EXPORT RSAProvider
 	{
 	public:
 
@@ -38,7 +38,7 @@ NS_DEF_NARAN{
 		grab(RSACoder) getEncoder();
 		grab(RSACoder) getDecoder();
 
-		static grab(RSA) create(int prime1, int prime2, int key);
+		static grab(RSAProvider) create(int prime1, int prime2, int key);
 
 	private:
 		int mPrime1;
@@ -49,8 +49,8 @@ NS_DEF_NARAN{
 		int genOKey(int omiga, int key);
 		
 	private:
-		RSA(int prime1, int prime2, int key);
-		CLS_HIDE(RSA);
+		RSAProvider(int prime1, int prime2, int key);
+		CLS_HIDE(RSAProvider);
 	};
 
 }

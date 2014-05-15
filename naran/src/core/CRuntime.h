@@ -4,6 +4,7 @@
 #include "core/CommonDef.h"
 #include "core/AutoCounter.h"
 #include "core/Array.h"
+#include "structure/KString.h"
 
 NS_DEF_NARAN{
 
@@ -29,6 +30,15 @@ NS_DEF_NARAN{
 
 	class CLS_EXPORT Runtime
 	{
+	public:
+		void addRunAtStartup(stable(IRunnable) runnable, int level = Runtime_Level0);
+		void startup();
+
+		void addInputHandler(stable(IInputHandler) handler);
+		stable(IInputHandler) getInputHandler(c_str name = 0);
+		void setCurrentName(c_str name);
+
+	private:
 		struct RuntimeEntry
 		{
 			RuntimeEntry(const stable(IRunnable) &_runnable, int _level) 
@@ -36,17 +46,18 @@ NS_DEF_NARAN{
 			stable(IRunnable) runnable;
 			int level;
 		};
-	public:
-		void addRunAtStartup(stable(IRunnable) runnable, int level = Runtime_Level0);
-		void startup();
-
-		void setInputHandler(stable(IInputHandler) handler);
-		stable(IInputHandler) getInputHandler();
-
-	private:
 		Array<RuntimeEntry> mRunnables;
-		int binaryIndex(int level);
-		stable(IInputHandler) mHandler;
+		int searchRuntimeEntry(int level);
+		
+		struct InputHandlerEntry
+		{
+			InputHandlerEntry(const String &_name, stable(IInputHandler) _handler)
+				: name(_name), handler(_handler){}
+			stable(IInputHandler) handler;
+			String name;
+		};
+		Array<InputHandlerEntry> mHandlers;
+		String mCurrentName;
 
 		Runtime();
 

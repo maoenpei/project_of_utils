@@ -9,15 +9,8 @@ NS_USING_NARAN;
 
 CLS_SHARE_MEMORY();
 
-//#define WAIT_DEBUG
-
 int main(int argc, char **argv)
 {
-#ifdef WAIT_DEBUG
-	char buf[1024];
-	printf("type anything and press enter!");
-	scanf("%s", buf);
-#endif
 #ifdef WIN32
 	SetErrorMode(SEM_FAILCRITICALERRORS);
 #endif
@@ -26,6 +19,8 @@ int main(int argc, char **argv)
 	arr(DirProps) children = directory->enumChildren();
 	for (int i = children.size()-1; i>=0; i--){
 		if (! children[i].isDir){
+			more(char) name = children[i].path->getRawName();
+			Runtime::shared()->setCurrentName(name.get());
 			LibLoader::create(children[i].path->getChars().get());
 		}
 	}

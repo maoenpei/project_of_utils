@@ -12,6 +12,7 @@ NS_DEF_NARAN{
 		u32 mHash;
 		more(char) mStr;
 	public:
+		inline String() : mStr(nullof(char)), mHash(0){}
 		inline String(c_str str) : mStr(Utils::copyStr(str)), mHash(Utils::hashStr(str)) {}
 		inline String(const String&copy) : mStr(copy.mStr), mHash(copy.mHash) {}
 		inline String &operator = (const String &copy){
@@ -20,13 +21,13 @@ NS_DEF_NARAN{
 			return *this;
 		}
 		inline bool operator ==(const String &other) const{
-			return (mHash == other.mHash && 0 == strcmp(mStr.get(), other.mStr.get()));
+			return (mHash == other.mHash && (mStr.get() == other.mStr.get() || 0 == strcmp(mStr.get(), other.mStr.get())));
 		}
 		inline bool operator !=(const String &other) const{
-			return (mHash != other.mHash || 0 != strcmp(mStr.get(), other.mStr.get()));
+			return ! operator ==(other);
 		}
 		inline operator bool (){
-			return mStr[0] != 0;
+			return mStr && mStr[0] != 0;
 		}
 		inline more(char) getStr() const{
 			return mStr;

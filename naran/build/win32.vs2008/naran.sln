@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlas_merge", "..\..\plugin
 		{A88A154A-9485-48DD-817C-3E652885B1C6} = {A88A154A-9485-48DD-817C-3E652885B1C6}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RSA_producer", "..\..\plugins\builds\windows.vs2008\RSA_producer.vcproj", "{41FBED32-8874-4324-A363-7E341882C613}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88A154A-9485-48DD-817C-3E652885B1C6} = {A88A154A-9485-48DD-817C-3E652885B1C6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +46,14 @@ Global
 		{7BEAFD0D-C38B-4CC5-AE29-D483EE1A63D6}.Release|Win32.ActiveCfg = Release|Win32
 		{7BEAFD0D-C38B-4CC5-AE29-D483EE1A63D6}.ReleaseDll|Win32.ActiveCfg = ReleaseDll|Win32
 		{7BEAFD0D-C38B-4CC5-AE29-D483EE1A63D6}.ReleaseDll|Win32.Build.0 = ReleaseDll|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.Debug|Win32.ActiveCfg = Debug|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.Debug|Win32.Build.0 = Debug|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.DebugDll|Win32.ActiveCfg = DebugDll|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.DebugDll|Win32.Build.0 = DebugDll|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.Release|Win32.ActiveCfg = Release|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.Release|Win32.Build.0 = Release|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.ReleaseDll|Win32.ActiveCfg = ReleaseDll|Win32
+		{41FBED32-8874-4324-A363-7E341882C613}.ReleaseDll|Win32.Build.0 = ReleaseDll|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,7 @@
 #include "core/Utils.h"
 #include "structure/KGeometry.h"
 #include "structure/KString.h"
+#include "structure/KLongInt.h"
 #include "structure/KRSA.h"
 #include "image/KImage.h"
 #include "image/CImageFactory.h"

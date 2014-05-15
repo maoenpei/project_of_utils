@@ -2,8 +2,6 @@
 
 #include "AtlasMerge.h"
 
-CLS_SHARE_MEMORY();
-
 NS_DEF_NARAN{
 
 	void AtlasMerge::setImageDirty()

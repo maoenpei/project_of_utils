@@ -3,6 +3,8 @@
 #include "Naran.h"
 #include "plugins/atlas_merge/AtlasMerge.h"
 
+CLS_SHARE_MEMORY();
+
 NS_DEF_NARAN{
 
 	class AtlasInputHandler : public IInputHandler
@@ -31,7 +33,7 @@ NS_DEF_NARAN{
 	public:
 		void run(){
 			grab(AtlasInputHandler) object = new AtlasInputHandler();
-			Runtime::shared()->setInputHandler(stablize_grab(IInputHandler, AtlasInputHandler, object));
+			Runtime::shared()->addInputHandler(stablize_grab(IInputHandler, AtlasInputHandler, object));
 		}
 	};
 
