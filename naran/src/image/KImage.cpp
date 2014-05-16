@@ -191,7 +191,7 @@ NS_DEF_NARAN{
 		// adjust size
 		g2d::Pointi far = rect.getFar();
 		int px = (rect.pt.x < 0 ? 0 : rect.pt.x);
-		int py = (rect.pt.x < 0 ? 0 : rect.pt.x);
+		int py = (rect.pt.y < 0 ? 0 : rect.pt.y);
 		far.x = (far.x > mSize.w ? mSize.w : far.x);
 		far.y = (far.y > mSize.h ? mSize.h : far.y);
 		return g2d::Recti(px, py, far.x - px, far.y - py);

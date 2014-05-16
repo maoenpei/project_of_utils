@@ -8,7 +8,12 @@ NS_DEF_NARAN{
 	{
 		byte *start = mData.get() + rect.pt.x + rect.pt.y * mSize.w;
 		for (int i = 0; i<rect.size.h; i++){
-			memset(start, 0xff, rect.size.w);
+			if (i == 0 || i == rect.size.h-1){
+				memset(start, 0xff, rect.size.w);
+			}else{
+				start[0] = 0xff;
+				start[rect.size.w-1] = 0;
+			}
 			start += mSize.w;
 		}
 		mRects.append(rect);
@@ -21,7 +26,12 @@ NS_DEF_NARAN{
 			mRects.remove(-1);
 			byte *start = mData.get() + rect.pt.x + rect.pt.y * mSize.w;
 			for (int i = 0; i<rect.size.h; i++){
-				memset(start, 0, rect.size.w);
+				if (i == 0 || i == rect.size.h-1){
+					memset(start, 0, rect.size.w);
+				}else{
+					start[0] = 0;
+					start[rect.size.w-1] = 0;
+				}
 				start += mSize.w;
 			}
 		}

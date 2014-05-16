@@ -116,14 +116,16 @@ NS_DEF_NARAN{
 					pixel *line = (pixel *)data;
 					int tleft = -1;
 					int tright = 0;
-					for (int j = 0; j<width; j++){
-						if (0 != *line){
-							tleft = (tleft == -1 ? j : tleft);
-							tright = j+1;
+					if (left > 0 || right < width){
+						for (int j = 0; j<width; j++){
+							if (0 != line[j]){
+								tleft = (tleft == -1 ? j : tleft);
+								tright = j+1;
+							}
 						}
+						left = MATH_MIN(left, tleft);
+						right = MATH_MAX(right, tright);
 					}
-					left = MATH_MIN(left, tleft);
-					right = MATH_MAX(right, tright);
 				}
 				data += rowbytes;
 			}
@@ -249,7 +251,7 @@ NS_DEF_NARAN{
 			datas = temp;
 			unit *= 2;
 		}
-		return copyto;
+		return datas;
 	}
 
 	bool AtlasMerge::smallerImages(AtlasMerge::AtlasImageData *data, AtlasMerge::AtlasImageData *data2)
@@ -334,7 +336,7 @@ NS_DEF_NARAN{
 				if (first->block->marked == 0){
 					sizes.append(& first->block->size);
 					rects.append(& first->block->atlascut);
-					blocks.append((AtlasImageData *const)first->block.get());
+					blocks.append(first);
 					memset(& first->block->atlascut, 0, sizeof(g2d::Recti));
 				}
 				first->block->marked++;
@@ -428,9 +430,44 @@ NS_DEF_NARAN{
 		bool rotated = rectSource.size != rectTarget.size;
 		grab(Image) imgSource = data->img->getSubImage(rectSource);
 		if (rotated){
-			imgSource->rotateImage();
+			imgSource = imgSource->rotateImage();
 		}
 		img->setSubImage(rectTarget.pt, imgSource);
+	}
+
+	void AtlasMerge::setMaxSize(const g2d::Sizei &size)
+	{
+		mBounding->setMaxSize(size);
+	}
+
+	void AtlasMerge::setBorderPadding(int padding)
+	{
+		mBounding->setBorderPadding(padding);
+	}
+
+	void AtlasMerge::setShapePadding(int padding)
+	{
+		mBounding->setShapePadding(padding);
+	}
+
+	void AtlasMerge::setFixed(bool isfixed)
+	{
+		mBounding->setFixed(isfixed);
+	}
+
+	void AtlasMerge::setRotate(bool isrotate)
+	{
+		mBounding->setRotate(isrotate);
+	}
+
+	void AtlasMerge::setPOT(bool isPOT)
+	{
+		mBounding->setPOT(isPOT);
+	}
+
+	void AtlasMerge::setSquare(bool issquare)
+	{
+		mBounding->setSquare(issquare);
 	}
 
 	grab(AtlasMerge) AtlasMerge::create()

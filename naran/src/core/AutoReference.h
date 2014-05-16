@@ -97,6 +97,16 @@ NS_DEF_NARAN{
 		
 		inline T &operator [](int index) const{assert(index >= 0 && index < mRef->mMax); return Auto_::operator [](index);}
 		
+		inline Array_ Copy(const Array_ &copy){
+			if (! copy.mRef){
+				return Array_();
+			}
+			T *t = new T[copy.mRef->nMax]();
+			for (int i = 0; i<copy.mRef->nMax; i++){
+				t[i] = copy.mRef->ptr[i];
+			}
+			return Array_(t, copy.mRef->nMax);
+		}
 		inline int size(){return mRef->mMax;}
 		inline void resize(int size){assert(size >= 0 && size <= mRef->mMax);mRef->mMax = size;}
 		/* array apis */

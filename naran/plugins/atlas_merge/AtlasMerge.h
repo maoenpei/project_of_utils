@@ -65,7 +65,6 @@ NS_DEF_NARAN{
 		void setMaxSize(const g2d::Sizei &size);
 		void setBorderPadding(int padding);
 		void setShapePadding(int padding);
-		void setAtlasPadding(int padding);
 		void setFixed(bool isfixed);
 		void setRotate(bool isrotate);
 		void setPOT(bool isPOT);

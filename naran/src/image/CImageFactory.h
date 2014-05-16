@@ -20,6 +20,7 @@ NS_DEF_NARAN{
 	public:
 		virtual grab(Image) loadImage(const char *filename) = 0;
 		virtual grab(Image) loadImage(arr(byte) data) = 0;
+		virtual bool saveImage(const char *filename, grab(Image) img) = 0;
 	};
 
 	class CLS_EXPORT ImageFactory
@@ -35,6 +36,7 @@ NS_DEF_NARAN{
 	public:
 		grab(Image) loadFile(c_str filepath, u32 format = ImageFormat_Undef);
 		grab(Image) loadData(arr(byte) data, u32 format = ImageFormat_Undef);
+		void saveFile(c_str filepath, u32 format, grab(Image) img);
 
 		void addUserDefinedLoader(u32 format, stable(IImageLoader) loader);
 

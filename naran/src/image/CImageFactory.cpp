@@ -12,8 +12,10 @@ NS_DEF_NARAN{
 	public:
 		grab(LibLoader) loader;
 		Libs::ReadPNG *(*readerCreateFunc)();
+		Libs::WritePNG *(*writerCreateFunc)();
 		PNGLoader() : loader(LibLoader::create("UseLibPNG")) {
 			readerCreateFunc = (Libs::ReadPNG *(*)())loader->getFunction("createReadPNG");
+			writerCreateFunc = (Libs::WritePNG *(*)())loader->getFunction("createWritePNG");
 		}
 		inline grab(Image) readImageData(Libs::ReadPNG *reader)
 		{
@@ -50,6 +52,23 @@ NS_DEF_NARAN{
 			reader->destroy();
 			return ret;
 		}
+		virtual bool saveImage(const char *filename, grab(Image) img)
+		{
+			bool ret = false;
+			Libs::PNGImage image;
+			image.format = (img->getAlpha() ? Libs::PNGImage_RGBA : Libs::PNGImage_RGB);
+			image.width = img->getWidth();
+			image.height = img->getHeight();
+			image.buffer = img->getData();
+			Libs::WritePNG *writer = writerCreateFunc();
+			if (writer->openfile(filename)){
+				writer->inputinfo(&image);
+				writer->close();
+				ret = true;
+			}
+			writer->destroy();
+			return ret;
+		}
 	};
 
 	class JPEGLoader : public IImageLoader
@@ -57,8 +76,10 @@ NS_DEF_NARAN{
 	public:
 		grab(LibLoader) loader;
 		Libs::ReadJPEG *(*readerCreateFunc)();
+		Libs::WriteJPEG *(*writerCreateFunc)();
 		JPEGLoader() : loader(LibLoader::create("UseLibJpeg")) {
 			readerCreateFunc = (Libs::ReadJPEG *(*)())loader->getFunction("createReadJPEG");
+			writerCreateFunc = (Libs::WriteJPEG *(*)())loader->getFunction("createWriteJPEG");
 		}
 		inline grab(Image) readImageData(Libs::ReadJPEG *reader)
 		{
@@ -93,6 +114,25 @@ NS_DEF_NARAN{
 				reader->close();
 			}
 			reader->destroy();
+			return ret;
+		}
+		virtual bool saveImage(const char *filename, grab(Image) img)
+		{
+			bool ret = false;
+			if (img->getAlpha()){
+				return ret;
+			}
+			Libs::JPEGImage image;
+			image.width = img->getWidth();
+			image.height = img->getHeight();
+			image.buffer = img->getData();
+			Libs::WriteJPEG *writer = writerCreateFunc();
+			if (writer->openfile(filename)){
+				writer->inputinfo(&image);
+				writer->close();
+				ret = true;
+			}
+			writer->destroy();
 			return ret;
 		}
 	};
@@ -137,6 +177,16 @@ NS_DEF_NARAN{
 			}
 		}
 		return ret;
+	}
+
+	void ImageFactory::saveFile(c_str filepath, u32 format, grab(Image) img)
+	{
+		for (int i = 0; i<mLoaders.length(); i++){
+			if (format == mLoaders[i].format){
+				mLoaders[i].loader->saveImage(filepath, img);
+				break;
+			}
+		}
 	}
 
 	void ImageFactory::addUserDefinedLoader(u32 format, stable(IImageLoader) loader)

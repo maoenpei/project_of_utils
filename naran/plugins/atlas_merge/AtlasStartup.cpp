@@ -23,7 +23,10 @@ NS_DEF_NARAN{
 						am->setImage(children[i].path->getChars().get(), img);
 					}
 				}
+				am->setOrderType(AtlasOrder_Height);
 				am->merge();
+				grab(Image) atlas = am->genAtlas();
+				ImageFactory::shared()->saveFile("resource/aaa.png", ImageFormat_PNG, atlas);
 			}
 		}
 	};
