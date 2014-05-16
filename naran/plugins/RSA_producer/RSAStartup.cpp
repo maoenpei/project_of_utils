@@ -11,7 +11,7 @@ NS_DEF_NARAN{
 	public:
 		virtual void run(arr(char *) args)
 		{
-			if (0 == strcmp(args[0], "-Key")){
+			if (0 == stricmp(args[0], "-KEY")){
 				if (args.size() < 4){
 					printf("please input 2 prime number and 1 private key!\n");
 					return;
@@ -22,7 +22,7 @@ NS_DEF_NARAN{
 				grab(RSAProvider) provider = RSAProvider::create(prime1, prime2, key);
 				int mod = provider->getMod();
 				int okey = provider->getOKey();
-				printf("RSA big number: %d, public key: %d\n", mod, okey);
+				printf("RSA big number: %d, public key: %d, private key:%d\n", mod, okey, key);
 			}
 		}
 	};
