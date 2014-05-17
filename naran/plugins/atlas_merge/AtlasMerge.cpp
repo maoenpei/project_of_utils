@@ -62,6 +62,11 @@ NS_DEF_NARAN{
 		}
 	}
 
+	void AtlasMerge::setInnerPadding(int padding)
+	{
+		mInnerPadding = padding;
+	}
+
 	void AtlasMerge::clean()
 	{
 		if (mImageDirty){
@@ -134,6 +139,12 @@ NS_DEF_NARAN{
 				bottom = 1;
 				left = 0;
 				right = 1;
+			}
+			if (mInnerPadding > 0){
+				top = (top - mInnerPadding > 0 ? top - mInnerPadding : 0);
+				bottom = (bottom + mInnerPadding < height ? bottom + mInnerPadding : height);
+				left = (left - mInnerPadding > 0 ? left - mInnerPadding : 0);
+				right = (right + mInnerPadding < width ? right + mInnerPadding : width);
 			}
 			imgData->imgcut = g2d::Recti(left, top, right - left, bottom - top);
 		}
@@ -482,6 +493,7 @@ NS_DEF_NARAN{
 		, mOrderType(AtlasOrder_Name)
 		, mBounding(AtlasBounding::create())
 		, mOrderedImages(NULL)
+		, mInnerPadding(0)
 	{}
 
 	AtlasMerge::~AtlasMerge()

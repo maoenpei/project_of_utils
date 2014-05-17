@@ -46,6 +46,7 @@ NS_DEF_NARAN{
 		void removeImage(c_str name);
 		grab(Image) getImage(c_str name);
 		void setTrim(bool istrim);
+		void setInnerPadding(int padding);
 		void clean();
 
 		// orders
@@ -76,6 +77,7 @@ NS_DEF_NARAN{
 	private:
 		Array<grab(AtlasImageData)> mImages;
 		
+		int mInnerPadding;
 		bool mImageDirty;
 		bool mIsTrim;
 		

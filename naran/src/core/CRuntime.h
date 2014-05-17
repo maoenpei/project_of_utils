@@ -75,6 +75,16 @@ NS_DEF_NARAN{
 		}
 	};
 
+#define CLS_HANDLER_RUN(CLS)			\
+	class __##CLS##_Run : public IRunnable\
+	{\
+	public: void run(){\
+				grab(CLS) object = new CLS();\
+				Runtime::shared()->addInputHandler(stablize_grab(IInputHandler, CLS, object));\
+			}\
+	};\
+	static StaticRun<__##CLS##_Run> __run##CLS_var;
+
 }
 
 #endif

@@ -12,6 +12,8 @@ NS_DEF_NARAN{
 	public:
 		virtual void run(arr(char *) args)
 		{
+			grab(AtlasMerge) am = AtlasMerge::create();
+			
 			if (args.size() > 0){
 				grab(Path) path = Path::create(args[0]);
 				grab(Directory) dirs = Directory::create(path);
@@ -31,6 +33,9 @@ NS_DEF_NARAN{
 		}
 	};
 
+	CLS_HANDLER_RUN(AtlasInputHandler);
+
+	/*
 	class AddHandlerRun : public IRunnable
 	{
 	public:
@@ -41,7 +46,8 @@ NS_DEF_NARAN{
 	};
 
 	static StaticRun<AddHandlerRun> _var;
-
+	*/
+	
 }
 
 
