@@ -2,7 +2,7 @@
 #define __NARAN_FILE_SYSTEM_H__
 
 #include "core/CommonDef.h"
-#include "core/CRuntime.h"
+#include "runtime/CRuntime.h"
 #include "filesystem/KPath.h"
 
 NS_DEF_NARAN{

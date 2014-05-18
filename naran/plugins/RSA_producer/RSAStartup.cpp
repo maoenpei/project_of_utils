@@ -27,6 +27,8 @@ NS_DEF_NARAN{
 		}
 	};
 
+	CLS_HANDLER_RUN(RSAInputHandler);
+	/*
 	class AddHandlerRun : public IRunnable
 	{
 	public:
@@ -37,6 +39,6 @@ NS_DEF_NARAN{
 	};
 
 	static StaticRun<AddHandlerRun> _var;
-
+	*/
 }
 

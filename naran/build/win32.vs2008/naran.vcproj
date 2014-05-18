@@ -344,14 +344,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\core\CRuntime.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\core\CRuntime.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\core\Utils.cpp"
 				>
 			</File>
@@ -461,6 +453,26 @@
 			</File>
 			<File
 				RelativePath="..\..\src\structure\KString.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="runtime"
+			>
+			<File
+				RelativePath="..\..\src\runtime\CArguOperation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\runtime\CArguOperation.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\runtime\CRuntime.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\runtime\CRuntime.h"
 				>
 			</File>
 		</Filter>

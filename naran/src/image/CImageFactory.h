@@ -3,7 +3,7 @@
 
 #include "core/AutoReference.h"
 #include "image/KImage.h"
-#include "core/CRuntime.h"
+#include "runtime/CRuntime.h"
 #include "core/Array.h"
 
 NS_DEF_NARAN{
