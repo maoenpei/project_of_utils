@@ -3,19 +3,21 @@
 
 #include "core/CommonDef.h"
 #include "core/AutoCounter.h"
-#include "core/Array.h"
+#include "structure/KArray.h"
 #include "structure/KString.h"
 
 NS_DEF_NARAN{
 
 	class IRunnable
 	{
-	public: virtual void run() = 0;
+	public:
+		virtual void run() = 0;
 	};
 
 	class IInputHandler
 	{
-	public: virtual void run(arr(char *) args) = 0;
+	public:
+		virtual void run(arr(char *) args) = 0;
 	};
 
 	enum {

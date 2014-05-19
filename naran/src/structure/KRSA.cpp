@@ -2,7 +2,7 @@
 
 #include "structure/KRSA.h"
 #include "core/Utils.h"
-#include "core/Array.h"
+#include "structure/KArray.h"
 
 NS_DEF_NARAN{
 

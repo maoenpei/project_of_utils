@@ -1,5 +1,6 @@
 
 #include "Naran.h"
+#include "structure/KHashmap.h"
 #ifdef WIN32
 #include <windows.h>
 #endif
@@ -35,6 +36,14 @@ typedef LongInt<2>	LLI;
 
 int main(int argc, char **argv)
 {
+	strMap(int) imap;
+	imap.set("abc", new int(3));
+	grab(int) ii = imap.get("abc");
+	grab(strMap(int)::IterType) it = imap.iterator();
+	while(it->hasKey){
+		it->next();
+	}
+	imap.set("abc", nullof(int));
 #if 0
 	grab(RSA) rsa = RSA::create(43, 59, 13);
 	grab(RSACoder) encoder = rsa->getEncoder();

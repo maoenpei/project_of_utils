@@ -1,7 +1,7 @@
 
 
 #include "filesystem/KDirectory.h"
-#include "core/Array.h"
+#include "structure/KArray.h"
 
 #include <direct.h>
 #ifdef WIN32

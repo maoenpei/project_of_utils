@@ -355,10 +355,6 @@
 				Name="common"
 				>
 				<File
-					RelativePath="..\..\src\core\Array.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\src\core\AutoCounter.h"
 					>
 				</File>
@@ -432,15 +428,31 @@
 			Name="structure"
 			>
 			<File
+				RelativePath="..\..\src\structure\KArray.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\structure\KGeometry.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\structure\KLongInt.cpp"
+				RelativePath="..\..\src\structure\KHashmap.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\structure\KLongInt.h"
+				RelativePath="..\..\src\structure\KHashmap.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KLinkedlist.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KLongint_.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KLongint_.h"
 				>
 			</File>
 			<File

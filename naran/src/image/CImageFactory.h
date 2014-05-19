@@ -4,7 +4,7 @@
 #include "core/AutoReference.h"
 #include "image/KImage.h"
 #include "runtime/CRuntime.h"
-#include "core/Array.h"
+#include "structure/KArray.h"
 
 NS_DEF_NARAN{
 

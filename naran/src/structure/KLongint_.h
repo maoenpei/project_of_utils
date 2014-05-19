@@ -5,7 +5,7 @@
 
 NS_DEF_NARAN{
 
-	class LongIntAlgrithm
+	class CLS_EXPORT LongIntAlgrithm
 	{
 		int mLen;
 		int rawCompare(const u32 data1[], const u32 data2[]);
@@ -31,7 +31,7 @@ NS_DEF_NARAN{
 	};
 
 	template<int LEN>
-	class LongInt
+	class CLS_EXPORT LongInt
 	{
 		u32 data[LEN];
 	public:
