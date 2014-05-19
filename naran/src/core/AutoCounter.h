@@ -18,23 +18,32 @@ NS_DEF_NARAN{
 		I *mInterf;
 		IKeep *mObjref;
 	public:
+		inline Union_() : mInterf(NULL), mObjref(NULL){}
 		inline Union_(I *interf, IKeep *objref) 
 			: mInterf(interf), mObjref(objref){
 			mObjref->keep();
 		}
 		inline Union_(const Union_ &copy) 
 			: mInterf(copy.mInterf), mObjref(copy.mObjref){
-			mObjref->keep();
+			if (mObjref){
+				mObjref->keep();
+			}
 		}
 		inline Union_ &operator=(const Union_ &copy){
-			copy.mObjref->keep();
-			mObjref->discard();
+			if (copy.mObjref){
+				copy.mObjref->keep();
+			}
+			if (mObjref){
+				mObjref->discard();
+			}
 			mInterf = copy.mInterf;
 			mObjref = copy.mObjref;
 			return *this;
 		}
 		inline ~Union_(){
-			mObjref->discard();
+			if (mObjref){
+				mObjref->discard();
+			}
 		}
 		inline operator bool(){
 			return mInterf != NULL;
@@ -58,7 +67,7 @@ NS_DEF_NARAN{
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
 // stable of nullptr
-#define stablize_null(CLS)					(stable(CLS)(0, new Keep_<u32>(0)))
+#define stablize_null(CLS)					(stable(CLS)())
 // stable of ungrabed object
 #define stablize_nop(CLS, GCLS, GVAR)		(stable(CLS)((GVAR), new Keep_<GCLS *>(GVAR)))
 // stable of grabed object

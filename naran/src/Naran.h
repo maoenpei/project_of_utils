@@ -15,6 +15,7 @@
 #include "structure/KLongint.h"
 #include "structure/KRSA.h"
 #include "runtime/CRuntime.h"
+#include "runtime/CArguOperation.h"
 #include "image/KImage.h"
 #include "image/CImageFactory.h"
 #include "filesystem/KPath.h"

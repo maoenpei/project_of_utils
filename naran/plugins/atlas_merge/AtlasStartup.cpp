@@ -13,6 +13,7 @@ NS_DEF_NARAN{
 		virtual void run(arr(char *) args)
 		{
 			grab(AtlasMerge) am = AtlasMerge::create();
+			ArguOperation argOp(stablize_null(IArguOperator));
 			
 			if (args.size() > 0){
 				grab(Path) path = Path::create(args[0]);

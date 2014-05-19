@@ -54,14 +54,14 @@ NS_DEF_NARAN{
 			next();
 		}
 		HT key;
-		grab(T) value;
+		T value;
 		bool hasKey;
 		void next(){
 			HashPair *pair = mIter->next();
 			hasKey = pair != NULL;
 			if (pair){
 				key = HOP::convert(pair->key);
-				value = *((grab(T) *)pair->value);
+				value = *((T *)pair->value);
 			}
 		}
 	};
@@ -80,27 +80,27 @@ NS_DEF_NARAN{
 		inline HHashmap() : Hashtable(&mCompare) {}
 		inline ~HHashmap() {}
 
-		inline void set(HT key, grab(T) value){
+		inline void set(HT key, T value){
 			u32 hash = HOP::hashKey(key);
 			HashPair *pair = findPair(hash, (void *)key);
 			if (pair && ! value){
 				HOP::destroy(pair->key);
-				delete ((grab(T) *)pair->value);
+				delete ((T *)pair->value);
 				removePair(pair);
 			}else if (! pair && value){
-				addPair(hash, HOP::copy(key), new grab(T)(value));
+				addPair(hash, HOP::copy(key), new T(value));
 				return;
 			}else if (pair){
-				*((grab(T) *)pair->value) = value;
+				*((T *)pair->value) = value;
 			}
 		}
-		inline grab(T) get(HT key){
+		inline T get(HT key){
 			u32 hash = HOP::hashKey(key);
 			HashPair *pair = findPair(hash, (void *)key);
 			if (pair){
-				return *((grab(T) *)pair->value);
+				return *((T *)pair->value);
 			}
-			return nullof(T);
+			return T();
 		}
 		inline grab(IterType) iterator(){
 			grab(IterType) object = new IterType(Hashtable::iterator());

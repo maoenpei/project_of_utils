@@ -3,6 +3,7 @@
 
 #include "core/CommonDef.h"
 #include "core/AutoCounter.h"
+#include "structure/KHashmap.h"
 
 NS_DEF_NARAN{
 
@@ -15,15 +16,15 @@ NS_DEF_NARAN{
 	class CLS_EXPORT ArguOperation
 	{
 	public:
-		ArguOperation(arr(char *) args);
-
-		void setDefaultOperator(stable(IArguOperator) op);
+		virtual bool run(arr(char *) args);
+		
 		void addOperator(const char *argName, stable(IArguOperator) op);
 
-		virtual void run();
-
-	private:
-		arr(char *) mArgs;
+		ArguOperation(stable(IArguOperator) defOp);
+		
+	protected:
+		strMap(stable(IArguOperator)) mArgOps;
+		stable(IArguOperator) mDefault;
 	};
 
 }
