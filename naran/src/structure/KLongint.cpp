@@ -1,6 +1,6 @@
 
 
-#include "KLongInt_.h"
+#include "KLongInt.h"
 
 #ifdef _NSYS_X86
 

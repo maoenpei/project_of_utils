@@ -448,11 +448,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\structure\KLongint_.cpp"
+				RelativePath="..\..\src\structure\KLongint.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\structure\KLongint_.h"
+				RelativePath="..\..\src\structure\KLongint.h"
 				>
 			</File>
 			<File
