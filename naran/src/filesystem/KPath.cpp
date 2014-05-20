@@ -6,6 +6,13 @@
 #define PATH_SPLIT_NWIN		'/'
 #define CHECK_SPLIT(ch)		((ch) == PATH_SPLIT_NWIN || (ch) == PATH_SPLIT_WIN32)
 
+#ifdef WIN32
+#include <Shlwapi.h>
+#pragma comment(lib, "Shlwapi.lib")
+#else
+#include <sys/stat.h>
+#endif
+
 #if 0
 #ifdef WIN32
 #define PATH_SPLIT			PATH_SPLIT_WIN32
@@ -233,6 +240,17 @@ NS_DEF_NARAN{
 		grab(Path) object(new Path());
 		object->mPathChars = dir;
 		return object;
+	}
+
+	bool Path::isFolder()
+	{
+#ifdef WIN32
+		return PathIsDirectoryA(mPathChars.get()) != 0;
+#else
+		struct stat info;
+		stat(mPathChars.get(), &info);
+		return S_ISDIR(info.st_mode) != 0;
+#endif
 	}
 
 	grab(Path) Path::create()

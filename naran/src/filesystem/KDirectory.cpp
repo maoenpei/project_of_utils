@@ -43,7 +43,7 @@ NS_DEF_NARAN{
 	class _IEnumDir
 	{
 	public:
-		virtual bool checkStop(DirProps &prop) = 0;
+		virtual bool checkContinue(DirProps &prop) = 0;
 	};
 
 	static void enumFolder(grab(Path) path, _IEnumDir *enumer)
@@ -63,7 +63,7 @@ NS_DEF_NARAN{
 				prop.path = path->appendName(FindFileData.cFileName);
 				prop.isDir = (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
 				prop.size = FindFileData.nFileSizeLow;
-				if (! enumer->checkStop(prop)){
+				if (! enumer->checkContinue(prop)){
 					break;
 				}
 			}while(FindNextFileA(hFind, &FindFileData));
@@ -85,7 +85,7 @@ NS_DEF_NARAN{
 			stat(prop.path->getChars(), &file_stat);
 			prop.isDir = S_ISDIR(file_stat.st_mode) != 0;
 			prop.size = file_stat.st_size;
-			if (! enumer->checkStop(prop)){
+			if (! enumer->checkContinue(prop)){
 				break;
 			}
 		}
@@ -98,7 +98,7 @@ NS_DEF_NARAN{
 		class _EnumInst : public _IEnumDir{
 		public:
 			Array<DirProps> props;
-			virtual bool checkStop(DirProps &prop)
+			virtual bool checkContinue(DirProps &prop)
 			{
 				props.append(prop);
 				return true;
@@ -116,7 +116,7 @@ NS_DEF_NARAN{
 			int mRecursive;
 			_EnumInst(stable(IDirectoryTraverse) traverse, int recursive)
 				: mTraverse(traverse), mRecursive(recursive){}
-			virtual bool checkStop(DirProps &prop)
+			virtual bool checkContinue(DirProps &prop)
 			{
 				/* less than 0 means recursive forever, more than 0 means recursive level */
 				if (prop.isDir && (mRecursive < 0 || mRecursive > 0)){

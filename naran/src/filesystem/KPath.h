@@ -26,6 +26,8 @@ NS_DEF_NARAN{
 		grab(Path) appendName(c_str subName);
 		grab(Path) removeName();
 
+		bool isFolder();
+
 		static grab(Path) create();
 		static grab(Path) create(c_str path);
 		
