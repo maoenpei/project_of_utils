@@ -202,11 +202,19 @@ NS_DEF_NARAN{
 		setOrderDirty();
 	}
 
-	void AtlasMerge::setOrderType(u32 type, bool revert)
+	void AtlasMerge::setOrderType(u32 type)
 	{
 		assert(type >= 0 && type < AtlasOrder_Max);
-		if (mOrderType != type || ! mIsRevert != ! revert){
+		if (mOrderType != type){
 			mOrderType = type;
+			mIsRevert = false;
+			setOrderDirty();
+		}
+	}
+
+	void AtlasMerge::setOrderRevert(bool revert)
+	{
+		if (! mIsRevert != ! revert){
 			mIsRevert = revert;
 			setOrderDirty();
 		}

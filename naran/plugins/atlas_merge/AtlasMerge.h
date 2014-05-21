@@ -52,7 +52,8 @@ NS_DEF_NARAN{
 		// orders
 		void resetOrder();
 		void orderAfter(c_str name, c_str other);
-		void setOrderType(u32 type, bool revert = false);
+		void setOrderType(u32 type);
+		void setOrderRevert(bool revert);
 		void sort();
 
 		// merge operation

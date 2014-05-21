@@ -66,6 +66,7 @@ NS_DEF_NARAN{
 		virtual void keep(){++mReference;}
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
+	
 // stable of nullptr
 #define stablize_null(CLS)					(stable(CLS)())
 // stable of ungrabed object
