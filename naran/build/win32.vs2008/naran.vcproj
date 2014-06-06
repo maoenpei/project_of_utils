@@ -328,6 +328,14 @@
 			Name="core"
 			>
 			<File
+				RelativePath="..\..\src\core\AutoCounter.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\AutoReference.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CAllocator.cpp"
 				>
 			</File>
@@ -344,6 +352,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\core\CommonDef.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\Utils.cpp"
 				>
 			</File>
@@ -351,22 +363,6 @@
 				RelativePath="..\..\src\core\Utils.h"
 				>
 			</File>
-			<Filter
-				Name="common"
-				>
-				<File
-					RelativePath="..\..\src\core\AutoCounter.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\AutoReference.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\core\CommonDef.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="image"

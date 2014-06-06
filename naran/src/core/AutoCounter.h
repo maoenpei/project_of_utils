@@ -21,7 +21,9 @@ NS_DEF_NARAN{
 		inline Union_() : mInterf(NULL), mObjref(NULL){}
 		inline Union_(I *interf, IKeep *objref) 
 			: mInterf(interf), mObjref(objref){
-			mObjref->keep();
+			if (mObjref){
+				mObjref->keep();
+			}
 		}
 		inline Union_(const Union_ &copy) 
 			: mInterf(copy.mInterf), mObjref(copy.mObjref){
