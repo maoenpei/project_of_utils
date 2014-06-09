@@ -13,7 +13,7 @@ NS_DEF_NARAN{
 		virtual bool compare(void *key1, void *key2) = 0;
 	};
 
-	struct HashPair
+	struct CLS_EXPORT HashPair
 	{
 		u32 uHash;
 		void *key;
@@ -46,7 +46,7 @@ NS_DEF_NARAN{
 	};
 	
 	template<class HT, class HOP, class T>
-	class HHashiter
+	class CLS_EXPORT HHashiter
 	{
 		grab(Hashiter) mIter;
 	public:
@@ -108,7 +108,7 @@ NS_DEF_NARAN{
 		}
 	};
 
-	class HOPString
+	class CLS_EXPORT HOPString
 	{
 	public:
 		static inline bool compare(void *savekey, const char *outerkey){
@@ -129,7 +129,7 @@ NS_DEF_NARAN{
 		}
 	};
 
-	class HOPInteger
+	class CLS_EXPORT HOPInteger
 	{
 	public:
 		static inline bool compare(void *savekey, int outerkey){
