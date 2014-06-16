@@ -1,7 +1,31 @@
 #ifndef __LIB_FREE_TYPE_H__
 #define __LIB_FREE_TYPE_H__
 
-#include "../../common/src/LibCommon.h"
+#ifndef __LIB_COMMON_DEF__
+
+#ifdef WIN32
+#pragma warning(disable:4996)
+#endif
+
+#ifdef WIN32
+#define EXPORT_FUNC		__declspec(dllexport)
+#else
+#define EXPORT_FUNC		
+#endif
+
+#include <string>
+#include <vector>
+#include <list>
+#include <map>
+#include <stdio.h>
+
+#define LIB_IMPL_DESTROY()		\
+	virtual void destroy(){delete this;}
+
+#define LIB_INTERFACES()		\
+	virtual void destroy() = 0;
+
+#endif
 
 namespace Libs
 {
