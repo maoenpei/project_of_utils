@@ -16,12 +16,13 @@ NS_DEF_NARAN{
 		bool isValid();
 		func_ptr getFunction(c_str funcname);
 
-		LibLoader();
-		~LibLoader();
+		grab(LibLoader) create();
 		
 	// members
 	private:
 		void * mHandler;
+
+		CLS_HIDE(LibLoader);
 	};
 
 };

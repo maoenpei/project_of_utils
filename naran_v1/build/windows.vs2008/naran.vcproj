@@ -184,26 +184,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="_framework"
-			>
-			<File
-				RelativePath="..\..\src\framework\CLibLoader.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\framework\CLibLoader.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\framework\Utils.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\framework\Utils.h"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="_structure"
 			>
 			<File
@@ -254,6 +234,58 @@
 				RelativePath="..\..\src\algrithm\KRSA.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="framework"
+			>
+			<Filter
+				Name="_file"
+				>
+				<File
+					RelativePath="..\..\src\file\KDirectory.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\file\KDirectory.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\file\KFile.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\file\KFile.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\file\KPath.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\file\KPath.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="_framework"
+				>
+				<File
+					RelativePath="..\..\src\framework\CLibLoader.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\CLibLoader.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\Utils.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\Utils.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\main.cpp"

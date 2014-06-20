@@ -43,6 +43,11 @@ NS_DEF_NARAN{
 		return (func_ptr)LIBFUNC(mHandler, funcname);
 	}
 
+	grab(LibLoader) LibLoader::create()
+	{
+		return new LibLoader();
+	}
+
 	LibLoader::LibLoader() : mHandler(NULL)
 	{}
 

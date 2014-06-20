@@ -56,7 +56,7 @@ NS_DEF_NARAN{
 
 	int Utils::tickMilli()
 	{
-		return getTimeTick(1000000);
+		return getTimeTick(1000);
 	}
 
 }

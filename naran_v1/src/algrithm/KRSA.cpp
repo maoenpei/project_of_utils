@@ -16,14 +16,14 @@ NS_DEF_NARAN{
 		, mMod(mod)
 	{}
 
-	RSACoder * RSAProvider::getEncoder()
+	RSACoder RSAProvider::getEncoder()
 	{
-		return new RSACoder(mKey, mPrime1 * mPrime2);
+		return RSACoder(mKey, mPrime1 * mPrime2);
 	}
 
-	RSACoder * RSAProvider::getDecoder()
+	RSACoder RSAProvider::getDecoder()
 	{
-		return new RSACoder(mOKey, mPrime1 * mPrime2);
+		return RSACoder(mOKey, mPrime1 * mPrime2);
 	}
 
 	RSAProvider::RSAProvider(int prime1, int prime2, int key)

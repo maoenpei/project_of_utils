@@ -30,8 +30,8 @@ NS_DEF_NARAN{
 		inline int getKey(){return mKey;}
 		inline int getOKey(){return mOKey;}
 
-		RSACoder * getEncoder();
-		RSACoder * getDecoder();
+		RSACoder getEncoder();
+		RSACoder getDecoder();
 
 		RSAProvider(int prime1, int prime2, int key);
 
