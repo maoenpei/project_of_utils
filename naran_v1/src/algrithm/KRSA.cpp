@@ -1,6 +1,6 @@
 
 
-#include "algrithm/KRSA.h"
+#include "KRSA.h"
 #include "framework/Utils.h"
 #include "structure/KArray.h"
 

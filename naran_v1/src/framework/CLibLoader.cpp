@@ -1,6 +1,6 @@
 
 
-#include "framework/CLibLoader.h"
+#include "CLibLoader.h"
 
 #if defined(WIN32)
 #include <windows.h>

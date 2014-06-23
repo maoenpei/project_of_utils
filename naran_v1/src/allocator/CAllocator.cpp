@@ -1,6 +1,6 @@
 
 
-#include "allocator/CAllocator.h"
+#include "CAllocator.h"
 
 NS_DEF_NARAN{
 

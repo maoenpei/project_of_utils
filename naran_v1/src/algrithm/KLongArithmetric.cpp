@@ -1,6 +1,6 @@
 
 
-#include "algrithm/KLongArithmetric.h"
+#include "KLongArithmetric.h"
 
 #ifdef _NSYS_X86
 

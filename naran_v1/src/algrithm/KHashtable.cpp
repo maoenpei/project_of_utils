@@ -1,6 +1,6 @@
 
 
-#include "algrithm/KHashtable.h"
+#include "KHashtable.h"
 
 NS_DEF_NARAN{
 
