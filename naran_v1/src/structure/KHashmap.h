@@ -35,7 +35,7 @@ NS_DEF_NARAN{
 			HashPair *pair = mIter->next();
 			hasNext = pair != NULL;
 			if (pair){
-				key = (HT)(pair->key);
+				key = HOP::revert(pair->key);
 				value = *((T *)pair->value);
 			}
 		}
@@ -57,9 +57,14 @@ NS_DEF_NARAN{
 		inline HHashmap() : Hashtable(&mCompare) {}
 		inline ~HHashmap() {}
 
+		inline bool hasKey(HT key){
+			u32 hash = HOP::hashKey(key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
+			return pair != NULL;
+		}
 		inline void set(HT key, const T &value){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			if (! pair){
 				addPair(hash, HOP::copy(key), new T(value));
 				return;
@@ -69,7 +74,7 @@ NS_DEF_NARAN{
 		}
 		inline T get(HT key){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			if (pair){
 				return *((T *)pair->value);
 			}
@@ -77,15 +82,15 @@ NS_DEF_NARAN{
 		}
 		inline void remove(HT key){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			if (pair){
 				delete ((T *)pair->value);
 				HOP::destroy(pair->key);
 				removePair(pair);
 			}
 		}
-		inline IterType * iterator(){
-			return new IterType(Hashtable::iterator());
+		inline IterType iterator(){
+			return IterType(Hashtable::iterator());
 		}
 	};
 	
@@ -106,7 +111,7 @@ NS_DEF_NARAN{
 			HashPair *pair = mIter->next();
 			hasNext = pair != NULL;
 			if (pair){
-				value = (HT)(pair->key);
+				value = HOP::revert(pair->key);
 			}
 		}
 	};
@@ -127,9 +132,9 @@ NS_DEF_NARAN{
 		inline HHashset() : Hashtable(&mCompare) {}
 		inline ~HHashset() {}
 
-		inline void append(HT key){
+		inline void insert(HT key){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			if (! pair){
 				addPair(hash, HOP::copy(key), NULL);
 				return;
@@ -137,19 +142,19 @@ NS_DEF_NARAN{
 		}
 		inline bool has(HT key){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			return pair != NULL;
 		}
 		inline void remove(HT key){
 			u32 hash = HOP::hashKey(key);
-			HashPair *pair = findPair(hash, (void *)key);
+			HashPair *pair = findPair(hash, HOP::convert(key));
 			if (pair){
 				HOP::destroy(pair->key);
 				removePair(pair);
 			}
 		}
-		inline IterType * iterator(){
-			return new IterType(Hashtable::iterator());
+		inline IterType iterator(){
+			return IterType(Hashtable::iterator());
 		}
 		
 	};
@@ -172,6 +177,12 @@ NS_DEF_NARAN{
 		static inline void destroy(void *savekey){
 			free (savekey);
 		}
+		static inline void *convert(HTString key){
+			return (void *)key;
+		}
+		static inline HTString revert(void *savekey){
+			return (HTString)savekey;
+		}
 	};
 
 	/* HOP of 4-bytes value */
@@ -183,6 +194,7 @@ NS_DEF_NARAN{
 			return savekey == outerkey;
 		}
 		static inline u32 hashKey(T key){
+			assert(sizeof(T) == sizeof(int));
 			return (u32)key;
 		}
 		static inline void *copy(T key){
@@ -190,14 +202,50 @@ NS_DEF_NARAN{
 		}
 		static inline void destroy(void *savekey){
 		}
+		static inline void *convert(T key){
+			assert(sizeof(T) == sizeof(int));
+			return (void *)key;
+		}
+		static inline T revert(void *savekey){
+			return (T)savekey;
+		}
+	};
+
+	/* HOP of packaged class with method get */
+	template<class T>
+	class CLS_EXPORT HOPPackaged
+	{
+	public:
+		static inline bool compare(void *savekey, void * outerkey){
+			return (*(T *)savekey).get() == (*(T *)outerkey).get();
+		}
+		static inline u32 hashKey(const T &key){
+			return (u32)key.get();
+		}
+		static inline void *copy(const T &key){
+			return (void *)new T(key);
+		}
+		static inline void destroy(void *savekey){
+			delete ((T *)savekey);
+		}
+		static inline void *convert(const T &key){
+			return (void *)&key;
+		}
+		static inline T revert(void *savekey){
+			return *(T *)savekey;
+		}
 	};
 
 #define strMap(CLS)				HHashmap<HTString, HOPString, CLS>
 #define intMap(CLS)				HHashmap<int, HOPCommon<int>, CLS>
-#define objectMap(KEY, VAL)		HHashmap<KEY *, HOPCommon<KEY *>, VAL>
+#define varMap(TYPE, CLS)		HHashmap<TYPE, HOPCommon<TYPE>, CLS>
+#define grabMap(KEY, VAL)		HHashmap<grab(KEY), HOPPackaged<grab(KEY)>, VAL>
+#define interfMap(KEY, VAL)		HHashmap<interf(KEY), HOPPackaged<interf(KEY)>, VAL>
 
 #define strSet()				HHashset<HTString, HOPString>
-#define varSet(CLS)				HHashset<CLS, HOPCommon<CLS>>
+#define varSet(TYPE)			HHashset<TYPE, HOPCommon<TYPE>>
+#define grabSet(CLS)			HHashset<grab(CLS), HOPPackaged<grab(CLS)>>
+#define interfSet(CLS)			HHashset<interf(CLS), HOPPackaged<interf(CLS)>>
 
 }
 

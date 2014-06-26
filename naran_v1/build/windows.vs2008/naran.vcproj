@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../src"
+				AdditionalIncludeDirectories="../../src;third_part\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_NSYS_X86"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,6 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -112,7 +113,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../src"
+				AdditionalIncludeDirectories="../../src;third_part\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_NSYS_X86"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -131,6 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -188,6 +190,10 @@
 			>
 			<File
 				RelativePath="..\..\src\structure\KArray.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KBuffer.h"
 				>
 			</File>
 			<File
@@ -283,6 +289,26 @@
 				</File>
 				<File
 					RelativePath="..\..\src\framework\Utils.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="_network"
+				>
+				<File
+					RelativePath="..\..\src\network\AsyncSocket.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\network\AsyncSocket.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\network\SyncSocket.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\network\SyncSocket.h"
 					>
 				</File>
 			</Filter>

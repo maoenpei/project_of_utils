@@ -56,16 +56,13 @@ NS_DEF_NARAN{
 				mObjref->discard();
 			}
 		}
-		inline operator bool(){
-			return mInterf != NULL;
-		}
-		inline I *operator->(){
-			return mInterf;
-		}
+		inline operator bool() const{return mInterf != NULL;}
+		inline I *operator->() const{return mInterf;}
+		inline I *get() const{return mInterf;}
 	};
 
 	/* auto self-delete object */
-#define conn(CLS)		Union_<CLS>
+#define interf(CLS)		Union_<CLS>
 
 	template<typename T>
 	class CLS_EXPORT Keep_ : public IKeep_
@@ -77,18 +74,24 @@ NS_DEF_NARAN{
 		virtual void keep(){++mReference;}
 		virtual void discard(){if (--mReference == 0) delete this;}
 	};
+
+	template<class I, class T>
+	static inline interf(I) convertNop(T *object)
+	{
+		return interf(I)(object);
+	}
 	
 	template<class I, class T>
-	static inline conn(I) convertGrab(T *object)
+	static inline interf(I) convertGrab(T *object)
 	{
 		grab(T) inst = object;
-		return conn(I)(object, new Keep_<grab(T)>(inst));
+		return interf(I)(object, new Keep_<grab(T)>(inst));
 	}
 	
 	// raw interface
-#define connect_nop(I)			(conn(I))//(stable(I)((GVAR), new Keep_<GCLS *>(GVAR)))
+#define interf_nop(I)			(convertNop<I>)//(stable(I)((GVAR), new Keep_<GCLS *>(GVAR)))
 	// grab of an instance
-#define connect_grab(I)			(convertGrab<I>)//(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
+#define interf_grab(I)			(convertGrab<I>)//(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
 
 }
 

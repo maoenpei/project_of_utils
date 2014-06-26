@@ -101,7 +101,7 @@ NS_DEF_NARAN{
 	{
 	public:
 		inline Array_() : Auto_(){}
-		inline Array_(int size) : Auto_(new REF(new T[size] (), size)) {}
+		//inline Array_(int size) : Auto_(new REF(new T[size] (), size)) {}
 		inline Array_(T *t, int size) : Auto_(new REF(t, size)) {}
 		inline Array_(const Array_ &copy) : Auto_(copy){}
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
@@ -110,15 +110,18 @@ NS_DEF_NARAN{
 		
 		/* array apis */
 		inline int count(){return mRef->mMax;}
-		inline Array_ Copy(const Array_ &copy){
-			if (! copy.mRef){
+		inline Array_ Copy() const{
+			return Copy(0, mRef->nMax);
+		}
+		inline Array_ Copy(int start, int len) const{
+			if (! mRef || start < 0 || start >= mRef->nMax || len <= 0 || start + len > mRef->nMax){
 				return Array_();
 			}
-			T *t = new T[copy.mRef->nMax]();
-			for (int i = 0; i<copy.mRef->nMax; i++){
-				t[i] = copy.mRef->ptr[i];
+			T *t = new T[len]();
+			for (int i = 0; i<len; i++){
+				t[i] = mRef->ptr[i+start];
 			}
-			return Array_(t, copy.mRef->nMax);
+			return Array_(t, len);
 		}
 	};
 

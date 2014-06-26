@@ -35,6 +35,13 @@ NS_DEF_NARAN{
 				mArr[i].~T();
 			Allocator::freeShare(mArr);
 		}
+		inline const T &getAt(int index) const{
+			if (index < 0){
+				index = mNum+index;
+			}
+			assert(index >= 0 && index < mNum);
+			return mArr[index];
+		}
 		inline T &operator[](int index){
 			if (index < 0){
 				index = mNum+index;
@@ -47,7 +54,7 @@ NS_DEF_NARAN{
 				mArr[i].~T();
 			mNum = 0;
 		}
-		inline void append(const T &item, int index = -1){
+		inline void insert(const T &item, int index = -1){
 			if (mNum == mMax){
 				T *new_arr = (T *)Allocator::allocShare(mMax * 2 * sizeof(T));
 				memcpy(new_arr, mArr, mMax * sizeof(T));

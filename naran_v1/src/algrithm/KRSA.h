@@ -40,8 +40,6 @@ NS_DEF_NARAN{
 		int mPrime2;
 		int mKey;
 		int mOKey;
-
-		int genOKey(int omiga, int key);
 	};
 
 }

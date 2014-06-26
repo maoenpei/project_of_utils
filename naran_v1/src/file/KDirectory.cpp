@@ -100,7 +100,7 @@ NS_DEF_NARAN{
 			Array<DirProps> props;
 			virtual bool checkContinue(DirProps &prop)
 			{
-				props.append(prop);
+				props.insert(prop);
 				return true;
 			}
 		}enumer;
@@ -108,13 +108,13 @@ NS_DEF_NARAN{
 		return enumer.props.toArr();
 	}
 
-	void Directory::enumTraverse(conn(IDirectoryTraverse) traverse, int recursive)
+	void Directory::enumTraverse(interf(IDirectoryTraverse) traverse, int recursive)
 	{
 		class _EnumInst : public _IEnumDir{
 		public:
-			conn(IDirectoryTraverse) mTraverse;
+			interf(IDirectoryTraverse) mTraverse;
 			int mRecursive;
-			_EnumInst(conn(IDirectoryTraverse) traverse, int recursive)
+			_EnumInst(interf(IDirectoryTraverse) traverse, int recursive)
 				: mTraverse(traverse), mRecursive(recursive){}
 			virtual bool checkContinue(DirProps &prop)
 			{

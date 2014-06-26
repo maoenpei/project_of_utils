@@ -26,14 +26,11 @@ NS_DEF_NARAN{
 		return RSACoder(mOKey, mPrime1 * mPrime2);
 	}
 
-	RSAProvider::RSAProvider(int prime1, int prime2, int key)
-		: mPrime1(prime1)
-		, mPrime2(prime2)
-		, mKey(key)
-		, mOKey(genOKey((prime1-1)*(prime2-1), key))
-	{}
-
-	int RSAProvider::genOKey(int omiga, int key)
+	/*
+	generate okey which: "key * okey === 1 (mod omiga)".
+	if gcd(key, omiga) != 1 failed.
+	*/
+	static inline int genOKey(int omiga, int key)
 	{
 		// key * okey === 1 (mod omiga)
 		Array<int> equations;
@@ -44,7 +41,7 @@ NS_DEF_NARAN{
 		do {
 			quot = divide / divisor;
 			remain = divide % divisor;
-			equations.append(quot);
+			equations.insert(quot);
 			assert(remain != 0);
 			divide = divisor;
 			divisor = remain;
@@ -59,6 +56,14 @@ NS_DEF_NARAN{
 		coef1 = coef1 % omiga;
 		coef1 = (coef1 < 0 ? coef1 + omiga : coef1);
 		return coef1;
+	}
+
+	RSAProvider::RSAProvider(int prime1, int prime2, int key)
+		: mPrime1(prime1)
+		, mPrime2(prime2)
+		, mKey(key)
+	{
+		mOKey = genOKey((prime1-1)*(prime2-1), key);
 	}
 
 }
