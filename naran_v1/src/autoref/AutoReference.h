@@ -105,6 +105,8 @@ NS_DEF_NARAN{
 		inline Array_(T *t, int size) : Auto_(new REF(t, size)) {}
 		inline Array_(const Array_ &copy) : Auto_(copy){}
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
+		inline void reset(T *t, int size){operator=(Array_(t, size));}
+		inline void reset(const Array_ &copy){operator=(copy);}
 		
 		inline T &operator [](int index) const{assert(index >= 0 && index < mRef->mMax); return Auto_::operator [](index);}
 		

@@ -78,7 +78,7 @@ NS_DEF_NARAN{
 	template<class I, class T>
 	static inline interf(I) convertNop(T *object)
 	{
-		return interf(I)(object);
+		return interf(I)(object, NULL);
 	}
 	
 	template<class I, class T>
@@ -89,9 +89,9 @@ NS_DEF_NARAN{
 	}
 	
 	// raw interface
-#define interf_nop(I)			(convertNop<I>)//(stable(I)((GVAR), new Keep_<GCLS *>(GVAR)))
+#define interf_make_nop(I)			(convertNop<I>)//(stable(I)((GVAR), new Keep_<GCLS *>(GVAR)))
 	// grab of an instance
-#define interf_grab(I)			(convertGrab<I>)//(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
+#define interf_make_grab(I)			(convertGrab<I>)//(stable(CLS)((GVAR).get(), new Keep_<grab(GCLS)>(GVAR)))
 
 }
 

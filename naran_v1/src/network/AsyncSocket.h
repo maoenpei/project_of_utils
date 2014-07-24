@@ -10,7 +10,7 @@ NS_DEF_NARAN{
 	class IOnSocketReceive
 	{
 	public:
-		virtual void onReceive(arr(unsigned char) data) = 0;
+		virtual void onReceive(arr(byte) data) = 0;
 	};
 
 	class ISocketConnection

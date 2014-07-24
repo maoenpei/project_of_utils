@@ -18,9 +18,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)"
-			IntermediateDirectory="builds\builds.$(ConfigurationName)"
-			ConfigurationType="1"
+			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -45,7 +45,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_NSYS_X86"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -88,9 +88,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)"
-			IntermediateDirectory="builds\builds.$(ConfigurationName)"
-			ConfigurationType="1"
+			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -115,11 +115,81 @@
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="../../src;third_part\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_NSYS_X86"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
+				GenerateDebugInformation="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="DebugNaran|Win32"
+			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../src;third_part\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_NSYS_X86"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -193,7 +263,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\structure\KBitmap.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\structure\KBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\structure\KData.h"
 				>
 			</File>
 			<File
@@ -276,6 +354,22 @@
 				Name="_framework"
 				>
 				<File
+					RelativePath="..\..\src\framework\CArguments.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\CArguments.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\CConfiguration.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\framework\CConfiguration.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\framework\CLibLoader.cpp"
 					>
 				</File>
@@ -314,7 +408,31 @@
 			</Filter>
 		</Filter>
 		<File
+			RelativePath="..\..\src\CommonDef.h"
+			>
+		</File>
+		<File
 			RelativePath=".\main.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="..\..\src\Naran.h"
 			>
 		</File>
 	</Files>

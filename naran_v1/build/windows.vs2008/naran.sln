@@ -3,16 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "naran", "naran.vcproj", "{CEB3E688-621C-45AB-BF8A-B90708D3E328}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlas_merge", "atlas_merge.vcproj", "{A88A154A-9485-48DD-817C-3E652885B1C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328} = {CEB3E688-621C-45AB-BF8A-B90708D3E328}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		DebugNaran|Win32 = DebugNaran|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.ActiveCfg = Debug|Win32
 		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Debug|Win32.Build.0 = Debug|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.DebugNaran|Win32.ActiveCfg = DebugNaran|Win32
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.DebugNaran|Win32.Build.0 = DebugNaran|Win32
 		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.ActiveCfg = Release|Win32
 		{CEB3E688-621C-45AB-BF8A-B90708D3E328}.Release|Win32.Build.0 = Release|Win32
+		{A88A154A-9485-48DD-817C-3E652885B1C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A88A154A-9485-48DD-817C-3E652885B1C6}.Debug|Win32.Build.0 = Debug|Win32
+		{A88A154A-9485-48DD-817C-3E652885B1C6}.DebugNaran|Win32.ActiveCfg = DebugNaran|Win32
+		{A88A154A-9485-48DD-817C-3E652885B1C6}.Release|Win32.ActiveCfg = Release|Win32
+		{A88A154A-9485-48DD-817C-3E652885B1C6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

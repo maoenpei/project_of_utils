@@ -146,7 +146,7 @@ NS_DEF_NARAN{
 		for (int i = mLen - 1; i>=0; i--){
 			if (data[i]){
 				register u32 arg = data[i];
-				return i * 32 + BITS_FIRST_BIT(arg);
+				return i * 32 + BITS_FIRST_BITV(arg);
 			}
 		}
 		return -1;

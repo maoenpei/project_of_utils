@@ -222,7 +222,7 @@ NS_DEF_NARAN{
 		if (sock == -1)
 			return NULL;
 		
-		interf(ISocketConnection) inst = interf_grab(ISocketConnection)(new Impl_SocketConnection(mPoolData, sock));
+		interf(ISocketConnection) inst = interf_make_grab(ISocketConnection)(new Impl_SocketConnection(mPoolData, sock));
 		
 		mData->addSocket(sock);
 
@@ -243,10 +243,8 @@ NS_DEF_NARAN{
 
 	void SocketPool::runService()
 	{
-		while(1){
-			mData->sendList(20, 1);
-			mData->sendList(1, 5);
-		}
+		mData->sendList(20, 1);
+		mData->sendList(1, 5);
 	}
 
 	SocketPool::SocketPool()
