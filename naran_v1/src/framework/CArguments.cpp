@@ -28,9 +28,15 @@ NS_DEF_NARAN{
 			ArguOperatorImpl *impl = new ArguOperatorImpl();
 			if (tocker){
 				impl->mArgs.reset(new char *[tocker->count](), tocker->count);
-				for (int k = 0; k<tocker->count && i+1<count; k++){
+				int k = 0;
+				for (; k<tocker->count && i+1<count; k++){
 					i++;
 					impl->mArgs[k] = args[i];
+				}
+				// exceptions
+				if (k != tocker->count){
+					delete impl;
+					return;
 				}
 				impl->mType = tocker->type;
 			}else{
