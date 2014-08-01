@@ -2,7 +2,7 @@
 
 'Data' class is used for memory record.
 
-It never expand or free the data. But just record and convert them.
+It didn't expand or free data, but it record and convert them.
 
 ***************************************/
 #ifndef __NARAN_DATA_H__

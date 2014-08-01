@@ -19,7 +19,7 @@ NS_DEF_NARAN{
 
 	struct Data_SocketPool
 	{
-		interfSet(ISocketConnection) mConnections;
+		InterfSet(ISocketConnection) mConnections;
 		inline Data_SocketPool(){
 			pthread_mutex_init(&mSendMutex, NULL);
 			pthread_mutex_init(&mRecvMutex, NULL);
@@ -46,7 +46,7 @@ NS_DEF_NARAN{
 			pthread_mutex_unlock(&mSendMutex);
 		}
 
-		varMap(SOCKET, interf(IOnSocketReceive)) mRecvHandlers;
+		VarMap(SOCKET, interf(IOnSocketReceive)) mRecvHandlers;
 		pthread_mutex_t mRecvMutex;
 		inline void setReceiveHandler(SOCKET sock, interf(IOnSocketReceive) handler){
 			pthread_mutex_lock(&mRecvMutex);
@@ -54,7 +54,7 @@ NS_DEF_NARAN{
 			pthread_mutex_unlock(&mRecvMutex);
 		}
 
-		varSet(SOCKET) mSockets;
+		VarSet(SOCKET) mSockets;
 		pthread_mutex_t mSocketsMutex;
 		inline void addSocket(SOCKET sock){
 			pthread_mutex_lock(&mSocketsMutex);
@@ -113,7 +113,7 @@ NS_DEF_NARAN{
 		void recvList(int count, int timeout){
 			pthread_mutex_lock(&mSocketsMutex);
 			while(count > 0){
-				varSet(SOCKET)::IterType it = mSockets.iterator();
+				VarSet(SOCKET)::IterType it = mSockets.iterator();
 				if (! it.hasNext)
 					break;
 				
@@ -220,7 +220,7 @@ NS_DEF_NARAN{
 	{
 		SOCKET sock = Data_SocketPool::utilConnect(ip, port);
 		if (sock == -1)
-			return NULL;
+			return nullof(ISocketConnection);
 		
 		interf(ISocketConnection) inst = interf_make_grab(ISocketConnection)(new Impl_SocketConnection(mPoolData, sock));
 		

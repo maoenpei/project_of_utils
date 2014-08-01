@@ -148,7 +148,7 @@ NS_DEF_NARAN{
 		char *nameExt;
 		getExts(nameStart, nameEnd, nameExt);
 
-		int l = nameExt - nameEnd;
+		int l = nameEnd - nameExt;
 		char *pathName = new char[l + 1] ();
 		strncpy(pathName, nameExt, l);
 		return pathName;
@@ -264,6 +264,10 @@ NS_DEF_NARAN{
 	{
 		setChars(path);
 	}
+
+	Path::Path(more(char) path)
+		: mPathChars(path)
+	{}
 
 }
 

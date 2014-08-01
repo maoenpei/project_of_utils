@@ -129,7 +129,6 @@ NS_DEF_NARAN{
 
 #define CLS_HIDE(CLS)			protected:CLS();CLS(const CLS&copy);~CLS();friend class DestroyOp_<CLS>;
 #define grab(CLS)				Auto_<CLS, DestroyOp_<CLS>, Auto_Ref_<CLS>>
-#define nullof(CLS)				((CLS *)0)
 
 #define more(CLS)			Auto_<CLS, DeleteArrayOp_<CLS>, Auto_Ref_<CLS>>
 #define arr(CLS)			Array_<CLS, DeleteArrayOp_<CLS>, Array_Ref_<CLS>>

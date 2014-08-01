@@ -29,11 +29,12 @@ NS_DEF_NARAN{
 		return 0;
 	}
 
-	void File::writeBuffer(arr(byte) buf)
+	int File::writeBuffer(arr(byte) buf)
 	{
 		if (mFilePtr){
-			fwrite(buf.get(), 1, buf.count(), mFilePtr);
+			return (int)fwrite(buf.get(), 1, buf.count(), mFilePtr);
 		}
+		return 0;
 	}
 
 	void File::open(const Path &path, u32 flags)

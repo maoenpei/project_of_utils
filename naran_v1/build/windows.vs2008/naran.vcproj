@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="2"
 			CharacterSet="1"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib third_part\lib\libpng.lib third_part\lib\zlibstat.lib third_part\lib\libjpeg.lib"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -88,7 +88,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="2"
 			CharacterSet="1"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib third_part\lib\libpng.lib third_part\lib\zlibstat.lib third_part\lib\libjpeg.lib"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -159,7 +159,7 @@
 		</Configuration>
 		<Configuration
 			Name="DebugNaran|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -202,7 +202,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="third_part\lib\pthreadVC2.lib"
+				AdditionalDependencies="third_part\lib\pthreadVC2.lib third_part\lib\libpng.lib third_part\lib\zlibstat.lib third_part\lib\libjpeg.lib"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -292,7 +292,7 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="_algrithm"
+			Name="_algorithm"
 			>
 			<File
 				RelativePath="..\..\src\algrithm\KHashtable.cpp"
@@ -403,6 +403,34 @@
 				</File>
 				<File
 					RelativePath="..\..\src\network\SyncSocket.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="_image"
+				>
+				<File
+					RelativePath="..\..\src\image\CImageLoader.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\image\CImageLoader.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\image\CImageLoaderJPEG.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\image\CImageLoaderPNG.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\image\KImage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\image\KImage.h"
 					>
 				</File>
 			</Filter>

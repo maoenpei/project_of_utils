@@ -30,6 +30,7 @@ NS_DEF_NARAN{
 
 		Path();
 		Path(c_str path);
+		Path(more(char) path);
 		
 	private:
 		more(char) mPathChars;

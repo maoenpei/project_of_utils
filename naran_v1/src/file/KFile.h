@@ -22,7 +22,7 @@ NS_DEF_NARAN{
 		int getSize();
 
 		int readBuffer(arr(byte) bs);
-		void writeBuffer(arr(byte) buf);
+		int writeBuffer(arr(byte) buf);
 
 		void open(const Path &path, u32 flags = File_ReadWrite);
 		void close();

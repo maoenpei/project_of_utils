@@ -6,6 +6,12 @@
 NS_DEF_NARAN{
 
 	template<typename T>
+	class Point2D_;
+
+	template<typename T>
+	class Point3D_;
+
+	template<typename T>
 	class CLS_EXPORT Size2D_
 	{
 	public:
@@ -24,6 +30,7 @@ NS_DEF_NARAN{
 		inline bool operator != (const Size2D_ &other) const{
 			return w != other.w && h != other.h;
 		}
+		inline bool contain(const Point2D_<T> &pt) const;
 	};
 
 	template<typename T>
@@ -46,6 +53,7 @@ NS_DEF_NARAN{
 		inline bool operator != (const Size3D_ &other) const{
 			return w != other.w && h != other.h && d != other.d;
 		}
+		inline bool contain(const Point3D_<T> &pt) const;
 	};
 
 	template<typename T>
@@ -98,12 +106,25 @@ NS_DEF_NARAN{
 	};
 
 	template<typename T>
+	bool Size2D_<T>::contain(const Point2D_<T> &pt) const
+	{
+		return pt.x >= 0 && pt.y >= 0 && pt.x < w && pt.y < h;
+	}
+
+	template<typename T>
+	bool Size3D_<T>::contain(const Point3D_<T> &pt) const
+	{
+		return pt.x >= 0 && pt.y >= 0 && pt.x < w && pt.y < h && pt.z >= 0 && pt.z < d;
+	}
+
+	template<typename T>
 	class CLS_EXPORT Rect_
 	{
 	public:
 		Point2D_<T> pt;
 		Size2D_<T> size;
 		inline Rect_() {}
+		inline Rect_(const Size2D_<T> &_size) : size(_size) {}
 		inline Rect_(const Point2D_<T> &_pt, const Size2D_<T> &_size) : pt(_pt), size(_size) {}
 		inline Rect_(T x, T y, T w, T h) : pt(x, y), size(w, h) {}
 		inline Rect_(const Point2D_<T> &pt1, const Point2D_<T> &pt2) 
@@ -119,6 +140,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator != (const Point2D_<T> &other) const{
 			return pt != other.pt && size != other.size;
+		}
+		inline bool contain(const Point2D_<T> &_pt) const{
+			return _pt.x >= pt.x && _pt.y >= pt.y && _pt.x < pt.x+size.w && _pt.y < pt.y+size.h;
 		}
 		inline Point2D_<T> getFar() const{
 			return pt + size;
@@ -164,6 +188,7 @@ NS_DEF_NARAN{
 		Point3D_<T> pt;
 		Size3D_<T> size;
 		inline Bound_() {}
+		inline Bound_(const Size3D_<T> &_size) : size(_size) {}
 		inline Bound_(const Point3D_<T> &_pt, const Size3D_<T> &_size) : pt(_pt), size(_size) {}
 		inline Bound_(T x, T y, T z, T w, T h, T d) : pt(x, y, z), size(w, h, d) {}
 		inline Bound_(const Point3D_<T> &pt1, const Point3D_<T> &pt2) 
@@ -179,6 +204,9 @@ NS_DEF_NARAN{
 		}
 		inline bool operator != (const Point3D_<T> &other) const{
 			return pt != other.pt && size != other.size;
+		}
+		inline bool contain(const Point3D_<T> &_pt) const{
+			return _pt.x >= pt.x && _pt.y >= pt.y && _pt.x < pt.x+size.w && _pt.y < pt.y+size.h && _pt.z >= pt.z && _pt.z < pt.z+size.d;
 		}
 		inline Point3D_<T> getFar() const{
 			return pt + size;

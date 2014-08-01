@@ -236,16 +236,16 @@ NS_DEF_NARAN{
 		}
 	};
 
-#define strMap(CLS)				HHashmap<HTString, HOPString, CLS>
-#define intMap(CLS)				HHashmap<int, HOPCommon<int>, CLS>
-#define varMap(TYPE, CLS)		HHashmap<TYPE, HOPCommon<TYPE>, CLS>
-#define grabMap(KEY, VAL)		HHashmap<grab(KEY), HOPPackaged<grab(KEY)>, VAL>
-#define interfMap(KEY, VAL)		HHashmap<interf(KEY), HOPPackaged<interf(KEY)>, VAL>
+#define StringMap(CLS)			HHashmap<HTString, HOPString, CLS>
+#define IntegerMap(CLS)			HHashmap<int, HOPCommon<int>, CLS>
+#define VarMap(TYPE, CLS)		HHashmap<TYPE, HOPCommon<TYPE>, CLS>
+#define GrabMap(KEY, VAL)		HHashmap<grab(KEY), HOPPackaged<grab(KEY)>, VAL>
+#define InterfMap(KEY, VAL)		HHashmap<interf(KEY), HOPPackaged<interf(KEY)>, VAL>
 
-#define strSet()				HHashset<HTString, HOPString>
-#define varSet(TYPE)			HHashset<TYPE, HOPCommon<TYPE>>
-#define grabSet(CLS)			HHashset<grab(CLS), HOPPackaged<grab(CLS)>>
-#define interfSet(CLS)			HHashset<interf(CLS), HOPPackaged<interf(CLS)>>
+#define StringSet()				HHashset<HTString, HOPString>
+#define VarSet(TYPE)			HHashset<TYPE, HOPCommon<TYPE>>
+#define GrabSet(CLS)			HHashset<grab(CLS), HOPPackaged<grab(CLS)>>
+#define InterfSet(CLS)			HHashset<interf(CLS), HOPPackaged<interf(CLS)>>
 
 }
 

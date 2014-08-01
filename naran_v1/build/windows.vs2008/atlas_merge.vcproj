@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -92,7 +92,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -169,7 +169,7 @@
 		</Configuration>
 		<Configuration
 			Name="DebugNaran|Win32"
-			OutputDirectory="$(SolutionDir)\builds.$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -255,6 +255,14 @@
 		</File>
 		<File
 			RelativePath="..\..\plugins\atlas_merge\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\MergeStage.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\MergeStage.h"
 			>
 		</File>
 	</Files>

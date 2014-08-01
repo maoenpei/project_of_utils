@@ -19,8 +19,8 @@ NS_DEF_NARAN{
 
 	struct Data_Configuration
 	{
-		intMap(grab(Blocks)) buffers;		// data, bitmap, size
-		strMap(DataRecord) datas;			// data record
+		IntegerMap(grab(Blocks)) buffers;		// data, bitmap, size
+		StringMap(DataRecord) datas;			// data record
 	};
 
 	int Configuration::getDataLength(const char *key)

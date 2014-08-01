@@ -1,11 +1,10 @@
 
 #include "Naran.h"
+#include "MergeStage.h"
 
 using namespace Naran;
 
 CLS_SHARE_MEMORY();
-
-grab(Configuration) global_config;
 
 enum{
 	Op_Files = 0,

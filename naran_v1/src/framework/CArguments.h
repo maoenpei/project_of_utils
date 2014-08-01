@@ -32,7 +32,7 @@ NS_DEF_NARAN{
 			int count;
 			int type;
 		};
-		strMap(grab(ArguTocker)) mArgOps;
+		StringMap(grab(ArguTocker)) mArgOps;
 		Array<interf(IArguOperator)> mInterfs;
 		int mDefType;
 		ArguOperation(int defType);

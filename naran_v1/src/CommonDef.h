@@ -32,6 +32,7 @@ NS_DEF_NARAN{
 	typedef const char * c_str;
 	typedef void (* func_ptr)(void);
 }
+#define nullof(CLS)				((CLS *)0)
 
 /* bit operation */
 #define BIT_GET(i, st, l)			(((i)>>(st)) & (~((~0)<<(l))))
@@ -48,6 +49,7 @@ NS_DEF_NARAN{
 #define BITS_CHECK_ONES(VAL, N, L)		((((VAL)>>(N)) | BITS_GEN_ZEROS(L)) == ~0)
 #define BITS_CHECK_ZEROS(VAL, N, L)		((((VAL)>>(N)) & BITS_GEN_ONES(L)) == 0)
 
+/* find last bit that is 1 */
 #define BITS_FIRST_BITV1(VAL, N)		(BITS_CHECK_ONES(VAL, N, 1) ? (N) : (N)-1)
 #define BITS_FIRST_BITV2(VAL, N)		(BITS_CHECK_ZEROS(VAL, (N)+1, 1) ? BITS_FIRST_BITV1(VAL, N) : (N)+1)
 #define BITS_FIRST_BITV4(VAL, N)		(BITS_CHECK_ZEROS(VAL, (N)+2, 2) ? BITS_FIRST_BITV2(VAL, N) : BITS_FIRST_BITV2(VAL, (N)+2))
@@ -56,6 +58,7 @@ NS_DEF_NARAN{
 #define BITS_FIRST_BITV32(VAL, N)		(BITS_CHECK_ZEROS(VAL, (N)+16, 16) ? BITS_FIRST_BITV16(VAL, N) : BITS_FIRST_BITV16(VAL, (N)+16))
 #define BITS_FIRST_BITV(VAL)			BITS_FIRST_BITV32(VAL, 0)
 
+/* find first bit that is 1 */
 #define BITS_FIRST_BIT1(VAL, N)			(BITS_CHECK_ONES(VAL, N, 1) ? (N) : (N)+1)
 #define BITS_FIRST_BIT2(VAL, N)			(BITS_CHECK_ZEROS(VAL, (N), 1) ? BITS_FIRST_BIT1(VAL, (N)+1) : (N))
 #define BITS_FIRST_BIT4(VAL, N)			(BITS_CHECK_ZEROS(VAL, (N), 2) ? BITS_FIRST_BIT2(VAL, (N)+2) : BITS_FIRST_BIT2(VAL, N))

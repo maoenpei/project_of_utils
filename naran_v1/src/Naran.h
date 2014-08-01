@@ -27,6 +27,9 @@
 #include "file/KFile.h"
 #include "file/KPath.h"
 
+#include "image/KImage.h"
+#include "image/CImageLoader.h"
+
 #include "network/ASyncSocket.h"
 #include "network/SyncSocket.h"
 
