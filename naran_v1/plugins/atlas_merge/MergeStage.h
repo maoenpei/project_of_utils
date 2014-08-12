@@ -2,41 +2,10 @@
 #define __NARAN_MERGE_STAGE_H__
 
 #include "Naran.h"
+#include "MergeStruct.h"
+#include "ImageRectManager.h"
 
 NS_DEF_NARAN{
-
-	struct ImageRect
-	{
-		// info part
-		g2d::Sizei size;
-
-		// result part
-		g2d::Pointi start_result;
-		bool rotated_result;
-
-		// other part
-		bool marked;
-	};
-
-	class ISortAlgorithm
-	{
-	public:
-		virtual arr(ImageRect *) sort(arr(ImageRect *) objects) = 0;
-	};
-
-	class IMergeAlgorithm
-	{
-	public:
-		virtual g2d::Sizei merge(arr(ImageRect *) objects) = 0;
-	};
-
-	struct ImageEntry
-	{
-		more(char) path;
-		grab(Image) image;
-		g2d::Recti region;
-		ImageRect *rect;
-	};
 
 	struct ImageInfo
 	{
@@ -45,11 +14,14 @@ NS_DEF_NARAN{
 	};
 
 	enum {
-		ImageShape_Any = 0,
-		ImageShape_POT,
+		ImageSort_None = 0,
+		ImageSort_Width,
+		ImageSort_Height,
+		ImageSort_Area,
+		ImageSort_Length,
 	};
 
-	class CLS_EXPORT MergeStage
+	class MergeStage
 	{
 	public:
 		bool merge();
@@ -63,16 +35,21 @@ NS_DEF_NARAN{
 		void setTrim(bool isTrim);
 		void setBorderPadding(int padding);
 		void setInnerPadding(int padding);
-		void setShape(u32 shape);
+		void setPOT(bool isPOT);
 		void setSquare(bool isSquare);
 		void setAllowRotation(bool isAllowRotation);
+		void setSort(u32 sort);
+		void setMaxSize(const g2d::Sizei &size);
+		void setMaxWidth(int width);
+		void setMaxHeight(int height);
 
-		grab(MergeStage) create();
+		static grab(MergeStage) create();
 
 	private:
 		grab(Configuration) mConf;
-		Array<grab(ImageRect)> mRects;
+		grab(ImageRectManager) mManager;
 		StringMap(grab(ImageEntry)) mEntrys;
+		bool mImageDirty;
 
 		CLS_HIDE(MergeStage);
 	};

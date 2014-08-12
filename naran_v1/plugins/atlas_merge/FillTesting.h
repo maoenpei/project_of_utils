@@ -12,9 +12,10 @@ NS_DEF_NARAN{
 		AtlasTestingCross_Up = 0x8,
 	};
 
-	class CLS_EXPORT FillTesting
+	class FillTesting
 	{
 	public:
+		const g2d::Sizei &getSize();
 		void fillRect(const g2d::Recti &rect);
 		void revert();
 		bool testRect(const g2d::Recti &rect);

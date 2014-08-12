@@ -77,6 +77,7 @@ NS_DEF_NARAN{
 
 		/* ptr convertion */
 		inline operator bool() const{return mRef != 0 && mRef->ptr != 0;}
+		inline operator T *() const{return mRef->ptr;}
 	};
 
 #undef AUTO_EXEC_OP
@@ -107,16 +108,20 @@ NS_DEF_NARAN{
 		inline Array_ &operator=(const Array_ &copy){return (Array_ &)Auto_::operator =(copy);}
 		inline void reset(T *t, int size){operator=(Array_(t, size));}
 		inline void reset(const Array_ &copy){operator=(copy);}
+		inline void alloc(int size){
+			T * t = new T[size] ();
+			operator=(Array_(t, size));
+		}
 		
 		inline T &operator [](int index) const{assert(index >= 0 && index < mRef->mMax); return Auto_::operator [](index);}
 		
 		/* array apis */
 		inline int count(){return mRef->mMax;}
 		inline Array_ Copy() const{
-			return Copy(0, mRef->nMax);
+			return Copy(0, mRef->mMax);
 		}
 		inline Array_ Copy(int start, int len) const{
-			if (! mRef || start < 0 || start >= mRef->nMax || len <= 0 || start + len > mRef->nMax){
+			if (! mRef || start < 0 || start >= mRef->mMax || len <= 0 || start + len > mRef->mMax){
 				return Array_();
 			}
 			T *t = new T[len]();
@@ -124,6 +129,32 @@ NS_DEF_NARAN{
 				t[i] = mRef->ptr[i+start];
 			}
 			return Array_(t, len);
+		}
+
+		/* cast array */
+		template<class U>
+		inline Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>> convert_force() const{
+			U *u = new U[mRef->mMax]();
+			for (int i = 0; i<mRef->mMax; i++){
+				u[i] = (U)(mRef->ptr[i]);
+			}
+			return Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>>(u, mRef->mMax);
+		}
+		template<class U>
+		inline Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>> convert_static() const{
+			U *u = new U[mRef->mMax]();
+			for (int i = 0; i<mRef->mMax; i++){
+				u[i] = static_cast<U>(mRef->ptr[i]);
+			}
+			return Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>>(u, mRef->mMax);
+		}
+		template<class U>
+		inline Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>> convert_dynamic() const{
+			U *u = new U[mRef->mMax]();
+			for (int i = 0; i<mRef->mMax; i++){
+				u[i] = dynamic_cast<U>(mRef->ptr[i]);
+			}
+			return Array_<U, DeleteArrayOp_<U>, Array_Ref_<U>>(u, mRef->mMax);
 		}
 	};
 

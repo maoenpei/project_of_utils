@@ -42,7 +42,7 @@ NS_DEF_NARAN{
 			assert(index >= 0 && index < mNum);
 			return mArr[index];
 		}
-		inline T &operator[](int index){
+		inline T &operator[](int index) const{
 			if (index < 0){
 				index = mNum+index;
 			}
@@ -79,10 +79,10 @@ NS_DEF_NARAN{
 			memmove(mArr+index, mArr+index+1, (mNum - index - 1) * sizeof(T));
 			mNum--;
 		}
-		inline int count(){return mNum;}
+		inline int count() const{return mNum;}
 
 		// T type must override or use default 'operator ='
-		inline arr(T) toArr(){
+		inline arr(T) toArr() const{
 			T *objs = new T [(mNum < 1 ? 1 : mNum)] ();
 			for (int i = 0; i<mNum; i++){
 				objs[i] = mArr[i];

@@ -254,7 +254,23 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\plugins\atlas_merge\ImageRectManager.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\ImageRectManager.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\plugins\atlas_merge\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\MergeAlgorithm.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\MergeAlgorithm.h"
 			>
 		</File>
 		<File
@@ -263,6 +279,18 @@
 		</File>
 		<File
 			RelativePath="..\..\plugins\atlas_merge\MergeStage.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\MergeStruct.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\SortAlgorithm.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\plugins\atlas_merge\SortAlgorithm.h"
 			>
 		</File>
 	</Files>

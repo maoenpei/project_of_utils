@@ -435,6 +435,70 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="third_part"
+			>
+			<File
+				RelativePath=".\third_part\include\jconfig.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\jmorecfg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\jpeglib.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\png.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pngconf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pngdebug.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pnginfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pnglibconf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pngpriv.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pngstruct.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\pthread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\sched.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\semaphore.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\zconf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\third_part\include\zlib.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\src\CommonDef.h"
 			>

@@ -56,6 +56,20 @@ NS_DEF_NARAN{
 		return true;
 	}
 
+	bool Image::compareImage(grab(Image) img) const
+	{
+		if (!isValid() || !img->isValid()){
+			return false;
+		}
+		more(byte) data = img->getData();
+		int channel = img->getChannel();
+		const g2d::Sizei &size = img->getSize();
+		if (mChannel != channel || mSize != size){
+			return false;
+		}
+		return 0 == memcmp(mData.get(), data.get(), mChannel * (mSize.w * mSize.h));
+	}
+
 	bool Image::coverImage(grab(Image) img, const g2d::Pointi &base, const g2d::Recti &rect)
 	{
 		if (!isValid() || !img || !img->isValid()){

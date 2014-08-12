@@ -4,6 +4,11 @@
 
 NS_DEF_NARAN{
 
+	const g2d::Sizei &FillTesting::getSize()
+	{
+		return mSize;
+	}
+
 	void FillTesting::fillRect(const g2d::Recti &rect)
 	{
 		byte *start = mData.get() + rect.pt.x + rect.pt.y * mSize.w;

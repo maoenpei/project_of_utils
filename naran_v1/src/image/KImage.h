@@ -20,6 +20,7 @@ NS_DEF_NARAN{
 		bool setPixel(const g2d::Pointi &base, const byte *px);
 		bool getPixel(const g2d::Pointi &base, byte *px) const;
 		
+		bool compareImage(grab(Image) img) const;
 		bool coverImage(grab(Image) img, const g2d::Pointi &base, const g2d::Recti &rect);
 		grab(Image) subImage(const g2d::Recti &rect) const;
 		grab(Image) rotateImage(int timesOfRightAngle) const;//counter clockwise rotation
