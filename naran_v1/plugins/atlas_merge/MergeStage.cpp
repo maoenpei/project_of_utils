@@ -50,7 +50,7 @@ NS_DEF_NARAN{
 			StringMap(grab(ImageEntry))::IterType it(mEntrys.iterator());
 			while(it.hasNext){
 				if (!mManager->addImageRect(it.value.get(), it.key)){
-					return false;
+					//return false;
 				}
 				it.next();
 			}

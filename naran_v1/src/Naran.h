@@ -24,7 +24,6 @@
 #include "framework/CConfiguration.h"
 
 #include "file/KDirectory.h"
-#include "file/KFile.h"
 #include "file/KPath.h"
 
 #include "image/KImage.h"

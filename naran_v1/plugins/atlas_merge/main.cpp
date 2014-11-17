@@ -7,6 +7,7 @@ using namespace Naran;
 CLS_SHARE_MEMORY();
 
 grab(MergeStage) g_merge;
+Array<more(char)> input_paths;
 more(char) image_path;
 more(char) plist_path;
 
@@ -28,6 +29,7 @@ class ArguOpFile : public ArguOp
 public:
 	ArguOpFile() : ArguOp("", 1){}
 	virtual void dealWithString1(const char *str){
+		input_paths.insert(Utils::copyStr(str));
 		g_merge->addImage(str);
 	}
 };
@@ -141,9 +143,20 @@ public:
 	}
 };
 
+class ArguOpOutputPlist : public ArguOp
+{
+public:
+	ArguOpOutputPlist() : ArguOp("--data", 1){}
+	virtual void dealWithString(const char *str){
+		plist_path = Utils::copyStr(str);
+	}
+};
+
 int main(int argc, char **argv)
 {
 	g_merge = MergeStage::create();
+	image_path = Utils::copyStr("out.png");
+	plist_path = Utils::copyStr("out.plist");
 
 	grab(ArguOp) ops[] = {
 		new ArguOpFile(),
@@ -202,7 +215,7 @@ int main(int argc, char **argv)
 			"--max-height\n"
 			"--output\n");
 	}else{
-		
+		g_merge->makeImage(image_path.get());
 	}
 	return 0;
 }

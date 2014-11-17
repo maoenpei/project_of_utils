@@ -334,14 +334,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\file\KFile.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\file\KFile.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\src\file\KPath.cpp"
 					>
 				</File>

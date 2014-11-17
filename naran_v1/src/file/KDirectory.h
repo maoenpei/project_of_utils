@@ -5,7 +5,6 @@
 #include "autoref/AutoReference.h"
 #include "autoref/AutoCounter.h"
 #include "file/KPath.h"
-#include "file/KFile.h"
 
 NS_DEF_NARAN{
 

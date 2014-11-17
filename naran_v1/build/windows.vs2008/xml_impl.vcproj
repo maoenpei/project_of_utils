@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="atlas_merge"
-	ProjectGUID="{A88A154A-9485-48DD-817C-3E652885B1C6}"
-	RootNamespace="atlas_merge"
+	Name="xml_impl"
+	ProjectGUID="{7CA163D6-D704-457C-A610-827D0B4E95F8}"
+	RootNamespace="xml_impl"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -94,7 +94,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)builds.$(ConfigurationName)\bin"
 			IntermediateDirectory="builds.$(ConfigurationName)\$(ProjectName)\builds_internal"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -245,60 +245,72 @@
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="impl"
+			>
+			<File
+				RelativePath="..\..\plugins\xml_impl\config.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-attr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-entity.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-file.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-index.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-node.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-private.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-private.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-search.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-set.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml-string.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxml.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\plugins\xml_impl\mxmldoc.c"
+				>
+			</File>
+		</Filter>
 		<File
-			RelativePath="..\..\plugins\atlas_merge\FillTesting.cpp"
+			RelativePath="..\..\plugins\xml_impl\Xml.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\plugins\atlas_merge\FillTesting.h"
+			RelativePath="..\..\plugins\xml_impl\Xml.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\plugins\atlas_merge\ImageOutput.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\ImageOutput.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\ImageRectManager.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\ImageRectManager.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\main.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\MergeAlgorithm.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\MergeAlgorithm.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\MergeStage.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\MergeStage.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\MergeStruct.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\SortAlgorithm.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\plugins\atlas_merge\SortAlgorithm.h"
+			RelativePath="..\..\plugins\export\XML_export.h"
 			>
 		</File>
 	</Files>

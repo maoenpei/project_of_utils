@@ -6,6 +6,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlas_merge", "atlas_merge.vcproj", "{A88A154A-9485-48DD-817C-3E652885B1C6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CEB3E688-621C-45AB-BF8A-B90708D3E328} = {CEB3E688-621C-45AB-BF8A-B90708D3E328}
+		{7CA163D6-D704-457C-A610-827D0B4E95F8} = {7CA163D6-D704-457C-A610-827D0B4E95F8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml_impl", "xml_impl.vcproj", "{7CA163D6-D704-457C-A610-827D0B4E95F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEB3E688-621C-45AB-BF8A-B90708D3E328} = {CEB3E688-621C-45AB-BF8A-B90708D3E328}
 	EndProjectSection
 EndProject
 Global
@@ -26,6 +32,12 @@ Global
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.DebugNaran|Win32.ActiveCfg = DebugNaran|Win32
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.Release|Win32.ActiveCfg = Release|Win32
 		{A88A154A-9485-48DD-817C-3E652885B1C6}.Release|Win32.Build.0 = Release|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.Debug|Win32.Build.0 = Debug|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.DebugNaran|Win32.ActiveCfg = DebugNaran|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.DebugNaran|Win32.Build.0 = DebugNaran|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.Release|Win32.ActiveCfg = Release|Win32
+		{7CA163D6-D704-457C-A610-827D0B4E95F8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
